@@ -123,3 +123,7 @@ Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_
 ```shell
 npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS [deploy parameters]
 ```
+
+## Metadata
+
+More information on metadata [here](metadata).
