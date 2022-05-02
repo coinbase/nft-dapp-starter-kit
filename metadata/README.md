@@ -28,3 +28,23 @@ A sample script to generate metadata for projects using the `tokenURI()` overrid
 ```bash
 node metadata/generateMetadata.js
 ```
+
+## Contract Level (Collection) Metadata
+
+Some marketplaces and wallets display contract-level/collection metadata. For Opensea, this information is read off a [`contractURI`](https://docs.opensea.io/docs/contract-level-metadata) read function.
+
+You can optionally add collection metadata to your contract by adding the external view function into your contract.
+
+```
+function contractURI() public view returns (string memory) {
+    return collectionURI;
+}
+```
+
+`collectionURI` can be set in the contract constructor or a setter can be added as well to modify the contractURI information after deploy.
+
+```
+  function setCollectionURI(string memory _collectionURI) external onlyOwner {
+        collectionURI = _collectionURI_;
+    }
+```
