@@ -20,3 +20,11 @@ There isn't a universal standard for NFT metadata but most projects follow this 
 ```
 
 Some other major marketplaces like Zora and Rarible have slightly different metadata standard schemas.
+
+## Metadata Generating
+
+A sample script to generate metadata:
+
+```bash
+node metadata/generateMetadata.js
+```
