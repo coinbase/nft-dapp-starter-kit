@@ -1,4 +1,60 @@
-# NFT Minting Toolkit
+# NFT Minting Toolkit 🏗️
+
+## Deployed Test Contracts
+
+Rinkeby `WoahNiceNFT`: [`0x154058c11Ccc29376f5C1803eBeeD816eEbD3732`](https://rinkeby.etherscan.io/address/0x154058c11Ccc29376f5C1803eBeeD816eEbD3732)
+
+## Prerequisites
+
+1. Have access to the public (public wallet address) and private key to your Ethereum account (use a test account!)
+2. Have an alchemy account set-up (the free one works!)
+3. Have an etherscan account.
+
+## Dependencies
+
+Install dependencies.
+
+```
+yarn install
+```
+
+Hardhat
+
+```zsh
+yarn add hardhat
+```
+
+Dotenv
+
+```zsh
+yarn add dotenv
+```
+
+Ethers.js
+
+```zsh
+yarn add @nomiclabs/hardhat-ethers ethers@^5.0.0
+```
+
+OpenZeppelin
+
+```zsh
+yarn add @openzeppelin/contracts
+```
+
+Alchemy Web3
+
+```zsh
+yarn add @alch/alchemy-web3
+```
+
+Hardhat-etherscan (to verify your contract)
+
+```
+yarn add @nomiclabs/hardhat-etherscan
+```
+
+## Running Locally
 
 To run this locally, make sure you have your environment variables set.
 
@@ -25,10 +81,6 @@ To run this locally, make sure you have your environment variables set.
    ```
    npx hardhat run scripts/deploy.js --network hardhat
    ```
-
-## Deployed Test Contracts
-
-Rinkeby `WoahNiceNFT`: [`0x154058c11Ccc29376f5C1803eBeeD816eEbD3732`](https://rinkeby.etherscan.io/address/0x154058c11Ccc29376f5C1803eBeeD816eEbD3732)
 
 ## Steps to Test
 
