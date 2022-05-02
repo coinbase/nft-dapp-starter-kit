@@ -23,7 +23,7 @@ Some other major marketplaces like Zora and Rarible have slightly different meta
 
 ## Metadata Generating
 
-A sample script to generate metadata:
+A sample script to generate metadata for projects using the `tokenURI()` override with a return value of `string(abi.encodePacked(baseURI, "/", tokenId.toString(), ".json"));`, there is a sample script that can be modified to generate metadata in bulk.
 
 ```bash
 node metadata/generateMetadata.js
