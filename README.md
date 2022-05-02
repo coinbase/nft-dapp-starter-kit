@@ -92,7 +92,7 @@ Scripts for contract interactions are located in [`scripts/contract-interactions
 
 Scripts to generate merkle roots are located in [`scripts`](scripts).
 
-- update the addresses in `allowlist/claimlist.json` and `allowlist/giftClaimlist.json` and run the scripts to generate the merkle roots and proofs.
+- update the addresses in `allowlists/claimlist.json` and `allowlists/giftlist.json` and run the scripts to generate the merkle roots and proofs.
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
