@@ -127,3 +127,11 @@ npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS [deploy parameter
 ## Metadata
 
 More information on metadata [here](metadata).
+
+## Other Resources
+
+- [Coinbase Wallet Developer Docs](https://docs.cloud.coinbase.com/wallet-sdk/docs)
+- [Paradigm's Guide to Designing Effective NFT Launches](https://www.paradigm.xyz/2021/10/a-guide-to-designing-effective-nft-launches)
+- [Scaffold-eth buyer-mints](https://github.com/scaffold-eth/scaffold-eth/tree/buyer-mints-nft) - a more complex version of this project
+- [Opensea NFT Developer Docs](https://docs.opensea.io/)
+- [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold)
