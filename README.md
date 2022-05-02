@@ -26,6 +26,10 @@ To run this locally, make sure you have your environment variables set.
    npx hardhat run scripts/deploy.js --network hardhat
    ```
 
+## Deployed Test Contracts
+
+Rinkeby `WoahNiceNFT`: [`0x154058c11Ccc29376f5C1803eBeeD816eEbD3732`](https://rinkeby.etherscan.io/address/0x154058c11Ccc29376f5C1803eBeeD816eEbD3732)
+
 ## Steps to Test
 
 Run `npx hardhat test --network hardhat`.
