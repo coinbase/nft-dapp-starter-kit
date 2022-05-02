@@ -71,13 +71,13 @@ describe("Claimlist merkle tests", function () {
     expect(mint.hash).to.not.be.NaN;
   });
 
-  it("should revert launchlist mint when msg.sender does not match merkle root", async function () {
+  it("should revert claimlist mint when msg.sender does not match merkle root", async function () {
     await expect(nft.connect(addr2).mintClaimlist(1, ["0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9", "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94"], {
       value: web3.utils.toWei('0.02', "ether"),
     })).to.be.revertedWith("Address does not exist in list");
   });
 
-  it("should not allow double launchlist mints when merkle root is valid", async function () {
+  it("should not allow double claimlist mints when merkle root is valid", async function () {
     const mint = await nft.connect(addr1).mintClaimlist(1, ["0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9", "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94"], {
       value: web3.utils.toWei('0.02', "ether"),
     });
