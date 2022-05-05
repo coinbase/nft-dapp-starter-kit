@@ -1,5 +1,18 @@
 {
-  "name": "hardhat-project",
+  "name": "nft-minting-starter-kit",
+  "version": "1.0.0",
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/CoinbaseWallet/nft-minting-starter-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoinbaseWallet/nft-minting-starter-kit.git"
+  },
+  "keywords": [],
+  "author": "straightupjac & jeongmincho",
+  "license": "ISC",
+  "homepage": "https://github.com/CoinbaseWallet/nft-minting-starter-kit#readme",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
