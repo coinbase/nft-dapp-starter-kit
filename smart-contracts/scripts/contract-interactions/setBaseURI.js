@@ -1,7 +1,7 @@
 require('dotenv').config();
 const hre = require("hardhat");
 
-const NEW_BASE_URI = ""; // MODIFY THIS
+const NEW_BASE_URI = "https://gateway.pinata.cloud/ipfs/QmcfJs3RBQEdwLYp2Gd7vBH36WekyjdzRHgWhTQJ1mR3Pu"; // MODIFY THIS
 
 async function main() {
   const WoahNiceNFT = await hre.ethers.getContractFactory("WoahNiceNFT");
