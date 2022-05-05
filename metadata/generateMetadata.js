@@ -12,7 +12,7 @@ const generateMetadata = (path) => {
     metadata['name'] = `Woah Nice NFT #${idx}`
     metadata['image'] = imageURI;
     // metadata['image'] = `${imageBaseURI}/${idx}.svg` // if your images are unique for each token id
-    metadata['description'] = "coinbaes chillin in the clouds"
+    metadata['description'] = "non fungible coinbaes chillin in the clouds"
     metadata['attributes'] = [
       {
         "trait_type": "Bing", 
