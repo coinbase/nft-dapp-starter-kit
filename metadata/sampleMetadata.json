@@ -1,0 +1,15 @@
+{
+    "name": "Woah Nice NFT",
+    "image": "https://gateway.pinata.cloud/ipfs/Qmd9fFVJEELBLyZE84945qz8U32LZHgJ3yvzPbU4L2vxvD",
+    "description": "NFT Minting with Merkle Allowlists",
+    "attributes": [
+      {
+        "trait_type": "Creator",
+        "value": "Me"
+      },
+      {
+        "trait_type": "Eye color",
+        "value": "Mocha"
+    }
+    ]
+  }
