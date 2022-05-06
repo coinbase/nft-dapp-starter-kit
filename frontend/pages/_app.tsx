@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider as WagmiProvider } from "wagmi";
 import { WagmiClient } from "./utils/wagmiClient";
 import NavBar from "@components/NavBar";
+import Footer from "@components/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiProvider client={WagmiClient}>
         <NavBar />
         <Component {...pageProps} />
+        <Footer />
       </WagmiProvider>
     </ChakraProvider>
   );

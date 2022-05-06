@@ -1,54 +1,65 @@
 .navbar {
-    position: relative;
-    display: flex;
-    padding: 1rem 2rem;
-    background: #211D1D;
-    color: #FFFFFF;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-  
-    height: 60px;
-    border-bottom: 1px solid #FFFFFF;
-  
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .navbar p {
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #FFFFFF;
-  }
-  
-  .partition {
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
-  }
-  
-  .button {
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
-  }
+  position: relative;
+  display: flex;
+  padding: 1em 4em;
+  background: #ffffff;
+  color: #211D1D;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  height: 80px;
+  border-bottom: 1px solid #FFFFFF;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar p {
+  font-family: 'Road Rage', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #211D1D;
+}
+
+.partition {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400px;
+}
+
+.button {
+  font-family: 'Road Rage', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #211D1D;
+}
+
+.code {
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
   
   @media (max-width: 800px) {
     .navbar .title {
       display: none;
     }
   }
+
+
+  

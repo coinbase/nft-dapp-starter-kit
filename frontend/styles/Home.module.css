@@ -12,6 +12,14 @@
   align-items: center;
 }
 
+.mainPadding {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .footer {
   display: flex;
   flex: 1;
@@ -40,9 +48,11 @@
 }
 
 .title {
+  font-family: 'New Rocker', cursive;
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  margin-bottom: 2rem;
 }
 
 .title,
@@ -51,18 +61,14 @@
 }
 
 .description {
-  margin: 4rem 0;
+  font-family: 'Road Rage', cursive;
+  margin: 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.content {
+  width: 50rem;
 }
 
 .grid {

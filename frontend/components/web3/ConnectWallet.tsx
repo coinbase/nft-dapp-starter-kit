@@ -3,7 +3,7 @@ import WalletModal from "@components/web3/WalletModal";
 import { Button, useDisclosure } from "@chakra-ui/react";
 
 const ConnectWallet = () => {
-    const { data, isError, isLoading } = useAccount();
+    const { data } = useAccount();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
