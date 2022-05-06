@@ -1,13 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "@styles/Home.module.css";
-import WalletModal from "@components/WalletModal";
-import { useAccount } from "wagmi";
-import { Button, useDisclosure } from "@chakra-ui/react";
+import ConnectWallet from "@components/web3/ConnectWallet";
 
-const Home: NextPage = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { data, isError, isLoading } = useAccount();
+const Home: NextPage = () => {  
 
   return (
     <div className={styles.container}>
@@ -21,18 +17,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Mint an <a href="https://nextjs.org">NFT!</a>
         </h1>
-
         <p className={styles.description}>NFT Minting Starter Kit</p>
-
-        {!data ? (
-          <Button colorScheme="blue" size="lg" onClick={onOpen}>
-            Connect Wallet
-          </Button>
-        ) : (
-          <div>Account: {data?.address}</div>
-        )}
-
-        <WalletModal isOpen={isOpen} closeModal={onClose} />
       </main>
     </div>
   );
