@@ -9,7 +9,7 @@ const ConnectWallet = () => {
     return (
         <>
          {!data ? (
-          <Button colorScheme="blue" size="lg" onClick={onOpen}>
+          <Button colorScheme="teal" size="lg" onClick={onOpen}>
             Connect Wallet
           </Button>
         ) : (

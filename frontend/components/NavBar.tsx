@@ -27,7 +27,7 @@ const NavBar = () => {
       <div className={styles.partition}>
           
         <a href="https://github.com/CoinbaseWallet/nft-minting-starter-kit" target="_blank" rel="noreferrer">
-            <Button colorScheme="blue" variant='outline' size="lg">
+            <Button colorScheme="teal" variant='outline' size="lg">
                 <span className={styles.code}>
                     Source code
                 </span>
