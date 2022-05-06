@@ -1,5 +1,6 @@
 import styles from "@styles/Home.module.css";
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, SimpleGrid } from '@chakra-ui/react'
+import Image from "next/image";
 
 const Team = () => {
     return (
@@ -8,18 +9,63 @@ const Team = () => {
                 <h1 className={styles.title}>
                 Team
                 </h1>
-                <Grid templateColumns='repeat(4, 1fr)' gap={6} marginTop={4}>
-                    <GridItem w='100%' h='50'>
-                        Code + Art
-                    </GridItem>
-                    <GridItem w='100%' h='50'>
-                        Community + Code
-                    </GridItem>
-                        Art + Community
-                    <GridItem w='100%' h='50'>
-                        Code
-                    </GridItem>                    
-                </Grid>
+                <SimpleGrid 
+                    columns={[1, 2, 4]}
+                    spacing='40px'
+                >
+                    <Box alignContent={'center'} alignItems="center" justifyContent="center">
+                        <Image 
+                            alt="placeholder image for team members"
+                            src={'/assets/square-coinbae.png'}
+                            width={250} 
+                            height={250} 
+                        />
+                        <p className={styles.center}>
+                            <strong>Coinbae 1</strong>
+                            <br />
+                            Code + Art
+                        </p>
+                    </Box>
+                    <Box>
+                        <Image 
+                            alt="placeholder image for team members"
+                            src={'/assets/square-coinbae.png'}
+                            width={250} 
+                            height={250} 
+                        />
+                        <p className={styles.center}>
+                            <strong>Coinbae 2</strong>
+                            <br />
+                            Community + Code
+                        </p>
+                    </Box>
+                    <Box>
+                        <Image 
+                            alt="placeholder image for team members"
+                            src={'/assets/square-coinbae.png'}
+                            width={250} 
+                            height={250} 
+                        />
+                        <p className={styles.center}>
+                            <strong>Coinbae 3</strong>
+                            <br />
+                            Art + Commmunity
+                        </p>
+                    </Box>
+                    <Box>
+                        <Image 
+                            alt="placeholder image for team members"
+                            src={'/assets/square-coinbae.png'}
+                            width={250} 
+                            height={250} 
+                        />
+                        <p className={styles.center}>
+                            <strong>Coinbae 4</strong>
+                            <br />
+                            Code
+                        </p>
+                    </Box>
+                </SimpleGrid>
             </main>
         </div>
     )
