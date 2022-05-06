@@ -3,7 +3,7 @@ import { Grid, GridItem } from '@chakra-ui/react'
 
 const Team = () => {
     return (
-        <div id="about">
+        <div id="team">
             <main className={styles.mainPadding}>
                 <h1 className={styles.title}>
                 Team

@@ -2,7 +2,7 @@ import styles from "@styles/Home.module.css";
 
 const Roadmap = () => {
     return (
-        <div id="about">
+        <div id="roadmap">
             <main className={styles.mainPadding}>
                 <h1 className={styles.title}>
                 Roadmap

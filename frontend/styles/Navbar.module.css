@@ -1,7 +1,7 @@
 .navbar {
   position: relative;
   display: flex;
-  padding: 1em 4em;
+  padding: 1em 2em;
   background: #ffffff;
   color: #211D1D;
   position: fixed;
@@ -10,7 +10,6 @@
   z-index: 2;
 
   height: 80px;
-  border-bottom: 1px solid #FFFFFF;
 
   align-items: center;
   justify-content: space-between;
@@ -29,10 +28,16 @@
   color: #211D1D;
 }
 
-.partition {
+.rightPartition {
   display: flex;
   justify-content: space-between;
-  min-width: 400px;
+  min-width: 300px;
+}
+
+.leftPartition {
+  display: flex;
+  justify-content: space-between;
+  min-width: 450px;
 }
 
 .button {
@@ -54,8 +59,27 @@
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
+.mobilePartition {
+  display: none;
+}
   
   @media (max-width: 800px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: end;
+    }
+
+    .rightPartition, 
+    .leftPartition {
+      display: none;
+    }
+
+    .mobilePartition {
+      display: block;
+      float: right;
+    }
+
     .navbar .title {
       display: none;
     }

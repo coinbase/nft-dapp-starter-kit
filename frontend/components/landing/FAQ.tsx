@@ -22,7 +22,7 @@ const FAQ = () => {
     ];
 
     return (
-        <div id="about">
+        <div id="faq">
             <main className={styles.mainPadding}>
                 <h1 className={styles.title}>
                 FAQ

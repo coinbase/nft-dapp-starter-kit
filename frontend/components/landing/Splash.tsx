@@ -3,7 +3,7 @@ import styles from "@styles/Home.module.css";
 
 const SplashBanner = () => {
     return (
-        <div id="banner">
+        <div id="splash">
             <main className={styles.main}>
                 <h1 className={styles.title}>
                 Non-fungible Coinbaes

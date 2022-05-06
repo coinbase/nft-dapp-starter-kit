@@ -52,7 +52,7 @@
 }
 
 .content {
-  width: 50rem;
+  max-width: 50rem;
 }
 
 .grid {
