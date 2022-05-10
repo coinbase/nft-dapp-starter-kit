@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "@styles/Home.module.css";
 import SplashBanner from "@components/landing/Splash";
 import About from "@components/landing/About";
 import Roadmap from "@components/landing/Roadmap";

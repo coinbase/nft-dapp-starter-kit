@@ -13,12 +13,12 @@
   align-items: center;
   justify-content: space-between;
 
-  background-image: url('../public/assets/bg.png');
+  background-image: url("../public/assets/bg-star.png");
   background-size: cover;
 }
 
 .navbar p {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -27,7 +27,7 @@
   align-items: center;
   text-align: center;
 
-  color: #211D1D;
+  color: #211d1d;
 }
 
 .rightPartition {
@@ -43,7 +43,7 @@
 }
 
 .button {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -64,28 +64,25 @@
 .mobilePartition {
   display: none;
 }
-  
-  @media (max-width: 800px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: end;
-    }
 
-    .rightPartition, 
-    .leftPartition {
-      display: none;
-    }
-
-    .mobilePartition {
-      display: block;
-      float: right;
-    }
-
-    .navbar .title {
-      display: none;
-    }
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: end;
   }
 
+  .rightPartition,
+  .leftPartition {
+    display: none;
+  }
 
-  
+  .mobilePartition {
+    display: block;
+    float: right;
+  }
+
+  .navbar .title {
+    display: none;
+  }
+}
