@@ -52,25 +52,18 @@ const NavBar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <Box
-              as="button"
-              height="40px"
-              lineHeight="1.2"
-              transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-              px="8px"
-              fontFamily="'Press Start 2P', cursive"
-              fontSize="14px"
-              fontWeight="semibold"
-              color="#FFFFFF"
-              _hover={{ bg: "rgba(245, 246, 247, 0.2);", color: "#FFF" }}
-              _active={{
-                bg: "#dddfe2",
-                transform: "scale(0.98)",
-                borderColor: "#bec3c9",
+            <Button
+              style={{
+                fontFamily: "'Press Start 2P', cursive",
+                color: "#FFFFFF",
+                borderRadius: "0",
               }}
+              colorScheme="whiteAlpha"
+              variant="ghost"
+              size="md"
             >
               Source code
-            </Box>
+            </Button>
           </a>
           <ConnectWallet size="md" />
           <IconButton
@@ -123,27 +116,20 @@ const NavBar = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Box
-                    as="button"
-                    height="40px"
-                    lineHeight="1.2"
-                    transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-                    px="8px"
-                    fontFamily="'Press Start 2P', cursive"
-                    fontSize="14px"
-                    fontWeight="semibold"
-                    color="#FFFFFF"
-                    _hover={{ bg: "rgba(245, 246, 247, 0.2);", color: "#FFF" }}
-                    _active={{
-                      bg: "#dddfe2",
-                      transform: "scale(0.98)",
-                      borderColor: "#bec3c9",
+                  <Button
+                    style={{
+                      fontFamily: "'Press Start 2P', cursive",
+                      color: "#FFFFFF",
+                      borderRadius: "0",
                     }}
+                    colorScheme="whiteAlpha"
+                    variant="ghost"
+                    size="xs"
                   >
                     Source code
-                  </Box>
+                  </Button>
                 </a>
-                <ConnectWallet size="md" />
+                <ConnectWallet size="xs" />
                 <IconButton
                   aria-label="twitter icon"
                   size="md"
