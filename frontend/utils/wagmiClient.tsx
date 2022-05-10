@@ -1,7 +1,7 @@
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { createClient } from "wagmi";
+import { alchemyRpcUrls, createClient } from "wagmi";
 
 const clientOptions = {
   autoConnect: true,
@@ -9,7 +9,7 @@ const clientOptions = {
     new CoinbaseWalletConnector({
       options: {
         appName: "NFT Minting Starter Kit",
-        jsonRpcUrl: "https://eth-mainnet.alchemyapi.io/v2/yourAlchemyId",
+        jsonRpcUrl: alchemyRpcUrls.rinkeby,
       },
     }),
     new MetaMaskConnector(),

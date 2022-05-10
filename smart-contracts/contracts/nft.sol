@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
+contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -22,7 +22,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     string private baseURI;
 
     // project constraints
-    uint256 public constant MAX_TOKENS_PER_WALLET = 9;
+    uint256 public constant MAX_TOKENS_PER_WALLET = 5;
     uint256 public constant MAX_RESERVE_TOKENS = 200;
     uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
@@ -38,7 +38,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     bool public isPublicSaleActive;
     bool public isPresaleActive;
 
-    uint256 public constant MAX_CLAIMLIST_SALE_MINTS = 1;
+    uint256 public constant MAX_CLAIMLIST_SALE_MINTS = 3;
     uint256 public constant CLAIMLIST_SALE_PRICE = 0.02 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
@@ -47,7 +47,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     address public royaltyReceiverAddress;
 
     constructor(address _royaltyReceiverAddress)
-        ERC721("Woah Nice NFT", "WOAH")
+        ERC721("Non Fungible Coinbaes", "COINBAE")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
