@@ -31,6 +31,7 @@
   text-decoration: underline;
 }
 
+.blueTitle,
 .splashTitle,
 .title {
   font-family: 'Press Start 2P', cursive;
@@ -43,6 +44,10 @@
 
 .splashTitle {
   color: white;
+}
+
+.blueTitle {
+  color: #2F9EE4;
 }
 
 .title,

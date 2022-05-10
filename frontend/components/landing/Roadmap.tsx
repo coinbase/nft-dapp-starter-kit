@@ -3,6 +3,7 @@ import styles from "@styles/Roadmap.module.css";
 const Roadmap = () => {
     return (
         <div id="roadmap">
+            <div className={styles.background}>
             <main className={styles.main}>
                 <h1 className={styles.title}>
                 Roadmap
@@ -40,7 +41,7 @@ const Roadmap = () => {
                     </div>
                     <div className={styles.containerRight}>
                         <div className={styles.content}>
-                        <p>Community Fund to fund more useless projects</p>
+                        <p>Community Fund to fund more Coinbae projects</p>
                         </div>
                     </div>
                     <div className={styles.containerLeft}>
@@ -50,6 +51,7 @@ const Roadmap = () => {
                     </div>
                 </div>
             </main>
+            </div>
         </div>
     )
 };
