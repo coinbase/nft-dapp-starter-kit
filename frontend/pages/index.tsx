@@ -10,7 +10,7 @@ import FAQ from "@components/landing/FAQ";
 const Home: NextPage = () => {  
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>NFT Minting Starter Kit</title>
         <meta name="description" content="Starter kit for developers who want to build an NFT minting site" />

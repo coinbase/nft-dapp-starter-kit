@@ -31,21 +31,28 @@
   text-decoration: underline;
 }
 
+.splashTitle,
 .title {
-  font-family: 'New Rocker', cursive;
+  font-family: 'Press Start 2P', cursive;
+  max-width: 1200px;
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
   margin-bottom: 2rem;
 }
 
+.splashTitle {
+  color: white;
+}
+
 .title,
+.splashTitle,
 .description {
   text-align: center;
 }
 
 .description {
-  font-family: 'Road Rage', cursive;
+  font-family: 'Press Start 2P', cursive;
   margin: 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
@@ -58,6 +65,11 @@
 
 .center {
   text-align: center;
+}
+
+.background {
+  background-image: url('../public/assets/bg.png');
+  background-size: cover;
 }
 
 @media (max-width: 600px) {

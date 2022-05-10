@@ -1,15 +1,37 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-
+import { extendTheme } from "@chakra-ui/react"
 import { ChakraProvider } from "@chakra-ui/react";
+import { mode } from '@chakra-ui/theme-tools'
 import { Provider as WagmiProvider } from "wagmi";
 import { WagmiClient } from "@utils/wagmiClient";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  // customize your chakra theme here
+  const theme = extendTheme({
+    styles: {
+      global: (props : any) => ({
+        body: {
+          fontFamily: 'body',
+          color: mode('gray.800', 'whiteAlpha.900')(props),
+          bg: mode('white', 'gray.800')(props),
+          lineHeight: 'base',
+        },
+      }),
+    },
+    colors: {
+      brand: {
+        100: "#f7fafc",
+        900: "#1a202c",
+      },
+    },
+  })
+
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <WagmiProvider client={WagmiClient}>
         <NavBar />
         <Component {...pageProps} />

@@ -2,8 +2,7 @@
   position: relative;
   display: flex;
   padding: 1em 2em;
-  background: #ffffff;
-  color: #211D1D;
+  color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
@@ -13,10 +12,13 @@
 
   align-items: center;
   justify-content: space-between;
+
+  background-image: url('../public/assets/bg.png');
+  background-size: cover;
 }
 
 .navbar p {
-  font-family: 'Road Rage', cursive;
+  font-family: 'Press Start 2P', cursive;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -31,25 +33,25 @@
 .rightPartition {
   display: flex;
   justify-content: space-between;
-  min-width: 300px;
+  min-width: 350px;
 }
 
 .leftPartition {
   display: flex;
   justify-content: space-between;
-  min-width: 450px;
+  min-width: 500px;
 }
 
 .button {
-  font-family: 'Road Rage', cursive;
+  font-family: 'Press Start 2P', cursive;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 12px;
+  line-height: 18px;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #211D1D;
+  color: #ffffff;
 }
 
 .code {
