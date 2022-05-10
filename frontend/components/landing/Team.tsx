@@ -16,53 +16,53 @@ const Team = () => {
             >
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/square-coinbae.png"}
+                src={"/assets/btc2.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Coinbae 1</strong>
+                <strong>Bit Maxi</strong>
                 <br />
-                Code + Art
+                Community, Marketing
               </p>
             </Box>
             <Box>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/square-coinbae.png"}
+                src={"/assets/eth2.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Coinbae 2</strong>
+                <strong>Eth XOXO</strong>
                 <br />
-                Community + Code
+                Solidty, Art
               </p>
             </Box>
             <Box>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/square-coinbae.png"}
+                src={"/assets/cbw2.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Coinbae 3</strong>
+                <strong>Coinbae Wallet</strong>
                 <br />
-                Art + Commmunity
+                Code, Commmunity
               </p>
             </Box>
             <Box>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/square-coinbae.png"}
+                src={"/assets/sol2.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Coinbae 4</strong>
+                <strong>Rusty Sol</strong>
                 <br />
-                Code
+                Smart contracts, Security
               </p>
             </Box>
           </SimpleGrid>

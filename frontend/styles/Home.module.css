@@ -3,6 +3,8 @@
 }
 
 .main {
+  position: relative;
+
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
@@ -34,7 +36,7 @@
 .blueTitle,
 .splashTitle,
 .title {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   max-width: 1200px;
   margin: 0;
   line-height: 1.15;
@@ -47,7 +49,7 @@
 }
 
 .blueTitle {
-  color: #2F9EE4;
+  color: #2f9ee4;
 }
 
 .title,
@@ -57,7 +59,7 @@
 }
 
 .description {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   margin: 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
@@ -73,13 +75,27 @@
 }
 
 .background {
-  background-image: url('../public/assets/bg.png');
+  background-image: url("../public/assets/bg.png");
   background-size: cover;
+}
+
+.coinbaes {
+  position: absolute;
+  max-height: 35%;
+  text-align: center;
+  overflow: hidden;
+  bottom: 0;
 }
 
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .blueTitle,
+  .splashTitle,
+  .title {
+    font-size: 2.5rem;
   }
 }

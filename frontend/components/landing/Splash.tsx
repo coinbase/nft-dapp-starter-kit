@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import styles from "@styles/Home.module.css";
+import Image from "next/image";
 import Link from "next/link";
 
 const SplashBanner = () => {
@@ -33,6 +34,12 @@ const SplashBanner = () => {
               ⚡️ minting now ⚡️
             </Box>
           </Link>
+          <div className={styles.coinbaes}>
+            <Image src="/assets/btc2.png" height={300} width={300} />
+            <Image src="/assets/eth2.png" height={300} width={300} />
+            <Image src="/assets/cbw2.png" height={300} width={300} />
+            <Image src="/assets/sol2.png" height={300} width={300} />
+          </div>
         </main>
       </div>
     </div>

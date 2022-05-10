@@ -12,7 +12,7 @@ const FAQ = () => {
   const faqData = [
     {
       question: "Wen mint?",
-      answer: "you'll see soon. Check out our source code to mint your own/",
+      answer: "You'll see soon. Check out our source code to mint your own.",
     },
     {
       question: "What is the point?",
@@ -34,12 +34,14 @@ const FAQ = () => {
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
-                          {faq.question}
+                          <p style={{ fontWeight: "bold" }}>{faq.question}</p>
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
-                    <AccordionPanel pb={4}>{faq.answer}</AccordionPanel>
+                    <AccordionPanel pb={4}>
+                      <p> {faq.answer}</p>
+                    </AccordionPanel>
                   </AccordionItem>
                 );
               })}
