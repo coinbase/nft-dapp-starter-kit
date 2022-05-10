@@ -19,14 +19,7 @@ type WalletModalProps = {
 };
 
 export default function WalletModal({ isOpen, closeModal }: WalletModalProps) {
-  const {
-    activeConnector,
-    connect,
-    connectors,
-    error,
-    isConnecting,
-    pendingConnector,
-  } = useConnect();
+  const { connect, connectors, isConnecting, pendingConnector } = useConnect();
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal} isCentered>
