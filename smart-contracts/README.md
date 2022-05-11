@@ -123,3 +123,11 @@ Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_
 ```shell
 npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS [deploy parameters]
 ```
+
+## Gas Usage
+
+| **Method**      | **Gas**   | Average Cost (@ Gas Price of 50 gwei) |
+| --------------- | --------- | ------------------------------------- |
+| Contract Deploy | 4,747,369 | 0.23736845 ETH                        |
+| Set Base URI    | 115,025   | 0.00575125 ETH                        |
+|                 |           |                                       |
