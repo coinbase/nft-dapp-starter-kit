@@ -26,24 +26,26 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public constant MAX_RESERVE_TOKENS = 200;
     uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
-    uint256 public numGiftedTokens; // dynanic based on number of gifted tokens
+    uint256 public numGiftedTokens; // dynamic based on number of gifted tokens
 
-    // used to validate claimlists
-    mapping(address => bool) public claimed; // used for reserve tokens
-    mapping(address => uint256) public presaleMintCounts; // used for presale list
-    bytes32 public reserveMerkleRoot;
-    bytes32 public claimlistMerkleRoot;
+    // used to validate list
+    mapping(address => bool) public reservedMintCounts; // used to reserved list
+    mapping(address => uint256) public preSaleMintCounts; // used for presale list
+    bytes32 public reserveListMerkleRoot;
+    bytes32 public presaleListMerkleRoot;
 
     // Sale info
+    bool public isReservedMintActive;
+    bool public isPreSaleActive;
     bool public isPublicSaleActive;
-    bool public isPresaleActive;
 
-    uint256 public constant MAX_CLAIMLIST_SALE_MINTS = 3;
-    uint256 public constant CLAIMLIST_SALE_PRICE = 0.02 ether;
+    uint256 public constant MAX_PRE_SALE_MINTS = 1;
+    uint256 public constant PRE_SALE_PRICE = 0.02 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
     uint256 public constant PUBLIC_SALE_PRICE = 0.06 ether;
 
+    // Rotalty
     address public royaltyReceiverAddress;
 
     constructor(address _royaltyReceiverAddress)
@@ -53,8 +55,13 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ ACCESS CONTROL MODIFIERS ============
-    modifier presaleActive() {
-        require(isPresaleActive, "Presale is not open");
+    modifier reservedMintActive() {
+        require(isReservedMintActive, "Reserved minting is not open");
+        _;
+    }
+
+    modifier preSaleActive() {
+        require(isPreSaleActive, "Presale is not open");
         _;
     }
 
@@ -114,7 +121,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ PUBLIC FUNCTIONS FOR MINTING ============
-    function mint(uint256 numberOfTokens)
+    function mintPublicSale(uint256 numberOfTokens)
         external
         payable
         nonReentrant
@@ -137,23 +144,23 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
      * This is our regular presale list which operates like any other presale.
      * Only active during a presale
      */
-    function mintClaimlist(uint8 numberOfTokens, bytes32[] calldata merkleProof)
+    function mintPreSale(uint8 numberOfTokens, bytes32[] calldata merkleProof)
         external
         payable
-        presaleActive
+        preSaleActive
         nonReentrant
-        canMint(MAX_CLAIMLIST_SALE_MINTS)
-        isCorrectPayment(CLAIMLIST_SALE_PRICE, MAX_CLAIMLIST_SALE_MINTS)
-        isValidMerkleProof(merkleProof, claimlistMerkleRoot)
+        canMint(MAX_PRE_SALE_MINTS)
+        isCorrectPayment(PRE_SALE_PRICE, MAX_PRE_SALE_MINTS)
+        isValidMerkleProof(merkleProof, presaleListMerkleRoot)
     {
-        uint256 numAlreadyMinted = presaleMintCounts[msg.sender];
+        uint256 numAlreadyMinted = preSaleMintCounts[msg.sender];
 
         require(
-            numAlreadyMinted + numberOfTokens <= MAX_CLAIMLIST_SALE_MINTS,
+            numAlreadyMinted + numberOfTokens <= MAX_PRE_SALE_MINTS,
             "Claimed/invalid tokens requested"
         );
 
-        presaleMintCounts[msg.sender] = numAlreadyMinted + numberOfTokens;
+        preSaleMintCounts[msg.sender] = numAlreadyMinted + numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
@@ -163,13 +170,16 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev used for reserve token gifting
      */
-    function claim(bytes32[] calldata merkleProof)
+    function mintReserved(bytes32[] calldata merkleProof)
         external
-        isValidMerkleProof(merkleProof, reserveMerkleRoot)
+        isValidMerkleProof(merkleProof, reserveListMerkleRoot)
         canGiftTokens(1)
     {
-        require(!claimed[msg.sender], "Token already claimed");
-        claimed[msg.sender] = true;
+        require(
+            !reservedMintCounts[msg.sender],
+            "Reserved token already claimed"
+        );
+        reservedMintCounts[msg.sender] = true;
         numGiftedTokens += 1;
 
         _safeMint(msg.sender, nextTokenId());
@@ -222,13 +232,6 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
-    /**
-     * @dev used for reveals
-     */
-    function setBaseURI(string memory _baseURI) external onlyOwner {
-        baseURI = _baseURI;
-    }
-
     function setIsPublicSaleActive(bool _isPublicSaleActive)
         external
         onlyOwner
@@ -236,22 +239,29 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         isPublicSaleActive = _isPublicSaleActive;
     }
 
-    function setIsPresaleActive(bool _isPresaleActive) external onlyOwner {
-        isPresaleActive = _isPresaleActive;
+    function setIsPreSaleActive(bool _isPreSaleActive) external onlyOwner {
+        isPreSaleActive = _isPreSaleActive;
     }
 
     function setReserveListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
-        reserveMerkleRoot = merkleRoot;
+        reserveListMerkleRoot = merkleRoot;
     }
 
-    function setClaimlistMerkleRoot(bytes32 merkleRoot) external onlyOwner {
-        claimlistMerkleRoot = merkleRoot;
+    function setPreSaleListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
+        presaleListMerkleRoot = merkleRoot;
     }
 
     /**
-     * @dev reserve tokens for gifting, team and giveaways
+     * @dev used for art reveals
      */
-    function reserveForGifting(uint256 numToReserve)
+    function setBaseURI(string memory _baseURI) external onlyOwner {
+        baseURI = _baseURI;
+    }
+
+    /**
+     * @dev reserve tokens for team
+     */
+    function reserveForTeam(uint256 numToReserve)
         external
         nonReentrant
         onlyOwner
