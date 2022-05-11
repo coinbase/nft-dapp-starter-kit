@@ -10,7 +10,7 @@ describe("Presale States", function () {
   var owner, addr1, addr2;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("WoahNiceNFT");
+    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -34,7 +34,7 @@ describe("Claimlist merkle tests", function () {
   var owner, addr1, addr2;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("WoahNiceNFT");
+    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -124,7 +124,7 @@ describe("Presale integration tests", function () {
   var owner, addr1, addr2, addr3, addr4;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("WoahNiceNFT");
+    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
