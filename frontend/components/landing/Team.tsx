@@ -8,7 +8,7 @@ const Team = () => {
       <div className={styles.container}>
         <main className={styles.mainPadding}>
           <h1 className={styles.title}>Team</h1>
-          <SimpleGrid columns={[1, 2, 4]} spacing="40px">
+          <SimpleGrid columns={[1, 3, 5]} spacing="40px">
             <Box
               alignContent={"center"}
               alignItems="center"
@@ -16,23 +16,42 @@ const Team = () => {
             >
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/btc2.png"}
+                src={"/assets/usdc.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Bit Maxi</strong>
+                <strong>Stable Ser</strong>
                 <br />
                 Community, Marketing
               </p>
             </Box>
-            <Box>
+            <Box
+              alignContent={"center"}
+              alignItems="center"
+              justifyContent="center"
+            >
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/eth2.png"}
+                src={"/assets/luna.png"}
                 width={250}
                 height={250}
               />
+              <p className={styles.center}>
+                <strong>Lunatic</strong>
+                <br />
+                Marketing, Tokenomics
+              </p>
+            </Box>
+            <Box>
+              <Box background="pink">
+                <Image
+                  alt="placeholder image for team members"
+                  src={"/assets/eth2.png"}
+                  width={250}
+                  height={250}
+                />
+              </Box>
               <p className={styles.center}>
                 <strong>Eth XOXO</strong>
                 <br />
@@ -42,23 +61,25 @@ const Team = () => {
             <Box>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/cbw2.png"}
+                src={"/assets/cb.png"}
                 width={250}
                 height={250}
               />
               <p className={styles.center}>
-                <strong>Coinbae Wallet</strong>
+                <strong>OG Coinbae</strong>
                 <br />
                 Code, Commmunity
               </p>
             </Box>
             <Box>
-              <Image
-                alt="placeholder image for team members"
-                src={"/assets/sol2.png"}
-                width={250}
-                height={250}
-              />
+              <Box background="lightblue">
+                <Image
+                  alt="placeholder image for team members"
+                  src={"/assets/sol2.png"}
+                  width={250}
+                  height={250}
+                />
+              </Box>
               <p className={styles.center}>
                 <strong>Rusty Sol</strong>
                 <br />
