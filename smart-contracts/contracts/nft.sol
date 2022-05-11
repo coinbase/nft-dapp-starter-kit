@@ -73,7 +73,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier maxTokensPerWallet(uint256 numberOfTokens) {
         require(
             balanceOf(msg.sender) + numberOfTokens <= MAX_TOKENS_PER_WALLET,
-            "Max tokens to mint is 9"
+            "Max tokens to mint is 5"
         );
         _;
     }

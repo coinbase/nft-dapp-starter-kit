@@ -26,7 +26,7 @@ describe("Gifting", function () {
   });
 
   it("should revert non owner attempt to reserve", async function () {
-    await expect(nft.connect(addr1).reserveForGifting(18)
+    await expect(nft.connect(addr1).reserveForTeam(18)
     ).to.be.revertedWith("Ownable: caller is not the owner");
   });
 
@@ -41,12 +41,12 @@ describe("Gifting", function () {
   });
 
   it("should allow owner to reserve", async function () {
-    await nft.reserveForGifting(18);
+    await nft.reserveForTeam(18);
     expect(await nft.balanceOf(owner.address)).to.equal(18);
   });
 
   it("should not allow owner to reserve more than max reserve supply", async function () {
-    await expect(nft.reserveForGifting(201)
+    await expect(nft.reserveForTeam(201)
     ).to.be.revertedWith("Insufficient token reserve");
     expect(await nft.balanceOf(owner.address)).to.equal(0);
   });
@@ -93,7 +93,7 @@ describe("Gifting Claimlist", function () {
   });
 
   it("should revert reserve mints when merkle root is valid and payment supplied", async function () {
-    await expect(nft.connect(addr1).claim(
+    await expect(nft.connect(addr1).mintReserved(
       ["0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9", "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94"], {
       value: web3.utils.toWei('0.02', "ether"),
     })).to.be.reverted;
@@ -101,7 +101,7 @@ describe("Gifting Claimlist", function () {
   });
 
   it("should allow reserve mints when merkle root is valid", async function () {
-    await nft.connect(addr1).claim(
+    await nft.connect(addr1).mintReserved(
       ["0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9", "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94"]);
     expect(await nft.balanceOf(addr1.address)).to.equal(1);
   });
