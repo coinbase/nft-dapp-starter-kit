@@ -2,7 +2,7 @@
 
 ## Deployed Test Contracts
 
-Rinkeby `WoahNiceNFT`: [`0x154058c11Ccc29376f5C1803eBeeD816eEbD3732`](https://rinkeby.etherscan.io/address/0x154058c11Ccc29376f5C1803eBeeD816eEbD3732)
+Rinkeby `NonFungibleCoinbae`: [`0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD`](https://rinkeby.etherscan.io/address/0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD)
 
 ## Prerequisites
 
@@ -123,3 +123,11 @@ Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_
 ```shell
 npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS [deploy parameters]
 ```
+
+## Gas Usage
+
+| **Method**      | **Gas**   | Average Cost (@ Gas Price of 50 gwei) |
+| --------------- | --------- | ------------------------------------- |
+| Contract Deploy | 4,747,369 | 0.23736845 ETH                        |
+| Set Base URI    | 115,025   | 0.00575125 ETH                        |
+|                 |           |                                       |

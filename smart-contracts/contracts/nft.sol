@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
+contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -22,7 +22,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     string private baseURI;
 
     // project constraints
-    uint256 public constant MAX_TOKENS_PER_WALLET = 9;
+    uint256 public constant MAX_TOKENS_PER_WALLET = 5;
     uint256 public constant MAX_RESERVE_TOKENS = 200;
     uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
@@ -49,7 +49,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     address public royaltyReceiverAddress;
 
     constructor(address _royaltyReceiverAddress)
-        ERC721("Woah Nice NFT", "WOAH")
+        ERC721("Non Fungible Coinbaes", "COINBAE")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
@@ -73,7 +73,7 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier maxTokensPerWallet(uint256 numberOfTokens) {
         require(
             balanceOf(msg.sender) + numberOfTokens <= MAX_TOKENS_PER_WALLET,
-            "Max tokens to mint is 9"
+            "Max tokens to mint is 5"
         );
         _;
     }
@@ -175,7 +175,10 @@ contract WoahNiceNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         isValidMerkleProof(merkleProof, reserveListMerkleRoot)
         canGiftTokens(1)
     {
-        require(!reservedMintCounts[msg.sender], "Reserved token already claimed");
+        require(
+            !reservedMintCounts[msg.sender],
+            "Reserved token already claimed"
+        );
         reservedMintCounts[msg.sender] = true;
         numGiftedTokens += 1;
 

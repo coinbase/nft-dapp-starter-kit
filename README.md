@@ -2,7 +2,7 @@
 
 ## Deployed Test Contracts
 
-Rinkeby `WoahNiceNFT`: [`0x154058c11Ccc29376f5C1803eBeeD816eEbD3732`](https://rinkeby.etherscan.io/address/0x154058c11Ccc29376f5C1803eBeeD816eEbD3732)
+Rinkeby `NonFungibleCoinbae`: [`0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD`](https://rinkeby.etherscan.io/address/0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD)
 
 ## Prerequisites
 

@@ -4,11 +4,11 @@ const hre = require("hardhat");
 const NUM_TOKENS = 5; // MODIFY THIS
 
 async function main() {
-    const WoahNiceNFT = await hre.ethers.getContractFactory("WoahNiceNFT");
-    const nft = await WoahNiceNFT.attach(
+    const NonFungibleCoinbae = await hre.ethers.getContractFactory("NonFungibleCoinbae");
+    const nft = await NonFungibleCoinbae.attach(
       process.env.CONTRACT_ADDRESS // The deployed contract address
     );
-  console.log("WoahNiceNFT attached to:", nft.address);
+  console.log("NonFungibleCoinbae attached to:", nft.address);
 
   console.log("minting...");
 

@@ -1,0 +1,88 @@
+.navbar {
+  position: relative;
+  display: flex;
+  padding: 1em 2em;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  height: 80px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  background-image: url("../public/assets/bg-star.png");
+  background-size: cover;
+}
+
+.navbar p {
+  font-family: "Press Start 2P", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #211d1d;
+}
+
+.rightPartition {
+  display: flex;
+  justify-content: space-between;
+  min-width: 350px;
+}
+
+.leftPartition {
+  display: flex;
+  justify-content: space-between;
+  min-width: 500px;
+}
+
+.button {
+  font-family: "Press Start 2P", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+.code {
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+.mobilePartition {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: end;
+  }
+
+  .rightPartition,
+  .leftPartition {
+    display: none;
+  }
+
+  .mobilePartition {
+    display: block;
+    float: right;
+  }
+
+  .navbar .title {
+    display: none;
+  }
+}

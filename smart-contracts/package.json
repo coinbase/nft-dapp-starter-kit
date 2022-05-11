@@ -13,6 +13,9 @@
   "author": "straightupjac & jeongmincho",
   "license": "ISC",
   "homepage": "https://github.com/CoinbaseWallet/nft-minting-starter-kit#readme",
+  "scripts": {
+    "test": "npx hardhat test --network hardhat"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.3",

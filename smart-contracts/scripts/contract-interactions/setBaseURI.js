@@ -1,14 +1,14 @@
 require('dotenv').config();
 const hre = require("hardhat");
 
-const NEW_BASE_URI = "https://gateway.pinata.cloud/ipfs/QmcfJs3RBQEdwLYp2Gd7vBH36WekyjdzRHgWhTQJ1mR3Pu"; // MODIFY THIS
+const NEW_BASE_URI = "https://gateway.pinata.cloud/ipfs/QmUjdsenuQvopTAubZNUKdaZjYVR8Kpo6nbDYJxyqpgRF2"; // MODIFY THIS
 
 async function main() {
-  const WoahNiceNFT = await hre.ethers.getContractFactory("WoahNiceNFT");
-  const nft = await WoahNiceNFT.attach(
+  const NonFungibleCoinbae = await hre.ethers.getContractFactory("NonFungibleCoinbae");
+  const nft = await NonFungibleCoinbae.attach(
     process.env.CONTRACT_ADDRESS // The deployed contract address
   );
-  console.log("WoahNiceNFT attached to:", nft.address);
+  console.log("NonFungibleCoinbae attached to:", nft.address);
 
   console.log("setting base uri...", NEW_BASE_URI);
 

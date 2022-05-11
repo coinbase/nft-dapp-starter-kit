@@ -10,7 +10,7 @@ describe("Basic Sale States", function () {
   var owner, addr1, addr2;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("WoahNiceNFT");
+    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -18,8 +18,8 @@ describe("Basic Sale States", function () {
   })
 
   it("should revert when are sales not open", async function () {
-    await expect(nft.mint(1)).to.be.revertedWith("Public sale is not open");
-    await expect(nft.mintClaimlist(1, [
+    await expect(nft.mintPublicSale(1)).to.be.revertedWith("Public sale is not open");
+    await expect(nft.mintPreSale(1, [
       "0x990412edd2f88e7bf0b547c8773ee6e6356c96c3329535a4b07e04b1cc4dcae7",
       "0x2e05dfce34d55cd308a7031e1d6a4a56594bc07b63d19f2e2dbb08b4e825b6c6",
       "0xf8306eb10e0e2dff836a215abecbeee639f873c77ab6a5ce04b7766ca127b202",
@@ -34,7 +34,7 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    const mint = await nft.mint(1, {
+    const mint = await nft.mintPublicSale(1, {
       value: web3.utils.toWei('0.06', "ether"),
     });
     expect(mint.hash).to.not.be.NaN;
@@ -45,7 +45,7 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    const mint = await nft.mint(5, {
+    const mint = await nft.mintPublicSale(5, {
       value: web3.utils.toWei('0.30', "ether"),
     });
     expect(mint.hash).to.not.be.NaN;
@@ -56,9 +56,9 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    await expect(nft.mint(6, {
+    await expect(nft.mintPublicSale(6, {
       value: web3.utils.toWei('0.36', "ether"),
-    })).to.be.revertedWith("max public mint is 5");
+    })).to.be.revertedWith("Max tokens to mint is 5");
 
     expect(await nft.balanceOf(owner.address)).to.equal(0);
   });
@@ -67,7 +67,7 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    await expect(nft.mint(5, {
+    await expect(nft.mintPublicSale(5, {
       value: web3.utils.toWei('0.06', "ether"),
     })).to.be.revertedWith("Incorrect ETH value sent");
 
@@ -78,29 +78,25 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    // mint 9 tokens
-    const mint5 = await nft.mint(5, {
+    // mint 5 tokens
+    const mint5 = await nft.mintPublicSale(5, {
       value: web3.utils.toWei('0.30', "ether"),
     });
     expect(mint5.hash).to.not.be.NaN;
-    const mint4 = await nft.mint(4, {
-      value: web3.utils.toWei('0.24', "ether"),
-    });
-    expect(mint4.hash).to.not.be.NaN;
-    expect(await nft.balanceOf(owner.address)).to.equal(9);
+    expect(await nft.balanceOf(owner.address)).to.equal(5);
 
-    await expect(nft.mint(1, {
+    await expect(nft.mintPublicSale(1, {
       value: web3.utils.toWei('0.06', "ether"),
-    })).to.be.revertedWith("Max tokens to mint is 9");
+    })).to.be.revertedWith("Max tokens to mint is 5");
 
-    expect(await nft.balanceOf(owner.address)).to.equal(9);
+    expect(await nft.balanceOf(owner.address)).to.equal(5);
   });
 
   it("should not be able mint public when public sale is closed", async function () {
     const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
     await setPublicSaleActiveTx.wait();  // wait until the transaction is mined
 
-    const mint = await nft.mint(1, {
+    const mint = await nft.mintPublicSale(1, {
       value: web3.utils.toWei('0.06', "ether"),
     });
     expect(mint.hash).to.not.be.NaN;
@@ -109,7 +105,7 @@ describe("Basic Sale States", function () {
     const setPublicSaleActiveToFalseTx = await nft.setIsPublicSaleActive(false);
     await setPublicSaleActiveToFalseTx.wait();  // wait until the transaction is mined
 
-    await expect(nft.mint(1, {
+    await expect(nft.mintPublicSale(1, {
       value: web3.utils.toWei('0.06', "ether"),
     })).to.be.revertedWith("Public sale is not open");
   });
