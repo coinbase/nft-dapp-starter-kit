@@ -2,7 +2,7 @@
 
 ## Deployed Test Contracts
 
-Rinkeby `NonFungibleCoinbae`: [`0xf05D6F440CD6560B94f01AA19d7dE00d407876dC`](https://rinkeby.etherscan.io/address/0xf05D6F440CD6560B94f01AA19d7dE00d407876dC)
+Rinkeby `NonFungibleCoinbae`: [`0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD`](https://rinkeby.etherscan.io/address/0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD)
 
 ## Prerequisites
 
