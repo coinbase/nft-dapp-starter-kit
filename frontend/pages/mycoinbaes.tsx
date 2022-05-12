@@ -1,8 +1,16 @@
 import { NextPage } from "next";
 import styles from "@styles/Viewer.module.css";
-import { SimpleGrid, Image, Spinner, VStack } from "@chakra-ui/react";
+import {
+  SimpleGrid,
+  Image,
+  Spinner,
+  VStack,
+  Button,
+  HStack,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
+import Link from "next/link";
 
 const NFTViewer: NextPage = () => {
   const { data: accountData } = useAccount();
@@ -48,20 +56,55 @@ const NFTViewer: NextPage = () => {
         <main className={styles.mainCenter}>
           <h1 className={styles.title}>My Coinbaes</h1>
           {!isLoading ? (
-            <SimpleGrid columns={[1, 3, 5]} spacing={10}>
-              {tokens.map(({ name, image_url }) => (
-                <VStack spacing={2}>
-                  <Image
-                    rounded={"lg"}
-                    height={230}
-                    width={230}
-                    objectFit={"cover"}
-                    src={image_url}
-                  />
-                  <p style={{ color: "white" }}>{name}</p>
-                </VStack>
-              ))}
-            </SimpleGrid>
+            <>
+              {tokens.length > 0 && (
+                <SimpleGrid columns={[1, 3, 5]} spacing={10}>
+                  {tokens.map(({ name, image_url }) => (
+                    <VStack spacing={2}>
+                      <Image
+                        rounded={"lg"}
+                        height={230}
+                        width={230}
+                        objectFit={"cover"}
+                        src={image_url}
+                      />
+                      <p style={{ color: "white" }}>{name}</p>
+                    </VStack>
+                  ))}
+                </SimpleGrid>
+              )}
+              {tokens.length <= 0 && (
+                <>
+                  <p style={{ color: "white", marginBottom: "2rem" }}>
+                    You don't own any Coinbaes yet. Wanna mint one?
+                  </p>
+                  <HStack>
+                    <Link href="/mint">
+                      <Button
+                        style={{
+                          fontFamily: "'Press Start 2P', cursive",
+                          color: "#4b4f56",
+                          borderRadius: "0",
+                        }}
+                      >
+                        ⚡️ presale mint ⚡️
+                      </Button>
+                    </Link>
+                    <Link href="/mint">
+                      <Button
+                        style={{
+                          fontFamily: "'Press Start 2P', cursive",
+                          color: "#4b4f56",
+                          borderRadius: "0",
+                        }}
+                      >
+                        ⚡️ public mint ⚡️
+                      </Button>
+                    </Link>
+                  </HStack>
+                </>
+              )}
+            </>
           ) : (
             <Spinner
               thickness="4px"
