@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import web3 from "web3";
+import { abridgeAddress } from "@utils/abridgeAddress";
 
 const PRICE = 0.06;
 const Mint: NextPage = () => {
@@ -24,6 +25,7 @@ const Mint: NextPage = () => {
 
   const {
     data: publicSaleData,
+    error: publicSaleError,
     isError: publicSaleIsError,
     isLoading: publicSaleIsLoading,
     write: publicSaleWrite,
@@ -34,14 +36,14 @@ const Mint: NextPage = () => {
         : "0x154058c11Ccc29376f5C1803eBeeD816eEbD3732",
       contractInterface: NonFungibleCoinbae.abi,
     },
-    "mint",
+    "mintPublicSale",
     {
       overrides: {
         value: payable,
       },
       args: [numPublicMint],
       onError(error) {
-        console.log("Error", error);
+        console.log(error);
       },
       onSuccess(data) {
         console.log("Success", data);
@@ -49,11 +51,11 @@ const Mint: NextPage = () => {
     }
   );
 
-  const handlePublicMint = () => {
+  const handlePublicMint = async () => {
     const payableInEth = PRICE * numPublicMint;
     const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
     setPayable(payableinWei);
-    publicSaleWrite();
+    await publicSaleWrite();
   };
 
   return (
@@ -102,6 +104,35 @@ const Mint: NextPage = () => {
               Mint public sale
               {publicSaleIsLoading && <Spinner marginLeft={2} />}
             </Button>
+            {publicSaleData && (
+              <p style={{ color: "white" }}>
+                Success:{" "}
+                <a
+                  href={`${
+                    process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
+                    "https://rinkeby.etherscan.io"
+                  }/tx/${publicSaleData.hash}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {abridgeAddress(publicSaleData.hash)}
+                </a>
+              </p>
+            )}
+            {publicSaleIsError && (
+              <p style={{ color: "red" }}>
+                Error:{" "}
+                {publicSaleError?.message.includes("Max tokens to mint") &&
+                  "Minted max tokens"}
+                {publicSaleError?.message.includes("not open") &&
+                  "Public sale is currently closed"}
+                {publicSaleError?.message.includes("insufficient funds") &&
+                  "Insufficient funds"}
+                {publicSaleError?.message.includes(
+                  "Insufficient tokens remaining"
+                ) && "The collection has fully minted"}
+              </p>
+            )}
           </VStack>
         </main>
       </div>
