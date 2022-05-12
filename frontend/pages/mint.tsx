@@ -127,6 +127,9 @@ const Mint: NextPage = () => {
                   Error:{" "}
                   {publicSaleError?.message.includes("Max tokens to mint") &&
                     "Minted max tokens"}
+                  {/* this happens sometimes when there is a race condition on the payable state */}
+                  {publicSaleError?.message.includes("Incorrect ETH") &&
+                    "Please try again."}
                   {publicSaleError?.message.includes("not open") &&
                     "Public sale is currently closed"}
                   {publicSaleError?.message.includes("insufficient funds") &&
@@ -134,6 +137,8 @@ const Mint: NextPage = () => {
                   {publicSaleError?.message.includes(
                     "Insufficient tokens remaining"
                   ) && "The collection has fully minted"}
+                  {publicSaleError?.message.includes("User rejected request") &&
+                    "User rejected request"}
                 </p>
               )}
             </VStack>
