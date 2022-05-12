@@ -7,14 +7,10 @@ import {
   DrawerOverlay,
   IconButton,
   Spacer,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import styles from "../styles/Navbar.module.css";
