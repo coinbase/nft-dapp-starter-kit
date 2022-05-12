@@ -16,6 +16,8 @@ const {
   MAINNET_API_URL,
   PRIVATE_KEY,
   ETHERSCAN_API_KEY,
+  CONTRACT_ADDRESS,
+  ROYALTY_RECEIVER_ADDR,
 } = process.env;
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -23,6 +25,14 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   for (const account of accounts) {
     console.log(account.address);
   }
+});
+
+task("etherscan-verify", "Verifies on etherscan", async (taskArgs, hre) => {
+  console.log("Verifying contract on etherscan...");
+  await hre.run("verify:verify", {
+    address: CONTRACT_ADDRESS,
+    constructorArguments: [ROYALTY_RECEIVER_ADDR],
+  });
 });
 
 module.exports = {

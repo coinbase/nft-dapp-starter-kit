@@ -15,6 +15,7 @@
   "homepage": "https://github.com/CoinbaseWallet/nft-minting-starter-kit#readme",
   "scripts": {
     "test": "npx hardhat test --network hardhat",
+    "rinkeby:verify": "npx hardhat etherscan-verify --network rinkeby",
     "rinkeby:deploy": "npx hardhat run scripts/contract-interactions/deploy.js --network rinkeby",
     "rinkeby:setReserveListMerkle": "npx hardhat run scripts/contract-interactions/setReserveListMerkleRoot.js --network rinkeby",
     "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/contract-interactions/setPreSaleListMerkleRoot.js --network rinkeby"
