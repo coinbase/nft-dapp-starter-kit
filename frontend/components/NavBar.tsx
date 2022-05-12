@@ -1,17 +1,11 @@
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerHeader,
   DrawerOverlay,
   IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Spacer,
   Stack,
   useDisclosure,
@@ -21,7 +15,6 @@ import Link from "next/link";
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import styles from "../styles/Navbar.module.css";
 import ConnectWallet from "./web3/ConnectWallet";
-import { useRef } from "react";
 
 const NavBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
