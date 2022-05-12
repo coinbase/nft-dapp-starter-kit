@@ -1,9 +1,13 @@
 require("dotenv").config();
 const hre = require("hardhat");
 
-const NUM_TOKENS = 19; // MODIFY THIS
-
 async function main() {
+  const NUM_TOKENS = process.env.NUM_TOKENS;
+  if (!NUM_TOKENS) {
+    console.log("BASE_URI is required. Please add it to your environment.");
+    return;
+  }
+
   const NonFungibleCoinbae = await hre.ethers.getContractFactory(
     "NonFungibleCoinbae"
   );

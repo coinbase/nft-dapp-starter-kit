@@ -1,10 +1,13 @@
 require("dotenv").config();
 const hre = require("hardhat");
 
-const NEW_BASE_URI =
-  "https://gateway.pinata.cloud/ipfs/QmUjdsenuQvopTAubZNUKdaZjYVR8Kpo6nbDYJxyqpgRF2"; // MODIFY THIS
-
 async function main() {
+  const BASE_URI = process.env.BASE_URI;
+  if (!BASE_URI) {
+    console.log("BASE_URI is required. Please add it to your environment.");
+    return;
+  }
+
   const NonFungibleCoinbae = await hre.ethers.getContractFactory(
     "NonFungibleCoinbae"
   );
