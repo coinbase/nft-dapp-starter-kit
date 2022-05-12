@@ -19,7 +19,7 @@ async function main() {
   );
   console.log("NonFungibleCoinbae attached to:", nft.address);
 
-  console.log("setting isPresaleActive...");
+  console.log(`setting isPresaleActive to ${IS_PRESALE_ACTIVE}...`);
 
   const res = await nft.setIsPreSaleActive(IS_PRESALE_ACTIVE);
 

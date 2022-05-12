@@ -18,7 +18,7 @@ async function main() {
   );
   console.log("NonFungibleCoinbae attached to:", nft.address);
 
-  console.log("setting isPublicSaleActive...");
+  console.log(`setting isPublicSaleActive to ${IS_PUBLIC_SALE_ACTIVE}...`);
 
   const res = await nft.setIsPublicSaleActive(IS_PUBLIC_SALE_ACTIVE);
 
