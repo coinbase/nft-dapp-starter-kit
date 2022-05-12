@@ -1,6 +1,7 @@
 require("dotenv").config();
 const hre = require("hardhat");
 const { generateMerkleRoot } = require("../generateMerkleRoots");
+const fs = require("fs");
 
 async function main() {
   const RESERVELIST_MERKLE_ROOT = generateMerkleRoot(
@@ -20,6 +21,22 @@ async function main() {
   const res = await nft.setReserveListMerkleRoot(RESERVELIST_MERKLE_ROOT);
 
   console.log("set reserve list merkle root", res);
+
+  // copy contents of giftlist to front-end directory
+  fs.copyFile(
+    "allowlists/giftlist.json",
+    "../frontend/data/allowlists/giftlist.json",
+    (err) => {
+      if (err) {
+        console.log("Error Found:", err);
+      } else {
+        console.log(
+          "\nFile Contents of copied_file:",
+          fs.readFileSync("../frontend/data/allowlists/giftlist.json", "utf8")
+        );
+      }
+    }
+  );
 }
 
 main().catch((error) => {
