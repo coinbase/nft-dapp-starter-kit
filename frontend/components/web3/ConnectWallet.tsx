@@ -67,12 +67,22 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
               >
                 <MenuItem>
                   <Link
-                    href="/view"
+                    href="/viewer"
                     style={{
                       textDecoration: "none",
                     }}
                   >
-                    View NFTs
+                    Coinbae Explorer
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link
+                    href="/mycoinbaes"
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  >
+                    My Coinbaes
                   </Link>
                 </MenuItem>
                 <MenuItem

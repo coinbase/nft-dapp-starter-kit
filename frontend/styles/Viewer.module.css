@@ -2,8 +2,9 @@
   padding: 0 2rem;
 }
 
+.mainCenter,
 .main {
-  min-height: 150vh;
+  min-height: 100vh;
   padding: 4rem 2rem;
   flex: 1;
   display: flex;
@@ -13,8 +14,12 @@
   overflow: scroll;
 }
 
+.mainCenter {
+  justify-content: center;
+}
+
 .background {
-  background-image: url("../public/assets/bg.png");
+  background-image: url("../public/assets/bg-star.png");
   background-size: cover;
 }
 

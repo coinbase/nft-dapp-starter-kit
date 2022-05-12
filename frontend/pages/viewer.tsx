@@ -2,10 +2,8 @@ import { NextPage } from "next";
 import styles from "@styles/Viewer.module.css";
 import { SimpleGrid, Image, Spinner, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
 
 const NFTViewer: NextPage = () => {
-  const { data: accountData } = useAccount();
   const [tokens, setTokens] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,6 +42,9 @@ const NFTViewer: NextPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>Coinbae Viewer</h1>
+          <p style={{ color: "white", marginBottom: "2rem" }}>
+            Explore all the Coinbaes!
+          </p>
           {!isLoading ? (
             <SimpleGrid columns={[1, 3, 5]} spacing={10}>
               {tokens.map(({ name, image_url }) => (
