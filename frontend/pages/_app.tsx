@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 function MyApp({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
 
-  // prevent hydration UI error
+  // prevent hydration UI bug: https://blog.saeloun.com/2021/12/16/hydration.html
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
