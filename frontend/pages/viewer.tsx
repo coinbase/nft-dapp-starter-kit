@@ -1,11 +1,9 @@
 import { NextPage } from "next";
 import styles from "@styles/Viewer.module.css";
-import { SimpleGrid, Image, Spinner } from "@chakra-ui/react";
+import { SimpleGrid, Image, Spinner, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
 
 const NFTViewer: NextPage = () => {
-  const { data: accountData } = useAccount();
   const [tokens, setTokens] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,7 +22,7 @@ const NFTViewer: NextPage = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://api.opensea.io/api/v1/assets?owner=${accountData?.address}&order_direction=desc&limit=20&include_orders=false`,
+          `https://testnets-api.opensea.io/api/v1/assets?asset_contract_address=${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}&limit=100&include_orders=false`,
           requestOptions
         );
         const { assets } = await response.json();
@@ -44,16 +42,22 @@ const NFTViewer: NextPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>Coinbae Viewer</h1>
+          <p style={{ color: "white", marginBottom: "2rem" }}>
+            Explore all the Coinbaes!
+          </p>
           {!isLoading ? (
-            <SimpleGrid columns={5} spacing={10}>
-              {tokens.map(({ image_url }) => (
-                <Image
-                  rounded={"lg"}
-                  height={230}
-                  width={282}
-                  objectFit={"cover"}
-                  src={image_url}
-                />
+            <SimpleGrid columns={[1, 3, 5]} spacing={10}>
+              {tokens.map(({ name, image_url }) => (
+                <VStack spacing={2}>
+                  <Image
+                    rounded={"lg"}
+                    height={230}
+                    width={230}
+                    objectFit={"cover"}
+                    src={image_url}
+                  />
+                  <p style={{ color: "white" }}>{name}</p>
+                </VStack>
               ))}
             </SimpleGrid>
           ) : (

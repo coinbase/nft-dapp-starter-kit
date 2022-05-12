@@ -38,6 +38,9 @@ const NavBar = () => {
           <Link href="/#faq" passHref>
             <button className={styles.button}>FAQ</button>
           </Link>
+          <Link href="/viewer" passHref>
+            <button className={styles.button}>Explorer</button>
+          </Link>
         </div>
         <div className={styles.leftPartition}>
           <a
@@ -102,6 +105,9 @@ const NavBar = () => {
                 </Link>
                 <Link href="/#faq" passHref>
                   <button className={styles.button}>FAQ</button>
+                </Link>
+                <Link href="/viewer" passHref>
+                  <button className={styles.button}>Explorer</button>
                 </Link>
                 <Spacer />
                 <a
