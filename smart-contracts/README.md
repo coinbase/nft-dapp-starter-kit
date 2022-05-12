@@ -104,6 +104,20 @@ npx hardhat node
 npx hardhat help
 ```
 
+### Deploy on Testnet
+
+Set `ROYALTY_RECEIVER_ADDR` in your `.env` and run the following script:
+
+```bash
+npm run rinkeby:deploy
+```
+
+Then update `CONTRACT_ADDRESS` with the deployed contract address and run the following script to verify your contract:
+
+```bash
+npm run rinkeby:verify
+```
+
 ### Merkle Roots
 
 To set merkle roots for allowlists, update the addresses in `allowlists/claimlist.json` and `allowlists/giftlist.json` and run the following scripts.
@@ -111,6 +125,23 @@ To set merkle roots for allowlists, update the addresses in `allowlists/claimlis
 ```
    npm run rinkeby:setPresaleListMerkle
    npm run rinkeby:setReserveListMerkle
+```
+
+### Sale States
+
+To modify the active sale states, modify the following environment variables:
+
+```bash
+IS_PRESALE_ACTIVE=true # modify as needed
+IS_PUBLIC_SALE_ACTIVE=true # modify as needed
+BASE_URI=
+```
+
+and run the following scripts
+
+```
+npm run rinkeby:setIsPublicSaleActive
+npm run rinkeby:setIsPresaleActive
 ```
 
 ## Etherscan verification
