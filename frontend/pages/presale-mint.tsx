@@ -17,6 +17,7 @@ import Image from "next/image";
 import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { generateMerkleProof } from "@utils/merkleProofs";
+import ConnectWallet from "@components/web3/ConnectWallet";
 
 const PRICE = 0.02;
 const Mint: NextPage = () => {
@@ -83,76 +84,91 @@ const Mint: NextPage = () => {
             <br />
             ⚡️ Presale Minting Now ⚡️
           </h1>
-          <VStack>
-            <Image
-              alt="placeholder image for team members"
-              src={"/assets/cbw2.png"}
-              width={250}
-              height={250}
-            />
-            {/* select # of tokens to mint */}
-            <NumberInput
-              step={1}
-              defaultValue={3}
-              min={0}
-              max={5}
-              onChange={handleChange}
-              inputMode="numeric"
-              variant="filled"
-            >
-              <NumberInputField
-                _focus={{ bg: "white.300" }}
-                _active={{ bg: "white.300" }}
+          {account?.address ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cbw2.png"}
+                width={250}
+                height={250}
               />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Button
-              style={{
-                fontFamily: "'Press Start 2P', cursive",
-                color: "#4b4f56",
-                borderRadius: "0",
-              }}
-              onClick={handleMint}
-            >
-              Mint Presale
-              {presaleMintIsLoading && <Spinner marginLeft={2} />}
-            </Button>
-            {presaleMintData && (
+              {/* select # of tokens to mint */}
+              <NumberInput
+                step={1}
+                defaultValue={3}
+                min={0}
+                max={5}
+                onChange={handleChange}
+                inputMode="numeric"
+                variant="filled"
+              >
+                <NumberInputField
+                  _focus={{ bg: "white.300" }}
+                  _active={{ bg: "white.300" }}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Button
+                style={{
+                  fontFamily: "'Press Start 2P', cursive",
+                  color: "#4b4f56",
+                  borderRadius: "0",
+                }}
+                onClick={handleMint}
+              >
+                Mint Presale
+                {presaleMintIsLoading && <Spinner marginLeft={2} />}
+              </Button>
+              {presaleMintData && (
+                <p style={{ color: "white" }}>
+                  Success:{" "}
+                  <a
+                    href={`${
+                      process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
+                      "https://rinkeby.etherscan.io"
+                    }/tx/${presaleMintData.hash}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {abridgeAddress(presaleMintData.hash)}
+                  </a>
+                </p>
+              )}
+              {presaleMintIsError && (
+                <p style={{ color: "red" }}>
+                  Error:{" "}
+                  {presaleError?.message.includes("Max tokens to mint") &&
+                    "Minted max tokens"}
+                  {presaleError?.message.includes("not open") &&
+                    "Presale is currently closed"}
+                  {presaleError?.message.includes("insufficient funds") &&
+                    "Insufficient funds"}
+                  {presaleError?.message.includes(
+                    "Insufficient tokens remaining"
+                  ) && "The collection has fully minted"}
+                  {presaleError?.message.includes(
+                    "Address does not exist in list"
+                  ) && "This address is not in the presale list"}
+                </p>
+              )}
+            </VStack>
+          ) : (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cb.png"}
+                width={250}
+                height={250}
+              />
               <p style={{ color: "white" }}>
-                Success:{" "}
-                <a
-                  href={`${
-                    process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                    "https://rinkeby.etherscan.io"
-                  }/tx/${presaleMintData.hash}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {abridgeAddress(presaleMintData.hash)}
-                </a>
+                Connect wallet to check eligibility!
               </p>
-            )}
-            {presaleMintIsError && (
-              <p style={{ color: "red" }}>
-                Error:{" "}
-                {presaleError?.message.includes("Max tokens to mint") &&
-                  "Minted max tokens"}
-                {presaleError?.message.includes("not open") &&
-                  "Presale is currently closed"}
-                {presaleError?.message.includes("insufficient funds") &&
-                  "Insufficient funds"}
-                {presaleError?.message.includes(
-                  "Insufficient tokens remaining"
-                ) && "The collection has fully minted"}
-                {presaleError?.message.includes(
-                  "Address does not exist in list"
-                ) && "This address is not in the presale list"}
-              </p>
-            )}
-          </VStack>
+              <ConnectWallet />
+            </VStack>
+          )}
         </main>
       </div>
     </div>
