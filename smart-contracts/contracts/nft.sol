@@ -39,7 +39,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     bool public isPreSaleActive;
     bool public isPublicSaleActive;
 
-    uint256 public constant MAX_PRE_SALE_MINTS = 1;
+    uint256 public constant MAX_PRE_SALE_MINTS = 3;
     uint256 public constant PRE_SALE_PRICE = 0.02 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
@@ -49,7 +49,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     address public royaltyReceiverAddress;
 
     constructor(address _royaltyReceiverAddress)
-        ERC721("Non Fungible Coinbaes", "COINBAE")
+        ERC721("Non Fungible Coinbaes <3", "COINBAE")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
