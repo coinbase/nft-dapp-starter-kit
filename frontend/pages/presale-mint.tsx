@@ -4,6 +4,8 @@ import { Button, Spinner, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite } from "wagmi";
 import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
 import { useEffect, useState } from "react";
+import presaleList from "@data/allowlists/presaleList.json";
+
 import {
   NumberInput,
   NumberInputField,
@@ -15,7 +17,6 @@ import Image from "next/image";
 import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { generateMerkleProof } from "@utils/merkleProofs";
-import presaleList from "@data/allowlists/presaleList";
 
 const PRICE = 0.02;
 const Mint: NextPage = () => {
