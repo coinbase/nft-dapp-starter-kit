@@ -28,7 +28,6 @@ jobs:
       - name: Go to smart-contract directory and run tests
         working-directory: ./smart-contracts
         run: |
+          echo "$PWD"
           npm install
-          nvm install 16
-          nvm use 16
-          yarn test
+          npm run test
