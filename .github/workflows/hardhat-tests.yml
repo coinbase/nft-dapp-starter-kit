@@ -28,4 +28,8 @@ jobs:
       - name: Go to smart-contract directory and run tests
         working-directory: ./smart-contracts
         run: |
+          npm install
+          npm install --save-dev hardhat
+          nvm install 16
+          nvm use 16
           yarn test
