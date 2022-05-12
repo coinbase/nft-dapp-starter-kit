@@ -149,9 +149,9 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         payable
         preSaleActive
         nonReentrant
-        canMint(MAX_PRE_SALE_MINTS)
-        isCorrectPayment(PRE_SALE_PRICE, MAX_PRE_SALE_MINTS)
         isValidMerkleProof(merkleProof, presaleListMerkleRoot)
+        canMint(MAX_PRE_SALE_MINTS)
+        isCorrectPayment(PRE_SALE_PRICE, numberOfTokens)
     {
         uint256 numAlreadyMinted = preSaleMintCounts[msg.sender];
 

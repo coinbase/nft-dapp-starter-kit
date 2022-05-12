@@ -35,7 +35,7 @@ const Mint: NextPage = () => {
     {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        : "0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD",
+        : "0x1C137299cfdD22c9c486fEcb371F4789518522d7",
       contractInterface: NonFungibleCoinbae.abi,
     },
     "mintPublicSale",

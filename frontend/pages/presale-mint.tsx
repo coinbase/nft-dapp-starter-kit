@@ -39,7 +39,7 @@ const Mint: NextPage = () => {
     {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        : "0xfFb4EAd3BBE6ac5a20252626d155EE99ef534BCD",
+        : "0x1C137299cfdD22c9c486fEcb371F4789518522d7",
       contractInterface: NonFungibleCoinbae.abi,
     },
     "mintPreSale",
@@ -95,9 +95,9 @@ const Mint: NextPage = () => {
               {/* select # of tokens to mint */}
               <NumberInput
                 step={1}
-                defaultValue={3}
+                defaultValue={1}
                 min={0}
-                max={5}
+                max={3}
                 onChange={handleChange}
                 inputMode="numeric"
                 variant="filled"
@@ -152,6 +152,8 @@ const Mint: NextPage = () => {
                   {presaleError?.message.includes(
                     "Address does not exist in list"
                   ) && "This address is not in the presale list"}
+                  {presaleError?.message.includes("User rejected request") &&
+                    "User rejected request"}
                 </p>
               )}
             </VStack>

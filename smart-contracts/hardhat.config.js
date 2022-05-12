@@ -2,7 +2,7 @@
  * @type import('hardhat/config').HardhatUserConfig
  */
 
-const { generateMerkleRoot } = require("./scripts/generateMerkleRoots");
+const { task } = require("hardhat/config");
 require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");

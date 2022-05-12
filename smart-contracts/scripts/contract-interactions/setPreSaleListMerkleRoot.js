@@ -17,11 +17,11 @@ async function main() {
   );
   console.log("NonFungibleCoinbae attached to:", nft.address);
 
-  console.log("setting claimlist merkle root...");
+  console.log("setting presale list merkle root...");
 
   const res = await nft.setPreSaleListMerkleRoot(CLAIMLIST_MERKLE_ROOT);
 
-  console.log("set claimlist merkle root", res);
+  console.log("set presale list merkle root", res);
   // copy contents of giftlist to front-end directory
 
   fs.copyFile(
@@ -32,7 +32,7 @@ async function main() {
         console.log("Error Found:", err);
       } else {
         console.log(
-          "\nFile Contents of copied_file:",
+          "\nPresale List:",
           fs.readFileSync(
             "../frontend/data/allowlists/presaleList.json",
             "utf8"

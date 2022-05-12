@@ -4,9 +4,15 @@ async function main() {
   const NonFungibleCoinbae = await hre.ethers.getContractFactory(
     "NonFungibleCoinbae"
   );
-  const nft = await NonFungibleCoinbae.deploy(
-    "0xF4604411A380F13e2AFEa3a6983307411e7d9A1b"
-  );
+
+  const ROYALTY_RECEIVER_ADDR = process.env.ROYALTY_RECEIVER_ADDR;
+
+  if (!ROYALTY_RECEIVER_ADDR) {
+    console.log("ROYALTY_RECEIVER_ADDR is required. Please update your .env");
+    return;
+  }
+
+  const nft = await NonFungibleCoinbae.deploy(ROYALTY_RECEIVER_ADDR);
 
   await nft.deployed();
 

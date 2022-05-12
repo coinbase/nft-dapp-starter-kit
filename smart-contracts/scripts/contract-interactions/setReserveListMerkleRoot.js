@@ -31,7 +31,7 @@ async function main() {
         console.log("Error Found:", err);
       } else {
         console.log(
-          "\nFile Contents of copied_file:",
+          "\nReserve List:",
           fs.readFileSync("../frontend/data/allowlists/giftlist.json", "utf8")
         );
       }
