@@ -19,5 +19,5 @@ const generateMerkleRoot = (addressesPath, writeFileName) => {
   return rootHash;
 }
 
-generateMerkleRoot('../allowlists/claimlist.json', 'claimlist');
+generateMerkleRoot('../allowlists/presaleList.json', 'presaleList');
 generateMerkleRoot('../allowlists/giftlist.json', 'giftlist');

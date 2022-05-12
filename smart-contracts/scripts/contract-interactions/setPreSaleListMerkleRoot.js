@@ -1,7 +1,7 @@
 require('dotenv').config();
 const hre = require("hardhat");
 
-const CLAIMLIST_MERKLE_ROOT = "0xfba4bbcaea3b48b20e2b8d1287aafaa5f8916be4c79de8aec2cee7f072d14004"; // MODIFY THIS
+const CLAIMLIST_MERKLE_ROOT = "0x343750465941b29921f50a28e0e43050e5e1c2611a3ea8d7fe1001090d5e1436"; // MODIFY THIS
 
 async function main() {
     const NonFungibleCoinbae = await hre.ethers.getContractFactory("NonFungibleCoinbae");
@@ -12,7 +12,7 @@ async function main() {
 
   console.log("setting claimlist merkle root...");
 
-  const res = await nft.setClaimlistMerkleRoot(CLAIMLIST_MERKLE_ROOT);
+  const res = await nft.setPreSaleListMerkleRoot(CLAIMLIST_MERKLE_ROOT);
 
   console.log('set claimlist merkle root', res);
 }
