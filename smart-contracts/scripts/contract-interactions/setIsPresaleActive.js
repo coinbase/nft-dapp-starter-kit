@@ -12,7 +12,7 @@ async function main() {
 
   console.log("setting isPresaleActive...");
 
-  const res = await nft.setIsPresaleActive(IS_PRESALE_ACTIVE);
+  const res = await nft.setIsPreSaleActive(IS_PRESALE_ACTIVE);
 
   console.log('set isPresaleActive', res);
 }

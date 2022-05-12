@@ -2,7 +2,7 @@ const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 const fs = require('fs');
 
-const generateMerkleProof = (addressesPath, address) => {
+export const generateMerkleProof = (addressesPath, address) => {
     const addresses = require(addressesPath);
     const leafNodes = addresses.map((addr) => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });

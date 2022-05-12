@@ -15,6 +15,7 @@
     "@emotion/styled": "^11",
     "ethers": "^5.6.5",
     "framer-motion": "^6",
+    "fs": "^0.0.1-security",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.31",
     "next": "12.1.6",
