@@ -1,24 +1,30 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { mode } from '@chakra-ui/theme-tools'
+import { mode } from "@chakra-ui/theme-tools";
 import { Provider as WagmiProvider } from "wagmi";
 import { WagmiClient } from "@utils/wagmiClient";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [mounted, setMounted] = useState(false);
+
+  // prevent hydration UI error
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   // customize your chakra theme here
   const theme = extendTheme({
     styles: {
-      global: (props : any) => ({
+      global: (props: any) => ({
         body: {
-          fontFamily: 'body',
-          color: mode('gray.800', 'whiteAlpha.900')(props),
-          bg: mode('white', 'gray.800')(props),
-          lineHeight: 'base',
+          fontFamily: "body",
+          color: mode("gray.800", "whiteAlpha.900")(props),
+          bg: mode("white", "gray.800")(props),
+          lineHeight: "base",
         },
       }),
     },
@@ -28,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         900: "#1a202c",
       },
     },
-  })
+  });
 
   return (
     <ChakraProvider theme={theme}>
