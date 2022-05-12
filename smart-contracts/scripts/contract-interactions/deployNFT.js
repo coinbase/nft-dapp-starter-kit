@@ -1,8 +1,12 @@
 const hre = require("hardhat");
 
 async function main() {
-  const NonFungibleCoinbae = await hre.ethers.getContractFactory("NonFungibleCoinbae");
-  const nft = await NonFungibleCoinbae.deploy("0xF4604411A380F13e2AFEa3a6983307411e7d9A1b");
+  const NonFungibleCoinbae = await hre.ethers.getContractFactory(
+    "NonFungibleCoinbae"
+  );
+  const nft = await NonFungibleCoinbae.deploy(
+    "0xF4604411A380F13e2AFEa3a6983307411e7d9A1b"
+  );
 
   await nft.deployed();
 
