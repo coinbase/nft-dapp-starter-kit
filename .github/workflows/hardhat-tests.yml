@@ -15,6 +15,10 @@ on:
 
 env:
   PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
+  ROPSTEN_API_URL: https://eth-ropsten.alchemyapi.io/v2/
+  RINKEBY_API_URL: https://eth-rinkeby.alchemyapi.io/v2/
+  MAINNET_API_URL: https://eth-mainnet.alchemyapi.io/v2/
+  ETHERSCAN_API_KEY: 9B8CYSW8SA1A2XP4HD6Q6TVPCNA8HYJVZA
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
