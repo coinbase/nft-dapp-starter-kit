@@ -57,7 +57,7 @@ const NFTViewer: NextPage = () => {
           <h1 className={styles.title}>My Coinbaes</h1>
           {!isLoading ? (
             <>
-              {tokens.length > 0 && (
+              {tokens?.length > 0 && (
                 <SimpleGrid columns={[1, 3, 5]} spacing={10}>
                   {tokens.map(({ name, image_url }) => (
                     <VStack spacing={2}>
@@ -73,7 +73,7 @@ const NFTViewer: NextPage = () => {
                   ))}
                 </SimpleGrid>
               )}
-              {tokens.length <= 0 && (
+              {(!tokens || tokens.length <= 0) && (
                 <>
                   <p style={{ color: "white", marginBottom: "2rem" }}>
                     You don't own any Coinbaes yet. Wanna mint one?

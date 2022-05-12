@@ -7,10 +7,14 @@ import {
   DrawerOverlay,
   IconButton,
   Spacer,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import styles from "../styles/Navbar.module.css";
@@ -37,6 +41,9 @@ const NavBar = () => {
           </Link>
           <Link href="/#faq" passHref>
             <button className={styles.button}>FAQ</button>
+          </Link>
+          <Link href="/viewer" passHref>
+            <button className={styles.button}>Explorer</button>
           </Link>
         </div>
         <div className={styles.leftPartition}>
@@ -102,6 +109,9 @@ const NavBar = () => {
                 </Link>
                 <Link href="/#faq" passHref>
                   <button className={styles.button}>FAQ</button>
+                </Link>
+                <Link href="/viewer" passHref>
+                  <button className={styles.button}>Explorer</button>
                 </Link>
                 <Spacer />
                 <a
