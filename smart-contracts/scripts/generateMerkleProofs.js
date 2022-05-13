@@ -27,5 +27,5 @@ export const generateMerkleProof = (addressesPath, address) => {
     return valid;
   }
 
-  generateMerkleProof('../allowlists/claimlist.json', '0x90F79bf6EB2c4f870365E785982E1f101E93b906');
-  generateMerkleProof('../allowlists/claimlist.json', '0xF4604411A380F13e2AFEa3a6983307411e7d9A1b');
+  generateMerkleProof('../allowlists/presaleList.json', '0x90F79bf6EB2c4f870365E785982E1f101E93b906');
+  generateMerkleProof('../allowlists/presaleList.json', '0xF4604411A380F13e2AFEa3a6983307411e7d9A1b');

@@ -4,10 +4,11 @@ const { generateMerkleRoot } = require("../generateMerkleRoots");
 const fs = require("fs");
 
 async function main() {
-  const RESERVELIST_MERKLE_ROOT = generateMerkleRoot(
-    "../allowlists/giftlist.json",
-    "giftlist"
+  const CLAIMLIST_MERKLE_ROOT = await generateMerkleRoot(
+    "../allowlists/presaleList.json",
+    "presaleList"
   );
+
   const NonFungibleCoinbae = await hre.ethers.getContractFactory(
     "NonFungibleCoinbae"
   );
@@ -16,23 +17,26 @@ async function main() {
   );
   console.log("NonFungibleCoinbae attached to:", nft.address);
 
-  console.log("setting reserve list merkle root...");
+  console.log("setting presale list merkle root...");
 
-  const res = await nft.setReserveListMerkleRoot(RESERVELIST_MERKLE_ROOT);
+  const res = await nft.setPreSaleListMerkleRoot(CLAIMLIST_MERKLE_ROOT);
 
-  console.log("set reserve list merkle root", res);
-
+  console.log("set presale list merkle root", res);
   // copy contents of giftlist to front-end directory
+
   fs.copyFile(
-    "allowlists/giftlist.json",
-    "../frontend/data/allowlists/giftlist.json",
+    "allowlists/presaleList.json",
+    "../frontend/data/allowlists/presaleList.json",
     (err) => {
       if (err) {
         console.log("Error Found:", err);
       } else {
         console.log(
-          "\nReserve List:",
-          fs.readFileSync("../frontend/data/allowlists/giftlist.json", "utf8")
+          "\nPresale List:",
+          fs.readFileSync(
+            "../frontend/data/allowlists/presaleList.json",
+            "utf8"
+          )
         );
       }
     }

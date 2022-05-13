@@ -17,7 +17,11 @@ const FAQ = () => {
     {
       question: "What is the point?",
       answer:
-        "Exclusive access to public spaces, express pass to stand in the longest lines.",
+        "Exclusive access to public spaces, express pass to stand in the longest lines. You can also check out our source code :)",
+    },
+    {
+      question: "If I have questions, where can I ask?",
+      answer: "Please file a ticket in our repo.",
     },
   ];
 
