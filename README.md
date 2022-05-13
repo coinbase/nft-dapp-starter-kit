@@ -1,14 +1,14 @@
 # NFT Minting Toolkit 🏗️
 
-## Deployed Test Contracts
+## Get Started
+- Play around with the deployed test app [here](https://nft-minting-starter-kit.vercel.app/)
+- Check out the deployed test contract on Rinkeby - `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 
-Rinkeby `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
+## Prerequisites for Developers
 
-## Prerequisites
-
-1. Have access to the public (public wallet address) and private key to your Ethereum account (use a test account!)
+1. Have access to the public (public wallet address) and private key to your Ethereum account (use a test account)
 2. Have an alchemy account set-up (the free one works!)
-3. Have an etherscan account.
+3. Set up an etherscan account and obtain the API key
 
 ## Smart Contracts
 
