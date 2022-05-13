@@ -2,7 +2,8 @@
 
 ## Get Started
 - Play around with the deployed test app [here](https://nft-minting-starter-kit.vercel.app/)
-- Check out the deployed test contract on Rinkeby - `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
+- Check out the deployed test contracts:
+  - Rinkeby - `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 
 ## Prerequisites for Developers
 
