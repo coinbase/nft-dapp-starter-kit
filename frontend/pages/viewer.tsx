@@ -46,7 +46,7 @@ const NFTViewer: NextPage = () => {
             Explore all the Coinbaes!
           </p>
           {!isLoading ? (
-            <SimpleGrid columns={[1, 3, 5]} spacing={10}>
+            <SimpleGrid columns={[1, 3, 5]} spacing={20}>
               {tokens.map(({ name, image_url }) => (
                 <VStack spacing={2}>
                   <Image
