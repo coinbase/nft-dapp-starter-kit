@@ -17,6 +17,7 @@
     "test": "npx hardhat test --network hardhat",
     "rinkeby:verify": "npx hardhat etherscan-verify --network rinkeby",
     "rinkeby:deploy": "npx hardhat run scripts/contract-interactions/deploy.js --network rinkeby",
+    "rinkeby:setBaseURI": "npx hardhat run scripts/contract-interactions/setBaseURI.js --network rinkeby",
     "rinkeby:setIsPublicSaleActive": "npx hardhat run scripts/contract-interactions/setIsPresaleActive.js  --network rinkeby",
     "rinkeby:setIsPresaleActive": "npx hardhat run scripts/contract-interactions/setIsPublicSaleActive.js  --network rinkeby",
     "rinkeby:setReserveListMerkle": "npx hardhat run scripts/contract-interactions/setReserveListMerkleRoot.js --network rinkeby",

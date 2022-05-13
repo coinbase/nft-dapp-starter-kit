@@ -16,9 +16,9 @@ async function main() {
   );
   console.log("NonFungibleCoinbae attached to:", nft.address);
 
-  console.log("setting base uri...", NEW_BASE_URI);
+  console.log("setting base uri...", BASE_URI);
 
-  const res = await nft.setBaseURI(NEW_BASE_URI);
+  const res = await nft.setBaseURI(BASE_URI);
 
   console.log("set base uri", res);
 }
