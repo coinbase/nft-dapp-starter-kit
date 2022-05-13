@@ -66,7 +66,7 @@ const Team = () => {
                 height={250}
               />
               <p className={styles.center}>
-                <strong>OG Coinbae</strong>
+                <strong>Coinbae Stox</strong>
                 <br />
                 Code, Commmunity
               </p>
