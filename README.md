@@ -20,7 +20,7 @@ More information on metadata and how to bulk generate metadata [here](metadata).
 
 ## Frontend
 
-Coming soon [here](frontend)...
+Frontend [here](frontend)
 
 ## Other Resources
 
