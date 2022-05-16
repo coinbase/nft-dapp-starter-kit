@@ -6,13 +6,15 @@ import Roadmap from "@components/landing/Roadmap";
 import Team from "@components/landing/Team";
 import FAQ from "@components/landing/FAQ";
 
-const Home: NextPage = () => {  
-
+const Home: NextPage = () => {
   return (
     <div>
       <Head>
         <title>NFT Minting Starter Kit</title>
-        <meta name="description" content="Starter kit for developers who want to build an NFT minting site" />
+        <meta
+          name="description"
+          content="Starter kit for developers who want to build an NFT minting site"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SplashBanner />

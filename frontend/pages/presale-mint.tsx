@@ -82,7 +82,7 @@ const Mint: NextPage = () => {
           <h1 className={styles.title}>
             Non-fungible Coinbaes
             <br />
-            ⚡️ Presale Minting Now ⚡️
+            ⚡️ Pre-sale Minting Now ⚡️
           </h1>
           {account?.address ? (
             <VStack>
@@ -119,7 +119,7 @@ const Mint: NextPage = () => {
                 }}
                 onClick={handleMint}
               >
-                Mint Presale
+                Mint Pre-sale
                 {presaleMintIsLoading && <Spinner marginLeft={2} />}
               </Button>
               {presaleMintData && (

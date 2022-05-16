@@ -47,18 +47,19 @@ const NFTViewer: NextPage = () => {
           </p>
           {!isLoading ? (
             <SimpleGrid columns={[1, 3, 5]} spacing={10}>
-              {tokens.map(({ name, image_url }) => (
-                <VStack spacing={2}>
-                  <Image
-                    rounded={"lg"}
-                    height={230}
-                    width={230}
-                    objectFit={"cover"}
-                    src={image_url}
-                  />
-                  <p style={{ color: "white" }}>{name}</p>
-                </VStack>
-              ))}
+              {tokens?.length > 0 &&
+                tokens.map(({ name, image_url }) => (
+                  <VStack spacing={2}>
+                    <Image
+                      rounded={"lg"}
+                      height={230}
+                      width={230}
+                      objectFit={"cover"}
+                      src={image_url}
+                    />
+                    <p style={{ color: "white" }}>{name}</p>
+                  </VStack>
+                ))}
             </SimpleGrid>
           ) : (
             <Spinner
