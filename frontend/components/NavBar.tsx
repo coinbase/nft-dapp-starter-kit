@@ -22,27 +22,27 @@ const NavBar = () => {
   return (
     <div className={styles.background}>
       <div className={styles.navbar}>
-        <div className={styles.rightPartition}>
+        <div className={styles.leftPartition}>
           <Link href="/" passHref>
             <button className={styles.button}>Home</button>
           </Link>
           <Link href="/#about" passHref>
             <button className={styles.button}>About</button>
           </Link>
-          <Link href="/#team" passHref>
-            <button className={styles.button}>Team</button>
-          </Link>
           <Link href="/#roadmap" passHref>
             <button className={styles.button}>Roadmap</button>
+          </Link>
+          <Link href="/#team" passHref>
+            <button className={styles.button}>Team</button>
           </Link>
           <Link href="/#faq" passHref>
             <button className={styles.button}>FAQ</button>
           </Link>
           <Link href="/viewer" passHref>
-            <button className={styles.button}>Explorer</button>
+            <button className={styles.button}>Explore Collection</button>
           </Link>
         </div>
-        <div className={styles.leftPartition}>
+        <div className={styles.rightPartition}>
           <a
             href="https://github.com/CoinbaseWallet/nft-minting-starter-kit"
             target="_blank"
