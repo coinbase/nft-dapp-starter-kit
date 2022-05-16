@@ -2,6 +2,7 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: "Press Start 2P", -apple-system, BlinkMacSystemFont, Segoe UI,
@@ -22,4 +23,32 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* adds offset to hashtag links: https://css-tricks.com/hash-tag-links-padding/ */
+#about::before {
+  display: block;
+  content: " ";
+  margin-top: -75px;
+  height: 75px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#roadmap::before {
+  display: block;
+  content: " ";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#team::before {
+  display: block;
+  content: " ";
+  margin-top: -60px;
+  height: 60px;
+  visibility: hidden;
+  pointer-events: none;
 }
