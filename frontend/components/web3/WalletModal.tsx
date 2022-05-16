@@ -45,7 +45,7 @@ export default function WalletModal({ isOpen, closeModal }: WalletModalProps) {
               >
                 <HStack w="100%" justifyContent="center">
                   <Image
-                    src={`${connector.id}.png`}
+                    src={`assets/wallets/${connector.id}.png`}
                     alt="Coinbase Wallet Logo"
                     width={25}
                     height={25}

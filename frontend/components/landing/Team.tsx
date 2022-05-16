@@ -16,7 +16,7 @@ const Team = () => {
             >
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/usdc.png"}
+                src={"/assets/team/usdc.png"}
                 width={250}
                 height={250}
               />
@@ -33,7 +33,7 @@ const Team = () => {
             >
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/luna.png"}
+                src={"/assets/team/luna.png"}
                 width={250}
                 height={250}
               />
@@ -47,7 +47,7 @@ const Team = () => {
               <Box background="pink">
                 <Image
                   alt="placeholder image for team members"
-                  src={"/assets/eth2.png"}
+                  src={"/assets/landing/eth.png"}
                   width={250}
                   height={250}
                 />
@@ -61,7 +61,7 @@ const Team = () => {
             <Box>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/cb.png"}
+                src={"/assets/team/cb.png"}
                 width={250}
                 height={250}
               />
@@ -75,7 +75,7 @@ const Team = () => {
               <Box background="lightblue">
                 <Image
                   alt="placeholder image for team members"
-                  src={"/assets/sol2.png"}
+                  src={"/assets/landing/sol.png"}
                   width={250}
                   height={250}
                 />
