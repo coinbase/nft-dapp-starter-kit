@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: space-between;
 
-  background-image: url("../public/assets/bg-star.png");
+  background-image: url("../public/assets/landing/bg-star.png");
   background-size: cover;
 }
 
@@ -30,13 +30,13 @@
   color: #211d1d;
 }
 
-.rightPartition {
+.leftPartition {
   display: flex;
   justify-content: space-between;
-  min-width: 450px;
+  min-width: 600px;
 }
 
-.leftPartition {
+.rightPartition {
   display: flex;
   justify-content: space-between;
   min-width: 500px;

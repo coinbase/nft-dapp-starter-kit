@@ -73,7 +73,7 @@ const Mint: NextPage = () => {
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/cbw2.png"}
+                src={"/assets/landing/cbw.png"}
                 width={250}
                 height={250}
               />
@@ -146,7 +146,7 @@ const Mint: NextPage = () => {
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/cb.png"}
+                src={"/assets/landing/cb.png"}
                 width={250}
                 height={250}
               />

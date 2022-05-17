@@ -67,22 +67,12 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
               >
                 <MenuItem>
                   <Link
-                    href="/viewer"
-                    style={{
-                      textDecoration: "none",
-                    }}
-                  >
-                    Coinbae Explorer
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link
                     href="/mycoinbaes"
                     style={{
                       textDecoration: "none",
                     }}
                   >
-                    My Coinbaes
+                    View My Coinbaes
                   </Link>
                 </MenuItem>
                 <MenuItem
@@ -90,7 +80,7 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
                     disconnect();
                   }}
                 >
-                  Disconnect
+                  Disconnect Wallet
                 </MenuItem>
               </MenuList>
             </>

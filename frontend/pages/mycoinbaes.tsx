@@ -79,6 +79,7 @@ const NFTViewer: NextPage = () => {
                     You don't own any Coinbaes yet. Wanna mint one?
                   </p>
                   <HStack>
+                    {/* first point to /presale-mint page, then /mint page */}
                     <Link href="/mint">
                       <Button
                         style={{
@@ -87,18 +88,7 @@ const NFTViewer: NextPage = () => {
                           borderRadius: "0",
                         }}
                       >
-                        ⚡️ presale mint ⚡️
-                      </Button>
-                    </Link>
-                    <Link href="/mint">
-                      <Button
-                        style={{
-                          fontFamily: "'Press Start 2P', cursive",
-                          color: "#4b4f56",
-                          borderRadius: "0",
-                        }}
-                      >
-                        ⚡️ public mint ⚡️
+                        ⚡️ mint coinbaes ⚡️
                       </Button>
                     </Link>
                   </HStack>
