@@ -48,3 +48,43 @@ function contractURI() public view returns (string memory) {
         collectionURI = _collectionURI_;
     }
 ```
+
+## Non-Fungible Coinbae's Token URI
+
+For this scaffold, notice that the `tokenURI()` is defined as follows:
+
+```cpp
+function tokenURI(uint256 tokenId)
+      public
+      view
+      virtual
+      override
+      returns (string memory)
+  {
+      require(_exists(tokenId), "Nonexistent token");
+
+      return
+          string(abi.encodePacked(baseURI, "/", tokenId.toString(), ".json"));
+  }
+```
+
+`tokenURI()` is a method required in the ERC721 interface and is what indexers (how major NFT marketplace and wallets recognize your NFT) call to extract your NFT media and metadata. There are many different ways to implement `tokenURI` including unique tokenURIs per token, on-chain metadata (expensive gas costs) and IPFS collections with a standardized naming schema. This project has implemented the last option "IPFS collections with a standardized naming scheme".
+
+This means that when you generate the collection of metadata, the contract will expect that all the metadata `.json` files will be contained under one `IPFS` hash. This way, the NFT creator is only required to change the `baseURI` to modify the media and metadata for the entire collection. The indexers will expect the metadata for each individual token to be retrived by concatenating the `IPFS` hash with the tokenId like `ipfs://[hash]/[tokenId].json`.
+
+## Pre-Reveal and Post-Reveal
+
+For this project, we decided to go with the model of storing metadata off-chain via IPFS and using a model of batch reveals to prevent rarity sniping<sub>1</sub>. How this works is:
+
+1. the project creators initially set a base URI to a placeholder image and placeholder metadata
+2. the project opens up for minting and minters will receive the NFTs in a pre-reveal state
+3. The NFT creators will decide on a 'reveal date' and track how many tokens have been minted. This will be used to generate a new set of metadata such that only the tokens that have already been minted will be populated with the NFT collection. The rest of the unminted tokens will still point to pre-reveal data
+   - ideally only the tokens that have already been minted will be revealed and the rest of tokens that have not been minted yet will still point to the pre-reveal metadata
+4. The creators will do a 'reveal' where they will run `setBaseURI` to replace the base URI with the actual NFT images for the collection.
+5. If the project is not fully minted out (token count has not reached total supply yet), steps 2-4 will repeat until the collection is minted out.
+
+With this method, minters will not be able to predict which token IDs contain which traits.
+
+---
+
+1. Rarity sniping is the practice of NFT collectors finding exploits in the way token data is populated such that they can predict the traits of NFTs before they are minted so they can time purchases to acquire certain token IDs. The goal of this is generally to acquire rare NFTs that they are able to resell for a profit on secondary markets.
