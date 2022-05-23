@@ -98,7 +98,7 @@ With this method, minters will not be able to predict which token IDs contain wh
 
 ## Uploading Metadata to IPFS
 
-After you generate your metadata, you can use a pinner such as [Pinata](https://github.com/PinataCloud/Pinata-SDK#metadata-anchor) to upload and in your data to IPFS.
+After you generate your metadata, you can use a pinning service such as [Pinata](https://github.com/PinataCloud/Pinata-SDK#metadata-anchor) to upload and pin your data to IPFS.
 
 Populate the following fields in your `.env`:
 
