@@ -8,3 +8,5 @@ typechain
 #Hardhat files
 cache
 artifacts
+
+pinned
