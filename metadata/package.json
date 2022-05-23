@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pinata/sdk": "^1.1.25",
     "d3-fetch": "^3.0.1",
     "dotenv": "^16.0.1",
     "fs": "^0.0.1-security"
