@@ -146,7 +146,7 @@ const Mint: NextPage = () => {
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/landing/cb.png"}
+                src={"/assets/team/cb.png"}
                 width={250}
                 height={250}
               />
