@@ -4,7 +4,7 @@ require("dotenv").config();
 
 async function main() {
   console.log("uploading metadata...");
-  const PIN_FOLDER = process.env.PIN_FOLDER;
+  const OUTPUT_DIR = process.env.OUTPUT_DIR;
   const PIN_BUNDLE_NAME = process.env.PIN_BUNDLE_NAME;
 
   const pinataSDK = require("@pinata/sdk");
@@ -17,12 +17,12 @@ async function main() {
   }
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_SECRET_KEY);
 
-  if (!PIN_FOLDER) {
+  if (!OUTPUT_DIR) {
     console.log("need to specify folder to pin");
     return;
   }
 
-  fs.access(PIN_FOLDER, async (error) => {
+  fs.access(OUTPUT_DIR, async (error) => {
     if (error) {
       console.log("path provided is invalid", error);
       exit(1);
@@ -42,7 +42,7 @@ async function main() {
   };
 
   await pinata
-    .pinFromFS(PIN_FOLDER, options)
+    .pinFromFS(OUTPUT_DIR, options)
     .then((result) => {
       //handle results here
       console.log("successfully pinned!", result);

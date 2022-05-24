@@ -96,6 +96,20 @@ For this project, we decided to go with the model of storing metadata off-chain 
 
 With this method, minters will not be able to predict which token IDs contain which traits.
 
+## Generate Metadata
+
+There are many ways to generate metadata and assign images to different token IDs. The example in `generateMetadata.js` is a very simple script that assigns 'revealed' and 'pre-revealed' token IDs their respective metadata and images.
+
+To try out the script, make a copy of `.env.sample`, fill it out and run:
+
+```
+npm run generate-basic
+```
+
+This will generate the metadata in the specified `OUTPUT_DIR`.
+
+In practice, you would typically want to have more customized metadata for each token. Tools like [Hashlips](https://github.com/HashLips/hashlips_art_engine) are popular ways to create generative art collections with custom metadata and art for each NFT in the collection.
+
 ## Uploading Metadata to IPFS
 
 After you generate your metadata, you can use a pinning service such as [Pinata](https://github.com/PinataCloud/Pinata-SDK#metadata-anchor) to upload and pin your data to IPFS.
@@ -105,7 +119,7 @@ Populate the following fields in your `.env`:
 ```
 PINATA_API_KEY=
 PINATA_SECRET_KEY=
-PIN_FOLDER=generated  # folder to upload
+OUTPUT_DIR=generated  # folder to upload
 PIN_BUNDLE_NAME=nft-minting-kit-test # name of pinned folder (optional)
 ```
 
