@@ -1,15 +1,25 @@
 {
   "name": "Non-Fungible Coinbaes #27",
-  "image": "https://gateway.pinata.cloud/ipfs/QmYnznvRMX7NYeGg87D51ruzmuuq2schCMde5ch3Pz3j3S/4.png",
-  "description": "non fungible coinbae has landed",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/27.png",
+  "dna": "68adcb30c2e133a1b746eb4af64574f32642b62d",
+  "edition": 27,
   "attributes": [
     {
-      "trait_type": "Bing",
-      "value": "Bong"
+      "trait_type": "Background",
+      "value": "Orange"
     },
     {
-      "trait_type": "coin",
-      "value": "bae <3"
+      "trait_type": "Body",
+      "value": "USDC"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Euro1"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Content"
     }
   ]
 }

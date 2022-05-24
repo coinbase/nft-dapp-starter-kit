@@ -1,15 +1,25 @@
 {
   "name": "Non-Fungible Coinbaes #18",
-  "image": "https://gateway.pinata.cloud/ipfs/QmYnznvRMX7NYeGg87D51ruzmuuq2schCMde5ch3Pz3j3S/7.png",
-  "description": "non fungible coinbae has landed",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/18.png",
+  "dna": "21c1135eaa88bbaf7baeac8529a7221067e693bd",
+  "edition": 18,
   "attributes": [
     {
-      "trait_type": "Bing",
-      "value": "Bong"
+      "trait_type": "Background",
+      "value": "Pink"
     },
     {
-      "trait_type": "coin",
-      "value": "bae <3"
+      "trait_type": "Body",
+      "value": "USDC"
+    },
+    {
+      "trait_type": "Head",
+      "value": "BluePokerChip"
+    },
+    {
+      "trait_type": "Face",
+      "value": "LOL"
     }
   ]
 }

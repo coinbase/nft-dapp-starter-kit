@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #922",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/922.png",
+  "dna": "fd514cf3b30058426ddd4624f130e0be40952351",
+  "edition": 922,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "USDC"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Gold"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Kissing"
+    }
+  ]
+}

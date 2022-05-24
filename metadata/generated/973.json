@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #973",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/973.png",
+  "dna": "5b3943c39e2a37fbcde51e48e7fe439424cb3c09",
+  "edition": 973,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Coinbase"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Silver"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Nerd"
+    }
+  ]
+}

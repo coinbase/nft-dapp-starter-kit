@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #924",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/924.png",
+  "dna": "4bd2b5c241f7a4349f858e9a688b5ee69137f417",
+  "edition": 924,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Polygon"
+    },
+    {
+      "trait_type": "Head",
+      "value": "RedPokerChip"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Chillin"
+    }
+  ]
+}

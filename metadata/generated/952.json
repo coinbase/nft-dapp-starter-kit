@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #952",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/952.png",
+  "dna": "7f96b2d58d8e15a48ba9410d5ac2764dc97f8cde",
+  "edition": 952,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Pink"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Tether"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "BigLOL"
+    }
+  ]
+}

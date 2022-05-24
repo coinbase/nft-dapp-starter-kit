@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #919",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/919.png",
+  "dna": "e1d33a09b950f3fa7d2a001e931adec48487f202",
+  "edition": 919,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Pink"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Tether"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Euro1"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Content"
+    }
+  ]
+}

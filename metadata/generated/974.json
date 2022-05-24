@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #974",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/974.png",
+  "dna": "57fbf9617f20c2e76bff3a3a34e85f36f7e71cba",
+  "edition": 974,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Tether"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Gold"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Crybaby"
+    }
+  ]
+}

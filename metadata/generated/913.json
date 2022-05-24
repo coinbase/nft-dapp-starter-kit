@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #913",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/913.png",
+  "dna": "d40481667ff074cbd7ee919a5021b77fbcebd3df",
+  "edition": 913,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Loving"
+    }
+  ]
+}

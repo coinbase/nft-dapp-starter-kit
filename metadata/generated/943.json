@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #943",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/943.png",
+  "dna": "de795916ae4a113c851d07ac4fca070bb181b054",
+  "edition": 943,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Ethereum"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Rusty"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Shocked"
+    }
+  ]
+}

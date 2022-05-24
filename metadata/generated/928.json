@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #928",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/928.png",
+  "dna": "9ae8e7bec4c1796394e0481cdef916cbd2242bfd",
+  "edition": 928,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Body",
+      "value": "CoinbaseWallet"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Coal"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Kissing"
+    }
+  ]
+}

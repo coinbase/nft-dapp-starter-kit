@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #955",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/955.png",
+  "dna": "c6b62cff8aacb55d3066d14a8836fd16899632e0",
+  "edition": 955,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Body",
+      "value": "USDC"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Gold"
+    },
+    {
+      "trait_type": "Face",
+      "value": "LOL"
+    }
+  ]
+}

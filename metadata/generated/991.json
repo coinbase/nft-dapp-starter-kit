@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #991",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/991.png",
+  "dna": "5e053c759858104c267160820c5df81ea5a4aefd",
+  "edition": 991,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Bitcoin"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Euro2"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Crybaby"
+    }
+  ]
+}

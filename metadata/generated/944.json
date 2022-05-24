@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #944",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/944.png",
+  "dna": "4cea9f9db4e01ead0c7ef2f60cf138d8c328fcfa",
+  "edition": 944,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Terra"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Chillin"
+    }
+  ]
+}

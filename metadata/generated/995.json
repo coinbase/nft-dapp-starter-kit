@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #995",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/995.png",
+  "dna": "f417dabb09c0aaa003d40b352877b242a1407840",
+  "edition": 995,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "CoinbaseWallet"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Confused"
+    }
+  ]
+}

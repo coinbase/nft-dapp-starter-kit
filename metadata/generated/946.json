@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #946",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/946.png",
+  "dna": "08eafd9b658955eb2c88c7691f79a5671d8a6535",
+  "edition": 946,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "APE"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Silver"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Hangry"
+    }
+  ]
+}

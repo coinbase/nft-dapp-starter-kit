@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #939",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/939.png",
+  "dna": "31cc2eb53fa98197eb6255d74b70871584367af4",
+  "edition": 939,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Body",
+      "value": "USDC"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Euro1"
+    },
+    {
+      "trait_type": "Face",
+      "value": "BigLOL"
+    }
+  ]
+}
