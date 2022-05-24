@@ -9,16 +9,7 @@ const fs = require("fs");
 const path = require("path");
 const cp = require("child_process");
 
-const cleanup = () => {
-  console.log(chalk.green("Cleaning up."));
-  // Reset changes made to package.json files.
-  cp.execSync(`git checkout -- packages/*/package.json`);
-  // Uncomment when snapshot testing is enabled by default:
-  // rm ./template/src/__snapshots__/App.test.js.snap
-};
-
 const handleExit = () => {
-  cleanup();
   console.log(chalk.green("Exiting without error."));
   process.exit();
 };
@@ -31,14 +22,10 @@ const handleError = (e) => {
   process.exit(1);
 };
 
-const directoryExists = (filePath) => {
-  return fs.existsSync(filePath);
-};
-
 process.on("SIGINT", handleExit);
 process.on("uncaughtException", handleError);
 
-function start() {
+function start(dir) {
   const status = new Spinner("");
   status.start();
   console.log();
@@ -73,7 +60,8 @@ function start() {
 }
 
 program
-  .command("create")
+  .command("init")
+  .option("-o, --output [dir]", "output directory")
   .description("Bootstrap NFT DApp Starter Kit")
   .action(start);
 
