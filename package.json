@@ -29,6 +29,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "clui": "^0.3.6",
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "inquirer": "^8.2.4"
   }
 }

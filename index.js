@@ -2,6 +2,7 @@
 "use strict";
 
 const { program } = require("commander");
+const inquirer = require("inquirer");
 const chalk = require("chalk");
 const CLI = require("clui");
 const Spinner = CLI.Spinner;
@@ -17,7 +18,6 @@ const handleExit = () => {
 const handleError = (e) => {
   console.error(chalk.red("ERROR! An error was encountered while executing"));
   console.error(e);
-  cleanup();
   console.log(chalk.red("Exiting with error."));
   process.exit(1);
 };
@@ -25,20 +25,22 @@ const handleError = (e) => {
 process.on("SIGINT", handleExit);
 process.on("uncaughtException", handleError);
 
-function start(dir) {
-  const status = new Spinner("");
-  status.start();
+async function start({ dir, force }) {
+  const status = new Spinner("creating");
+  console.log();
   console.log();
   console.log(
     chalk.yellow(
       "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
     )
   );
-  console.log(chalk.blue("Creating NFT DApp Starter"));
+  console.log(
+    chalk.blue(`Creating NFT DApp Starter ${dir ? `in ${dir}` : ""}`)
+  );
 
   // make sure user does not have git conflicts
   const gitStatus = cp.execSync(`git status --porcelain`).toString();
-  if (gitStatus.trim() !== "") {
+  if (!force && gitStatus.trim() !== "") {
     console.log(
       chalk.red("Please commit your changes before running this script!")
     );
@@ -49,11 +51,31 @@ function start(dir) {
     process.exit(1);
   }
 
-  const currentDirectoryBase = path.basename(process.cwd());
+  const result = await inquirer.prompt([
+    {
+      message: `Output Directory?`,
+      name: "directory",
+      type: "input",
+      default: ".",
+    },
+    {
+      message: `Install all defaults`,
+      name: "defaults",
+      type: "confirm",
+      default: "y",
+    },
+  ]);
+
+  if (result.directory != ".") {
+    console.log(chalk.blue("Installing in", result.directory));
+  }
+  status.start();
+
+  // Install NFT DApp Starter Kit
 
   console.log(
     chalk.yellow(
-      "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
+      "_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,."
     )
   );
   status.stop();
@@ -62,6 +84,7 @@ function start(dir) {
 program
   .command("init")
   .option("-o, --output [dir]", "output directory")
+  .option("-f, --force [isForce]", "force, ignores staged files")
   .description("Bootstrap NFT DApp Starter Kit")
   .action(start);
 
