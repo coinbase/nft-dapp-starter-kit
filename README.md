@@ -1,4 +1,4 @@
-# NFT Minting Toolkit 🏗️
+# NFT DApp Starter Kit 🏗️
 
 Ready to bootstrap your own NFT minting site? Get started here :) We have smart contracts, a minting UI and metadata generation scripts for you to get started.
 

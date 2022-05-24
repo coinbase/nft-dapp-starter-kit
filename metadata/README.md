@@ -25,8 +25,19 @@ Some other major marketplaces like Zora and Rarible have slightly different meta
 
 A sample script to generate metadata for projects using the `tokenURI()` override with a return value of `string(abi.encodePacked(baseURI, "/", tokenId.toString(), ".json"));`, there is a sample script that can be modified to generate metadata in bulk.
 
+First populate the following `.env` variables:
+
 ```bash
-node metadata/generateMetadata.js
+PRE_REVEAL_URI= # for placeholder pre-reveal data
+BASE_URI=https://gateway.pinata.cloud/ipfs/QmYnznvRMX7NYeGg87D51ruzmuuq2schCMde5ch3Pz3j3S
+REVEALED_TOKENS=10 # tokens that have been or are ready to be revealed
+TOTAL_SUPPLY=900
+```
+
+and then run:
+
+```bash
+npm run generate-basic
 ```
 
 ## Contract Level (Collection) Metadata
@@ -84,6 +95,37 @@ For this project, we decided to go with the model of storing metadata off-chain 
 5. If the project is not fully minted out (token count has not reached total supply yet), steps 2-4 will repeat until the collection is minted out.
 
 With this method, minters will not be able to predict which token IDs contain which traits.
+
+## Generate Metadata
+
+There are many ways to generate metadata and assign images to different token IDs. The example in `generateMetadata.js` is a very simple script that assigns 'revealed' and 'pre-revealed' token IDs their respective metadata and images.
+
+To try out the script, make a copy of `.env.sample`, fill it out and run:
+
+```
+npm run generate-basic
+```
+
+This will generate the metadata in the specified `OUTPUT_DIR`.
+
+In practice, you would typically want to have more customized metadata for each token. Tools like [Hashlips](https://github.com/HashLips/hashlips_art_engine) are popular ways to create generative art collections with custom metadata and art for each NFT in the collection.
+
+## Uploading Metadata to IPFS
+
+After you generate your metadata, you can use a pinning service such as [Pinata](https://github.com/PinataCloud/Pinata-SDK#metadata-anchor) to upload and pin your data to IPFS.
+
+Populate the following fields in your `.env`:
+
+```
+PINATA_API_KEY=
+PINATA_SECRET_KEY=
+OUTPUT_DIR=generated  # folder to upload
+PIN_BUNDLE_NAME=nft-minting-kit-test # name of pinned folder (optional)
+```
+
+and run `npm run upload` to pin the contents of the specified folder.
+
+The IPFS hash will be printed in the console and a your pinned metadata will be available to view in the [Pinata Pin Manager](https://app.pinata.cloud/pinmanager) shortly. Update the baseURI in your contract.
 
 ---
 
