@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, VStack } from "@chakra-ui/react";
-import { useAccount, useContractWrite } from "wagmi";
+import { useAccount, useContractWrite, useNetwork } from "wagmi";
 import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
 import { useState } from "react";
 import {
@@ -20,6 +20,8 @@ import ConnectWallet from "@components/web3/ConnectWallet";
 const PRICE = 0.06;
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
+  const { activeChain, switchNetwork } = useNetwork();
+
   const [payable, setPayable] = useState(BigInt(60000000000000000).toString());
   const [numPublicMint, setNumPublicMint] = useState(3);
   const handleChange = (value: number | string) =>
@@ -69,7 +71,40 @@ const Mint: NextPage = () => {
             <br />
             ⚡️ Minting Now ⚡️
           </h1>
-          {account?.address ? (
+          {!account?.address ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/team/cb.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>Connect wallet to mint!</p>
+              <ConnectWallet />
+            </VStack>
+          ) : activeChain?.id !== 4 ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/team/cb.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>You're on the wrong Network!</p>
+              <Button
+                style={{
+                  fontFamily: "'Press Start 2P', cursive",
+                  color: "#4b4f56",
+                  borderRadius: "0",
+                }}
+                onClick={() => {
+                  switchNetwork && switchNetwork(4);
+                }}
+              >
+                Switch to Rinkeby
+              </Button>
+            </VStack>
+          ) : (
             <VStack>
               <Image
                 alt="placeholder image for team members"
@@ -141,17 +176,6 @@ const Mint: NextPage = () => {
                     "User rejected request"}
                 </p>
               )}
-            </VStack>
-          ) : (
-            <VStack>
-              <Image
-                alt="placeholder image for team members"
-                src={"/assets/team/cb.png"}
-                width={250}
-                height={250}
-              />
-              <p style={{ color: "white" }}>Connect wallet to mint!</p>
-              <ConnectWallet />
             </VStack>
           )}
         </main>
