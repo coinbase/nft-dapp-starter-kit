@@ -1,4 +1,4 @@
-import { useAccount, useDisconnect } from "wagmi";
+import { useAccount, useNetwork, useDisconnect } from "wagmi";
 import WalletModal from "@components/web3/WalletModal";
 import {
   Button,
@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useEffect } from "react";
 
 type ConnectWalletProps = {
   size?: string;
@@ -18,6 +19,7 @@ type ConnectWalletProps = {
 
 const ConnectWallet = ({ size }: ConnectWalletProps) => {
   const { data } = useAccount();
+  const { activeChain, switchNetwork } = useNetwork();
   const {
     isOpen: connectIsOpen,
     onOpen: connectOnOpen,
@@ -25,6 +27,10 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
   } = useDisclosure();
 
   const { disconnect } = useDisconnect();
+
+  useEffect(() => {
+    if (activeChain?.id !== 4 && switchNetwork) switchNetwork(4);
+  }, [activeChain]);
 
   return (
     <>
