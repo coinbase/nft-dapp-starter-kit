@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #5",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/5.png",
+  "dna": "90304292cea53ce9e271608a446d9409e0fcdd29",
+  "edition": 5,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "BigLOL"
+    }
+  ]
+}

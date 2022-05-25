@@ -1,0 +1,25 @@
+{
+  "name": "Non-Fungible Coinbaes #1",
+  "description": "Adorable Non-Fungible Coinbae",
+  "image": "ipfs://NewUriToReplace/1.png",
+  "dna": "8bf55c244b2bd51e08fcf3d813a8e6bd4999ef93",
+  "edition": 1,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Tether"
+    },
+    {
+      "trait_type": "Head",
+      "value": "RedPokerChip"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Drooling"
+    }
+  ]
+}
