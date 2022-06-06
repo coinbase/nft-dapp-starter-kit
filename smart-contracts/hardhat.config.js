@@ -51,11 +51,6 @@ module.exports = {
       accounts: [`0x${PRIVATE_KEY}`],
       gasPrice: 10000000000, // 10 gwei
     },
-    ropsten: {
-      url: ROPSTEN_API_URL,
-      accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 10000000000, // 10 gwei
-    },
     mainnet: {
       url: MAINNET_API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
