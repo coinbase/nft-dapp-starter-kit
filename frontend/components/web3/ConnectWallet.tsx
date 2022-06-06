@@ -46,7 +46,7 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
         >
           Connect Wallet
         </Button>
-      ) : (
+      ) : activeChain?.id === 4 ? (
         <Menu>
           {({ isOpen }) => (
             <>
@@ -92,6 +92,17 @@ const ConnectWallet = ({ size }: ConnectWalletProps) => {
             </>
           )}
         </Menu>
+      ) : (
+        <Button
+          style={{
+            fontFamily: "'Press Start 2P', cursive",
+            color: "#4b4f56",
+            borderRadius: "0",
+          }}
+          onClick={() => switchNetwork && switchNetwork(4)}
+        >
+          Switch to Rinkeby
+        </Button>
       )}
       <WalletModal isOpen={connectIsOpen} closeModal={connectOnClose} />
     </>
