@@ -48,7 +48,15 @@ const Roadmap = () => {
               </div>
               <div className={styles.containerLeft}>
                 <div className={styles.content}>
-                  <p>Non fungible Mutants Launch on L3 protocols</p>
+                  <p>Non-fungible Mutants Launch on L3 protocols</p>
+                </div>
+              </div>
+              <div className={styles.containerRight}>
+                <div className={styles.content}>
+                  <p>
+                    Coinbae Metaverse Game "Otherdime" Launch on
+                    ZK-Fruit-Rollups
+                  </p>
                 </div>
               </div>
             </div>
