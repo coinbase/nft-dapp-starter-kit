@@ -1,6 +1,8 @@
-# NFT DApp Starter Kit 🏗️
+# NFT Dapp Starter Kit 🏗️
 
-Ready to bootstrap your own NFT minting site? Get started here :) We have smart contracts, a minting UI and metadata generation scripts for you to get started.
+❗ **WARNING: This repo is currently a work-in-progress. Please do not use for purposes other than learning. It is slated to officially release by the third week of June 2022** 🔴
+
+Ready to bootstrap your own NFT minting site? Get started here. This boilerplate repo contains an NFT minting contract, a sample frontend dapp, and metadata generation scripts for you to get started.
 
 ## Get Started
 
@@ -13,6 +15,10 @@ Ready to bootstrap your own NFT minting site? Get started here :) We have smart 
 
 This repository is meant for developers who are already familiar with Solidity and front-end development basics. If you have not worked with Solidity or Typescript before, we recommend you check out some beginner resources first.
 
+- Rinkeby API URL (Infura or Alchemy)
+- Mainnet API URL (Infura or Alchemy)
+- Wallet (both Private Key and Public Key)
+
 ## Smart Contracts
 
 To set up your smart contracts and interact with them via Hardhat go to [`/smart-contracts`](smart-contracts).
@@ -23,7 +29,7 @@ To learn more about token metadata and generate your own metadata, go to [`/meta
 
 ## Frontend
 
-To set up your own minting DApp UI go to [`/frontend`](frontend)
+To set up your own minting Dapp UI go to [`/frontend`](frontend)
 
 ## Questions?
 
