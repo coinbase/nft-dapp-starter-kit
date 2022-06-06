@@ -3,7 +3,7 @@
 html,
 body {
   scroll-behavior: smooth;
-  padding: 0;
+  padding: 0 !important;
   margin: 0;
   font-family: "Press Start 2P", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
