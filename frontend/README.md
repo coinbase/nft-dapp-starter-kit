@@ -1,4 +1,4 @@
-# NFT Minting Starter Kit Frontend
+# NFT Minting Dapp Starter Kit Frontend
 
 The source code for the frond-end can be found here. Preview a live demo of this [here](https://nft-minting-starter-kit.vercel.app/). If you are looking for the source code for smart contracts, head over to [/smart-contracts](/smart-contracts/).
 
