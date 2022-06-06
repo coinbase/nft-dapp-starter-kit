@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={`${styles.footer}`}>
       <div className={styles.socials}>
-        {`Let's be frens `}
+        {`Let's be frens!`}
         <IconButton
           aria-label="Search database"
           colorScheme="gray"
@@ -20,7 +20,7 @@ const Footer = () => {
           icon={<FaTelegram />}
         />
       </div>
-      &copy; {new Date().getFullYear()}
+      Made with ❤️ at Coinbase Wallet
     </footer>
   );
 };
