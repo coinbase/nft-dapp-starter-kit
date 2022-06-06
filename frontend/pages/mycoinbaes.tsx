@@ -59,14 +59,15 @@ const NFTViewer: NextPage = () => {
             <>
               {tokens?.length > 0 && (
                 <SimpleGrid columns={[1, 3, 5]} spacing={10}>
-                  {tokens.map(({ name, image_url }) => (
-                    <VStack spacing={2}>
+                  {tokens.map(({ name, image_url, external_link }) => (
+                    <VStack spacing={2} key={name}>
                       <Image
                         rounded={"lg"}
                         height={230}
                         width={230}
                         objectFit={"cover"}
-                        src={image_url}
+                        src={image_url ?? external_link}
+                        fallbackSrc="assets/viewer/error.png"
                       />
                       <p style={{ color: "white" }}>{name}</p>
                     </VStack>
@@ -79,7 +80,6 @@ const NFTViewer: NextPage = () => {
                     You don't own any Coinbaes yet. Wanna mint one?
                   </p>
                   <HStack>
-                    {/* first point to /presale-mint page, then /mint page */}
                     <Link href="/mint">
                       <Button
                         style={{
