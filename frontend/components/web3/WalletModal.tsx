@@ -9,8 +9,11 @@ import {
   ModalCloseButton,
   Button,
   Text,
+  Spinner,
+  Box,
 } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useConnect } from "wagmi";
 
 type WalletModalProps = {
@@ -19,13 +22,18 @@ type WalletModalProps = {
 };
 
 export default function WalletModal({ isOpen, closeModal }: WalletModalProps) {
-  const { connect, connectors, isConnecting, pendingConnector } = useConnect();
+  const { connect, connectors, isConnected, isConnecting, error } =
+    useConnect();
+
+  useEffect(() => {
+    (isConnected || error) && closeModal();
+  }, [isConnected, error]);
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal} isCentered>
       <ModalOverlay />
-      <ModalContent w="300px">
-        <ModalHeader>Select Wallet</ModalHeader>
+      <ModalContent maxW="500px" minH="400px">
+        <ModalHeader fontSize={25}>Select Wallet</ModalHeader>
         <ModalCloseButton
           _focus={{
             boxShadow: "none",
@@ -40,25 +48,28 @@ export default function WalletModal({ isOpen, closeModal }: WalletModalProps) {
                 key={connector.id}
                 onClick={() => {
                   connect(connector);
-                  closeModal();
                 }}
+                maxW="500px"
+                minH="100px"
               >
                 <HStack w="100%" justifyContent="center">
                   <Image
                     src={`assets/wallets/${connector.id}.png`}
                     alt="Coinbase Wallet Logo"
-                    width={25}
-                    height={25}
+                    width={50}
+                    height={50}
                     borderRadius="3px"
                   />
-                  <Text>{connector.name}</Text>
-                  {isConnecting && pendingConnector?.id === connector.id && (
-                    <Text>Connecting...</Text>
-                  )}
+                  <Text paddingLeft={4} fontSize={30}>
+                    {connector.name}
+                  </Text>
                 </HStack>
               </Button>
             ))}
           </VStack>
+          <Box w="100%" display="flex" justifyContent="center" paddingTop="2">
+            {isConnecting && <Spinner color="blue.500" />}
+          </Box>
         </ModalBody>
       </ModalContent>
     </Modal>
