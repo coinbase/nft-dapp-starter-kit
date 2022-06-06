@@ -27,6 +27,7 @@ const NFTViewer: NextPage = () => {
         );
         const { assets } = await response.json();
         setTokens(assets);
+        console.log("tokens: ", assets);
       } catch (err) {
         console.log(`Error fetching assets from Opensea: ${err}`);
         return new Error(`Error fetching assets from Opensea: ${err}`);
@@ -48,14 +49,15 @@ const NFTViewer: NextPage = () => {
           {!isLoading ? (
             <SimpleGrid columns={[1, 3, 5]} spacing={10}>
               {tokens?.length > 0 &&
-                tokens.map(({ name, image_url }) => (
-                  <VStack spacing={2}>
+                tokens.map(({ name, image_url, external_link }) => (
+                  <VStack spacing={2} key={name}>
                     <Image
                       rounded={"lg"}
                       height={230}
                       width={230}
                       objectFit={"cover"}
-                      src={image_url}
+                      src={image_url ?? external_link}
+                      fallbackSrc="assets/viewer/error.png"
                     />
                     <p style={{ color: "white" }}>{name}</p>
                   </VStack>
