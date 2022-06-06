@@ -11,17 +11,20 @@ import {
 const FAQ = () => {
   const faqData = [
     {
-      question: "Wen mint?",
-      answer: "You'll see soon. Check out our source code to mint your own.",
-    },
-    {
-      question: "What is the point?",
+      question: "What is the Non-Fungible Coinbae project?",
       answer:
-        "Exclusive access to public spaces, express pass to stand in the longest lines. You can also check out our source code :)",
+        "The non-fungible Coinbae project is a sample dapp that showcases a frontend boilerplate for a generic NFT minting project that can be built with the `NFT Dapp Starter Kit`.",
     },
     {
-      question: "If I have questions, where can I ask?",
-      answer: "Please file a ticket in our repo.",
+      question: "How can I build something like this of my own?",
+      answer:
+        "Go fork the `NFT Dapp Starter Kit` source code to kick start your own project! Don't forget to share your project on Twitter and tag @CoinbaseWallet, we'd love to see what you build:)",
+    },
+    {
+      question:
+        "If I have questions or run into any issues, where can I ask them?",
+      answer:
+        "Add your questions to the `Issues` page on our Github repository. We'll try to get back to you as soon as possible!",
     },
   ];
 
@@ -38,7 +41,9 @@ const FAQ = () => {
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
-                          <p style={{ fontWeight: "bold" }}>{faq.question}</p>
+                          <p style={{ fontWeight: "bold", fontSize: 18 }}>
+                            {faq.question}
+                          </p>
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
