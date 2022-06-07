@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
-import { Button, Spinner, VStack } from "@chakra-ui/react";
-import { useAccount, useContractWrite } from "wagmi";
+import { Button, Link, Spinner, VStack } from "@chakra-ui/react";
+import { useAccount, useNetwork, useContractWrite } from "wagmi";
 import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
 import { useEffect, useState } from "react";
 import presaleList from "@data/allowlists/presaleList.json";
@@ -21,9 +21,11 @@ import ConnectWallet from "@components/web3/ConnectWallet";
 
 const PRICE = 0.02;
 const Mint: NextPage = () => {
+  const { activeChain, switchNetwork } = useNetwork();
   const [payable, setPayable] = useState(BigInt(20000000000000000).toString());
   const [merkleProof, setMerkleProof] = useState([""]);
   const [numPresaleMint, setNumPresaleMint] = useState(1);
+  const [hasMinted, setHasMinted] = useState(true);
   const handleChange = (value: number | string) =>
     setNumPresaleMint(Number(value));
 
@@ -53,6 +55,7 @@ const Mint: NextPage = () => {
       },
       onSuccess(data) {
         console.log("Success", data);
+        setHasMinted(true);
       },
     }
   );
@@ -84,11 +87,70 @@ const Mint: NextPage = () => {
             <br />
             ⚡️ Pre-sale Minting Now ⚡️
           </h1>
-          {account?.address ? (
+          {hasMinted ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/landing/cbw.png"}
+                src={"/assets/success.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>
+                You've successfully minted! Click here to view your newly minted
+                Coinbae
+              </p>
+              <Link href="/mycoinbaes">
+                <Button
+                  style={{
+                    fontFamily: "'Press Start 2P', cursive",
+                    color: "#4b4f56",
+                    borderRadius: "0",
+                  }}
+                >
+                  View My Coinbae
+                </Button>
+              </Link>
+            </VStack>
+          ) : !account?.address ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cb.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>
+                Connect wallet to check eligibility!
+              </p>
+              <ConnectWallet />
+            </VStack>
+          ) : activeChain?.id !== 4 ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cb.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>You're on the wrong Network!</p>
+              <Button
+                style={{
+                  fontFamily: "'Press Start 2P', cursive",
+                  color: "#4b4f56",
+                  borderRadius: "0",
+                }}
+                onClick={() => {
+                  switchNetwork && switchNetwork(4);
+                }}
+              >
+                Switch to Rinkeby
+              </Button>
+            </VStack>
+          ) : (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cbw.png"}
                 width={250}
                 height={250}
               />
@@ -96,8 +158,9 @@ const Mint: NextPage = () => {
               <NumberInput
                 step={1}
                 defaultValue={1}
-                min={0}
+                min={1}
                 max={3}
+                precision={0}
                 onChange={handleChange}
                 inputMode="numeric"
                 variant="filled"
@@ -156,19 +219,6 @@ const Mint: NextPage = () => {
                     "User rejected request"}
                 </p>
               )}
-            </VStack>
-          ) : (
-            <VStack>
-              <Image
-                alt="placeholder image for team members"
-                src={"/assets/team/cb.png"}
-                width={250}
-                height={250}
-              />
-              <p style={{ color: "white" }}>
-                Connect wallet to check eligibility!
-              </p>
-              <ConnectWallet />
             </VStack>
           )}
         </main>

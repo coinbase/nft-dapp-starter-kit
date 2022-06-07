@@ -67,7 +67,7 @@ const NFTViewer: NextPage = () => {
                         width={230}
                         objectFit={"cover"}
                         src={image_url ?? external_link}
-                        fallbackSrc="assets/viewer/error.png"
+                        fallbackSrc="assets/error.png"
                       />
                       <p style={{ color: "white" }}>{name}</p>
                     </VStack>

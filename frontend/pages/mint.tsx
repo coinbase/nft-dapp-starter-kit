@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
-import { Button, VStack } from "@chakra-ui/react";
+import { Button, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useNetwork } from "wagmi";
 import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
 import { useState } from "react";
@@ -24,10 +24,9 @@ const Mint: NextPage = () => {
 
   const [payable, setPayable] = useState(BigInt(60000000000000000).toString());
   const [numPublicMint, setNumPublicMint] = useState(3);
+  const [hasMinted, setHasMinted] = useState(false);
   const handleChange = (value: number | string) =>
     setNumPublicMint(Number(value));
-
-  console.log("active chain: ", activeChain);
 
   const {
     data: publicSaleData,
@@ -52,7 +51,8 @@ const Mint: NextPage = () => {
         console.log(error);
       },
       onSuccess(data) {
-        console.log("Success", data);
+        console.log(data);
+        setHasMinted(true);
       },
     }
   );
@@ -73,11 +73,49 @@ const Mint: NextPage = () => {
             <br />
             ⚡️ Minting Now ⚡️
           </h1>
-          {!account?.address ? (
+          {hasMinted && publicSaleData ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/team/cb.png"}
+                src={"/assets/success.png"}
+                width={250}
+                height={250}
+              />
+              <p style={{ color: "white" }}>
+                Your transaction was sent! Click here to view your transaction:
+              </p>
+              <Link
+                href={`${
+                  process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
+                  "https://rinkeby.etherscan.io"
+                }/tx/${publicSaleData.hash}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  fontFamily: "'Press Start 2P', cursive",
+                  color: "white",
+                  borderRadius: "0",
+                }}
+              >
+                Etherscan: {abridgeAddress(publicSaleData.hash)}
+              </Link>
+              <Link href="/mycoinbaes">
+                <Button
+                  style={{
+                    fontFamily: "'Press Start 2P', cursive",
+                    color: "#4b4f56",
+                    borderRadius: "0",
+                  }}
+                >
+                  View My Coinbae Collection
+                </Button>
+              </Link>
+            </VStack>
+          ) : !account?.address ? (
+            <VStack>
+              <Image
+                alt="placeholder image for team members"
+                src={"/assets/cb.png"}
                 width={250}
                 height={250}
               />
@@ -88,7 +126,7 @@ const Mint: NextPage = () => {
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/team/cb.png"}
+                src={"/assets/cb.png"}
                 width={250}
                 height={250}
               />
@@ -110,7 +148,7 @@ const Mint: NextPage = () => {
             <VStack>
               <Image
                 alt="placeholder image for team members"
-                src={"/assets/landing/cbw.png"}
+                src={"/assets/cbw.png"}
                 width={250}
                 height={250}
               />
@@ -145,21 +183,7 @@ const Mint: NextPage = () => {
                 Mint public sale
                 {publicSaleIsLoading && <Spinner marginLeft={2} />}
               </Button>
-              {publicSaleData && (
-                <p style={{ color: "white" }}>
-                  Success:{" "}
-                  <a
-                    href={`${
-                      process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                      "https://rinkeby.etherscan.io"
-                    }/tx/${publicSaleData.hash}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {abridgeAddress(publicSaleData.hash)}
-                  </a>
-                </p>
-              )}
+
               {publicSaleIsError && (
                 <p style={{ color: "red" }}>
                   Error:{" "}

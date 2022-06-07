@@ -21,10 +21,10 @@ const SplashBanner = () => {
             </Button>
           </Link>
           <div className={styles.coinbaes}>
-            <Image src="/assets/landing/btc.png" height={300} width={300} />
-            <Image src="/assets/landing/eth.png" height={300} width={300} />
-            <Image src="/assets/landing/cbw.png" height={300} width={300} />
-            <Image src="/assets/landing/sol.png" height={300} width={300} />
+            <Image src="/assets/btc.png" height={300} width={300} />
+            <Image src="/assets/eth.png" height={300} width={300} />
+            <Image src="/assets/cbw.png" height={300} width={300} />
+            <Image src="/assets/sol.png" height={300} width={300} />
           </div>
         </main>
       </div>

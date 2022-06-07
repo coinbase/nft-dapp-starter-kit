@@ -26,7 +26,7 @@ const FaOpensea = () => (
     justifyContent="center"
     alignItems="center"
   >
-    <Image width="18px" height="18px" src="assets/navbar/opensea.png" />
+    <Image width="18px" height="18px" src="assets/opensea.png" />
   </Box>
 );
 
