@@ -1,7 +1,6 @@
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-
 const { task } = require("hardhat/config");
 require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
@@ -12,7 +11,6 @@ require("solidity-coverage");
 
 const {
   RINKEBY_API_URL,
-  ROPSTEN_API_URL,
   MAINNET_API_URL,
   PRIVATE_KEY,
   ETHERSCAN_API_KEY,
@@ -49,12 +47,10 @@ module.exports = {
     rinkeby: {
       url: RINKEBY_API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 10000000000, // 10 gwei
     },
     mainnet: {
       url: MAINNET_API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 55000000000, // 55 gwei
     },
   },
   gasReporter: {
