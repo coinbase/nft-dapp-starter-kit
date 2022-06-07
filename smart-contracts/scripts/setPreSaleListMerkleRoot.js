@@ -9,13 +9,11 @@ async function main() {
     "presaleList"
   );
 
-  const NonFungibleCoinbae = await hre.ethers.getContractFactory(
-    "NonFungibleCoinbae"
-  );
-  const nft = await NonFungibleCoinbae.attach(
+  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
+  const nft = await MyNFT.attach(
     process.env.CONTRACT_ADDRESS // The deployed contract address
   );
-  console.log("NonFungibleCoinbae attached to:", nft.address);
+  console.log("MyNFT attached to:", nft.address);
 
   console.log("setting presale list merkle root...");
 
@@ -26,7 +24,7 @@ async function main() {
 
   fs.copyFile(
     "allowlists/presaleList.json",
-    "../frontend/data/allowlists/presaleList.json",
+    "../frontend/basic/data/allowlists/presaleList.json",
     (err) => {
       if (err) {
         console.log("Error Found:", err);
@@ -34,7 +32,25 @@ async function main() {
         console.log(
           "\nPresale List:",
           fs.readFileSync(
-            "../frontend/data/allowlists/presaleList.json",
+            "../frontend/basic/data/allowlists/presaleList.json",
+            "utf8"
+          )
+        );
+      }
+    }
+  );
+
+  fs.copyFile(
+    "allowlists/presaleList.json",
+    "../frontend/coinbaes/data/allowlists/presaleList.json",
+    (err) => {
+      if (err) {
+        console.log("Error Found:", err);
+      } else {
+        console.log(
+          "\nPresale List:",
+          fs.readFileSync(
+            "../frontend/coinbaes/data/allowlists/presaleList.json",
             "utf8"
           )
         );

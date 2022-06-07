@@ -8,13 +8,11 @@ async function main() {
     return;
   }
 
-  const NonFungibleCoinbae = await hre.ethers.getContractFactory(
-    "NonFungibleCoinbae"
-  );
-  const nft = await NonFungibleCoinbae.attach(
+  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
+  const nft = await MyNFT.attach(
     process.env.CONTRACT_ADDRESS // The deployed contract address
   );
-  console.log("NonFungibleCoinbae attached to:", nft.address);
+  console.log("MyNFT attached to:", nft.address);
 
   console.log("setting base uri...", BASE_URI);
 

@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
+contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -39,16 +39,16 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     bool public isPublicSaleActive;
 
     uint256 public constant MAX_PRE_SALE_MINTS = 3;
-    uint256 public constant PRE_SALE_PRICE = 0.02 ether;
+    uint256 public constant PRE_SALE_PRICE = 0.01 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
-    uint256 public constant PUBLIC_SALE_PRICE = 0.06 ether;
+    uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
 
     // Rotalty
     address public royaltyReceiverAddress;
 
     constructor(address _royaltyReceiverAddress)
-        ERC721("Non Fungible Coinbaes <3", "COINBAE")
+        ERC721("My NFT Collection", "MYNFT")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
@@ -164,7 +164,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev reserve tokens for team
      */
-    function reserveForTeam(address teamAddress, uint256 numToReserve)
+    function reserveForTeam(uint256 numToReserve)
         external
         nonReentrant
         onlyOwner
@@ -173,7 +173,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         numGiftedTokens += numToReserve;
 
         for (uint256 i = 0; i < numToReserve; i++) {
-            _safeMint(teamAddress, nextTokenId());
+            _safeMint(msg.sender, nextTokenId());
         }
     }
 

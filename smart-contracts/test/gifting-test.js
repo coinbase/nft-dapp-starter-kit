@@ -12,7 +12,7 @@ describe("Gifting", function () {
   var owner, addr1, addr2, addr3;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
+    const NFT = await ethers.getContractFactory("MyNFT");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -23,7 +23,7 @@ describe("Gifting", function () {
     await expect(
       nft
         .connect(addr1)
-        .giftTokens([
+        .airdropTokens([
           "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
           "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
           "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -38,7 +38,7 @@ describe("Gifting", function () {
   });
 
   it("should allow owner attempt to gift directly to recipients", async function () {
-    await nft.giftTokens([
+    await nft.airdropTokens([
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
       "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
@@ -61,7 +61,7 @@ describe("Gifting", function () {
   });
 
   it("should allow owner to gift directly to same recipients multiple times", async function () {
-    await nft.giftTokens([
+    await nft.airdropTokens([
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
@@ -75,59 +75,5 @@ describe("Gifting", function () {
     expect(await nft.balanceOf(addr1.address)).to.equal(5);
     expect(await nft.balanceOf(addr2.address)).to.equal(2);
     expect(await nft.balanceOf(addr3.address)).to.equal(2);
-  });
-});
-
-describe("Gifting Claimlist", function () {
-  var nft;
-  var owner, addr1, addr2;
-
-  beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
-    nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
-    await nft.deployed();
-
-    [owner, addr1, addr2] = await ethers.getSigners();
-
-    const setReserveListMerkleRootTx = await nft.setReserveListMerkleRoot(
-      "0x55e8063f883b9381398d8fef6fbae371817e8e4808a33a4145b8e3cdd65e3926"
-    );
-    // this root is for the addresses
-    /*
-    [
-      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-      "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
-      "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-    ]
-    */
-
-    await setReserveListMerkleRootTx.wait();
-  });
-
-  it("should revert reserve mints when merkle root is valid and payment supplied", async function () {
-    await expect(
-      nft
-        .connect(addr1)
-        .mintReserved(
-          [
-            "0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9",
-            "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
-          ],
-          {
-            value: web3.utils.toWei("0.02", "ether"),
-          }
-        )
-    ).to.be.reverted;
-    expect(await nft.balanceOf(addr1.address)).to.equal(0);
-  });
-
-  it("should allow reserve mints when merkle root is valid", async function () {
-    await nft
-      .connect(addr1)
-      .mintReserved([
-        "0xe9707d0e6171f728f7473c24cc0432a9b07eaaf1efed6a137a4a8c12c79552d9",
-        "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
-      ]);
-    expect(await nft.balanceOf(addr1.address)).to.equal(1);
   });
 });

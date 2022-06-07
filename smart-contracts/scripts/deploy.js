@@ -1,9 +1,8 @@
 const hre = require("hardhat");
+const fs = require("fs");
 
 async function main() {
-  const NonFungibleCoinbae = await hre.ethers.getContractFactory(
-    "NonFungibleCoinbae"
-  );
+  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
   const ROYALTY_RECEIVER_ADDR = process.env.ROYALTY_RECEIVER_ADDR;
 
@@ -12,13 +11,26 @@ async function main() {
     return;
   }
 
-  const deployedContract = await NonFungibleCoinbae.deploy(
-    ROYALTY_RECEIVER_ADDR
-  );
+  const deployedContract = await MyNFT.deploy(ROYALTY_RECEIVER_ADDR);
 
   await deployedContract.deployed();
 
-  console.log("NonFungibleCoinbae deployed to:", deployedContract.address);
+  console.log("MyNFT deployed to:", deployedContract.address);
+
+  fs.copyFile(
+    "artifacts/contracts/nft.sol/MyNFT.json",
+    "../frontend/basic/data/MyNFT.json",
+    (err) => {
+      if (err) {
+        console.log("Error Found:", err);
+      } else {
+        console.log(
+          "\nCopied ABI file:",
+          fs.readFileSync("../frontend/basic/data/MyNFT.json", "utf8")
+        );
+      }
+    }
+  );
 
   return deployedContract;
 }

@@ -12,7 +12,7 @@ describe("Presale States", function () {
   var owner, addr1, addr2;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
+    const NFT = await ethers.getContractFactory("MyNFT");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -28,7 +28,7 @@ describe("Presale States", function () {
         1,
         ["0x9c39b56a71aedee8ec80f1e501e0e047d683b89cd554178b8af43574e1ebda82"],
         {
-          value: web3.utils.toWei("0.02", "ether"),
+          value: web3.utils.toWei("0.01", "ether"),
         }
       )
     ).to.be.revertedWith("Address does not exist in list");
@@ -42,7 +42,7 @@ describe("Claimlist merkle tests", function () {
   var owner, addr1, addr2;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
+    const NFT = await ethers.getContractFactory("MyNFT");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -76,7 +76,7 @@ describe("Claimlist merkle tests", function () {
             "0xbc4d3a93ded892ed8e707d440a5188e24517559f366fa238dcf90ed0dac9e6a3",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Address does not exist in list");
@@ -93,7 +93,7 @@ describe("Claimlist merkle tests", function () {
           "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
         ],
         {
-          value: web3.utils.toWei("0.02", "ether"),
+          value: web3.utils.toWei("0.01", "ether"),
         }
       );
     expect(mint.hash).to.not.be.NaN;
@@ -110,7 +110,7 @@ describe("Claimlist merkle tests", function () {
             "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Address does not exist in list");
@@ -126,7 +126,7 @@ describe("Claimlist merkle tests", function () {
           "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
         ],
         {
-          value: web3.utils.toWei("0.06", "ether"),
+          value: web3.utils.toWei("0.03", "ether"),
         }
       );
     expect(mint.hash).to.not.be.NaN;
@@ -141,7 +141,7 @@ describe("Claimlist merkle tests", function () {
             "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Claimed/invalid tokens requested");
@@ -174,7 +174,7 @@ describe("Claimlist merkle tests", function () {
           "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
         ],
         {
-          value: web3.utils.toWei("0.06", "ether"),
+          value: web3.utils.toWei("0.03", "ether"),
         }
       );
 
@@ -184,7 +184,7 @@ describe("Claimlist merkle tests", function () {
         3,
         ["0x070e8db97b197cc0e4a1790c5e6c3667bab32d733db7f815fbe84f5824c7168d"],
         {
-          value: web3.utils.toWei("0.06", "ether"),
+          value: web3.utils.toWei("0.03", "ether"),
         }
       );
 
@@ -198,7 +198,7 @@ describe("Claimlist merkle tests", function () {
             "0x8a3552d60a98e0ade765adddad0a2e420ca9b1eef5f326ba7ab860bb4ea72c94",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Claimed/invalid tokens requested");
@@ -212,7 +212,7 @@ describe("Claimlist merkle tests", function () {
             "0x070e8db97b197cc0e4a1790c5e6c3667bab32d733db7f815fbe84f5824c7168d",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Claimed/invalid tokens requested");
@@ -224,7 +224,7 @@ describe("Presale integration tests", function () {
   var owner, addr1, addr2, addr3, addr4;
 
   beforeEach(async function () {
-    const NFT = await ethers.getContractFactory("NonFungibleCoinbae");
+    const NFT = await ethers.getContractFactory("MyNFT");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
 
@@ -257,7 +257,7 @@ describe("Presale integration tests", function () {
             "0xf4ca8532861558e29f9858a3804245bb30f0303cc71e4192e41546237b6ce58b",
           ],
           {
-            value: web3.utils.toWei("0.02", "ether"),
+            value: web3.utils.toWei("0.01", "ether"),
           }
         )
     ).to.be.revertedWith("Address does not exist in list");

@@ -2,9 +2,7 @@ require("dotenv").config();
 const hre = require("hardhat");
 
 async function main() {
-  const NonFungibleCoinbae = await hre.ethers.getContractFactory(
-    "NonFungibleCoinbae"
-  );
+  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
   const IS_PRESALE_ACTIVE = process.env.IS_PRESALE_ACTIVE;
   if (!IS_PRESALE_ACTIVE) {
@@ -14,10 +12,10 @@ async function main() {
     return;
   }
 
-  const nft = await NonFungibleCoinbae.attach(
+  const nft = await MyNFT.attach(
     process.env.CONTRACT_ADDRESS // The deployed contract address
   );
-  console.log("NonFungibleCoinbae attached to:", nft.address);
+  console.log("MyNFT attached to:", nft.address);
 
   console.log(`setting isPresaleActive to ${IS_PRESALE_ACTIVE}...`);
 

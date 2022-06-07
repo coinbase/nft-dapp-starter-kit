@@ -14,6 +14,8 @@
   "license": "ISC",
   "homepage": "https://github.com/CoinbaseWallet/nft-dapp-starter-kit#readme",
   "scripts": {
+    "verify": "npx hardhat etherscan-verify --network rinkeby",
+    "deploy": "npx hardhat run scripts/deploy.js --network rinkeby",
     "test": "npx hardhat test --network hardhat",
     "rinkeby:verify": "npx hardhat etherscan-verify --network rinkeby",
     "rinkeby:deploy": "npx hardhat run scripts/deploy.js --network rinkeby",
@@ -21,7 +23,14 @@
     "rinkeby:setIsPublicSaleActive": "npx hardhat run scripts/setIsPresaleActive.js  --network rinkeby",
     "rinkeby:setIsPresaleActive": "npx hardhat run scripts/setIsPublicSaleActive.js  --network rinkeby",
     "rinkeby:setReserveListMerkle": "npx hardhat run scripts/setReserveListMerkleRoot.js --network rinkeby",
-    "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network rinkeby"
+    "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network rinkeby",
+    "ropsten:verify": "npx hardhat etherscan-verify --network ropsten",
+    "ropsten:deploy": "npx hardhat run scripts/deploy.js --network ropsten",
+    "ropsten:setBaseURI": "npx hardhat run scripts/setBaseURI.js --network ropsten",
+    "ropsten:setIsPublicSaleActive": "npx hardhat run scripts/setIsPresaleActive.js  --network ropsten",
+    "ropsten:setIsPresaleActive": "npx hardhat run scripts/setIsPublicSaleActive.js  --network ropsten",
+    "ropsten:setReserveListMerkle": "npx hardhat run scripts/setReserveListMerkleRoot.js --network ropsten",
+    "ropsten:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network ropsten"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
