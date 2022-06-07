@@ -11,23 +11,21 @@ Ready to bootstrap your own NFT minting site? Get started here. This boilerplate
   - Rinkeby - `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 - Fork this repo to play around with it.
 
-## Prerequisites for Developers
+## Prerequisites for Development
 
-This repository is meant for developers who are already familiar with Solidity and front-end development basics. If you have not worked with Solidity or Typescript before, we recommend you check out some beginner resources first.
+1. Rinkeby API URL (Alchemy or Infura Recommended)
+2. Mainnet API URL (Alchemy or Infura Recommended)
+3. Wallet (both Private Key and Public Key)
 
-- Rinkeby API URL (Infura or Alchemy)
-- Mainnet API URL (Infura or Alchemy)
-- Wallet (both Private Key and Public Key)
-
-## Smart Contracts
+## Step 1: Smart Contracts
 
 To set up your smart contracts and interact with them via Hardhat go to [`/smart-contracts`](smart-contracts).
 
-## Metadata
+## Step 2: Metadata
 
 To learn more about token metadata and generate your own metadata, go to [`/metadata`](metadata).
 
-## Frontend
+## Step 3: Frontend
 
 To set up your own minting Dapp UI go to [`/frontend`](frontend)
 

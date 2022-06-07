@@ -1,26 +1,24 @@
 # Smart Contracts | NFT Minting Toolkit
 
-## Deployed Test Contract
+## Sample Contract
 
-Rinkeby `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
+`NonFungibleCoinbae` (deployed to Rinkeby Testnet): [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 
 ## Prerequisites
 
-1. Have access to the public (public wallet address) and private key to your Ethereum account <sub>1</sub>
-2. Set up an Alchemy (Recommended) or Infura account (the free one works!)<sub>2</sub>
-3. Set up an etherscan account and obtain the API key (optional) <sub>3</sub>
+Before you start, make sure you have the following information handy
 
-## Dependencies
+1. Have access to the public (public wallet address) and private key to your Ethereum account
+2. Set up an Alchemy (Recommended) or Infura account (the free one works!) to retrieve an API endpoint
+3. Set up an etherscan account and obtain the API key (optional)
 
-Install dependencies.
+## Deploying the NFT Contract
 
-```
-npm install
-```
+1. Install dependencies
 
-## Running Locally
-
-To run this locally, make sure you have your environment variables set.
+   ```
+   yarn install
+   ```
 
 1. Make a copy of `.env.sample` and fill it out
 
@@ -28,31 +26,49 @@ To run this locally, make sure you have your environment variables set.
    cp .env.sample .env
    ```
 
-   You should fill out at least the following fields: `RINKEBY_API_URL`, `ETHERSCAN_API_KEY`, `PRIVATE_KEY` and `PUBLIC_KEY`.
+   Please note the required fields. The `CONTRACT_ADDRESS` field should only be filled out after you deploy the smart contract.
 
-   The `CONTRACT_ADDRESS` field should be filled out after you deploy the smart contract.
+1. Make your modifications to the smart contract in `./contract/nft.sol`
 
-2. Make your modifications to the smart contract in `./contract/nft.sol`
-
-3. Compile the contract
+1. Compile the contract
 
    ```
    npx hardhat compile
    ```
 
-4. Edit the deploy script.
+1. Deploy the contract (default network is set to Rinkeby)
 
-   Modify `scripts/deploy.js` to include the specific deploy arguments that you want your ERC721 contract to be deployed with. Make sure the parameter passed into `await hre.ethers.getContractFactory` matches the name of the compiled smart contract exactly.
+   ```
+   yarn deploy
+   ```
 
-5. Deploy the contract
+   To customize the network (to local or test networks)
+
    ```
    npx hardhat run scripts/deploy.js --network [network of choice]
    ```
+
    We recommend you deploy to a local network or testnet such as Rinkeby to start.
+
+   If needed, modify `scripts/deploy.js` to include the specific deploy arguments that you want your ERC721 contract to be deployed with. Make sure the parameter passed into `await hre.ethers.getContractFactory` matches the name of the compiled smart contract exactly.
+
+1. Verify the contract on Etherscan (optional, default network is set to Rinkeby)
+
+   Update `CONTRACT_ADDRESS` with the deployed contract address and run the following script to verify your contract on Etherscan
+
+   ```
+   yarn verify
+   ```
+
+   To customize the network (make sure network is supported by Etherscan)
+
+   ```
+   npx hardhat etherscan-verify --network [network of choice]
+   ```
 
 ## Steps to Test
 
-Run `npx hardhat test --network hardhat`. This repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
+Run `npx hardhat test --network hardhat`. Additionally, this repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
 
 ## Scripts
 
@@ -73,30 +89,16 @@ npx hardhat node
 npx hardhat help
 ```
 
-### Deploy on Rinkeby
-
-Set `ROYALTY_RECEIVER_ADDR` in your `.env` and run the following script:
-
-```bash
-npm run rinkeby:deploy
-```
-
-Then update `CONTRACT_ADDRESS` with the deployed contract address and run the following script to verify your contract:
-
-```bash
-npm run rinkeby:verify
-```
-
 ### Merkle Roots
 
 To set merkle roots for allowlists, update the addresses in `allowlists/presaleList.json` and `allowlists/giftlist.json` and run the following scripts.
 
 ```
-   npm run rinkeby:setPresaleListMerkle
-   npm run rinkeby:setReserveListMerkle
+npm run rinkeby:setPresaleListMerkle
+npm run rinkeby:setReserveListMerkle
 ```
 
-### Sale States
+### Activate pre-sale or public sale
 
 To modify the active sale states, modify the following environment variables:
 
