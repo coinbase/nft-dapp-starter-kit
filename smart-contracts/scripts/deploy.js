@@ -12,11 +12,15 @@ async function main() {
     return;
   }
 
-  const nft = await NonFungibleCoinbae.deploy(ROYALTY_RECEIVER_ADDR);
+  const deployedContract = await NonFungibleCoinbae.deploy(
+    ROYALTY_RECEIVER_ADDR
+  );
 
-  await nft.deployed();
+  await deployedContract.deployed();
 
-  console.log("NonFungibleCoinbae deployed to:", nft.address);
+  console.log("NonFungibleCoinbae deployed to:", deployedContract.address);
+
+  return deployedContract;
 }
 
 // We recommend this pattern to be able to use async/await everywhere
