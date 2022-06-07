@@ -58,7 +58,7 @@ const NavBar = () => {
         </div>
         <div className={styles.rightPartition}>
           <a
-            href="https://github.com/CoinbaseWallet/nft-minting-starter-kit"
+            href="https://github.com/CoinbaseWallet/nft-dapp-starter-kit"
             target="_blank"
             rel="noreferrer"
           >
@@ -139,7 +139,7 @@ const NavBar = () => {
                 <ConnectWallet isMobile size="xs" />
                 <Spacer />
                 <a
-                  href="https://github.com/CoinbaseWallet/nft-minting-starter-kit"
+                  href="https://github.com/CoinbaseWallet/nft-dapp-starter-kit"
                   target="_blank"
                   rel="noreferrer"
                 >
