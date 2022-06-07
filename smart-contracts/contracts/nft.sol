@@ -31,7 +31,6 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     // used to validate list
     mapping(address => bool) public reservedMintCounts; // used to reserved list
     mapping(address => uint256) public preSaleMintCounts; // used for presale list
-    bytes32 public reserveListMerkleRoot;
     bytes32 public presaleListMerkleRoot;
 
     // Sale info
@@ -55,11 +54,6 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ ACCESS CONTROL MODIFIERS ============
-    modifier reservedMintActive() {
-        require(isReservedMintActive, "Reserved minting is not open");
-        _;
-    }
-
     modifier preSaleActive() {
         require(isPreSaleActive, "Presale is not open");
         _;
@@ -168,21 +162,36 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     /**
-     * @dev used for reserve token gifting
+     * @dev reserve tokens for team
      */
-    function mintReserved(bytes32[] calldata merkleProof)
+    function reserveForTeam(address teamAddress, uint256 numToReserve)
         external
-        isValidMerkleProof(merkleProof, reserveListMerkleRoot)
-        canGiftTokens(1)
+        nonReentrant
+        onlyOwner
+        canGiftTokens(numToReserve)
     {
-        require(
-            !reservedMintCounts[msg.sender],
-            "Reserved token already claimed"
-        );
-        reservedMintCounts[msg.sender] = true;
-        numGiftedTokens += 1;
+        numGiftedTokens += numToReserve;
 
-        _safeMint(msg.sender, nextTokenId());
+        for (uint256 i = 0; i < numToReserve; i++) {
+            _safeMint(teamAddress, nextTokenId());
+        }
+    }
+
+    /**
+     * @dev airdrop token directly to list of recipients
+     */
+    function airdropTokens(address[] calldata addresses)
+        external
+        nonReentrant
+        onlyOwner
+        canGiftTokens(addresses.length)
+    {
+        uint256 numRecipients = addresses.length;
+        numGiftedTokens += numRecipients;
+
+        for (uint256 i = 0; i < numRecipients; i++) {
+            _safeMint(addresses[i], nextTokenId());
+        }
     }
 
     // ============ PUBLIC READ-ONLY FUNCTIONS ============
@@ -215,7 +224,7 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     /**
-     * @dev See {IERC165-royaltyInfo}.
+     * @dev support EIP-2981 interface for royalties
      */
     function royaltyInfo(uint256 tokenId, uint256 salePrice)
         external
@@ -231,6 +240,21 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         );
     }
 
+    /**
+     * @dev support EIP-2981 interface for royalties
+     */
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC721, IERC165)
+        returns (bool)
+    {
+        return
+            interfaceId == type(IERC2981).interfaceId ||
+            super.supportsInterface(interfaceId);
+    }
+
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
     function setIsPublicSaleActive(bool _isPublicSaleActive)
         external
@@ -243,10 +267,6 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         isPreSaleActive = _isPreSaleActive;
     }
 
-    function setReserveListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
-        reserveListMerkleRoot = merkleRoot;
-    }
-
     function setPreSaleListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
         presaleListMerkleRoot = merkleRoot;
     }
@@ -256,39 +276,6 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
      */
     function setBaseURI(string memory _baseURI) external onlyOwner {
         baseURI = _baseURI;
-    }
-
-    /**
-     * @dev reserve tokens for team
-     */
-    function reserveForTeam(uint256 numToReserve)
-        external
-        nonReentrant
-        onlyOwner
-        canGiftTokens(numToReserve)
-    {
-        numGiftedTokens += numToReserve;
-
-        for (uint256 i = 0; i < numToReserve; i++) {
-            _safeMint(msg.sender, nextTokenId());
-        }
-    }
-
-    /**
-     * @dev gift tokens directly to recipients
-     */
-    function giftTokens(address[] calldata addresses)
-        external
-        nonReentrant
-        onlyOwner
-        canGiftTokens(addresses.length)
-    {
-        uint256 numToGift = addresses.length;
-        numGiftedTokens += numToGift;
-
-        for (uint256 i = 0; i < numToGift; i++) {
-            _safeMint(addresses[i], nextTokenId());
-        }
     }
 
     /**
@@ -313,4 +300,9 @@ contract NonFungibleCoinbae is ERC721, IERC2981, Ownable, ReentrancyGuard {
         uint256 balance = token.balanceOf(address(this));
         token.transfer(msg.sender, balance);
     }
+
+    /**
+     * @dev enable contract to receive ethers in royalty
+     */
+    receive() external payable {}
 }
