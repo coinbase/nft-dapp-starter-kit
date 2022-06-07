@@ -1,7 +1,5 @@
 # Smart Contracts | NFT Minting Toolkit
 
-Get started with smart contract development here. This repository is meant for developers who are already familiar with Solidity basics. If you have not worked with Solidity before, we recommend you check out some beginner Solidity resources before interacting with these smart contracts.
-
 ## Deployed Test Contract
 
 Rinkeby `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
@@ -18,42 +16,6 @@ Install dependencies.
 
 ```
 npm install
-```
-
-Hardhat
-
-```zsh
-npm add hardhat
-```
-
-Dotenv
-
-```zsh
-npm add dotenv
-```
-
-Ethers.js
-
-```zsh
-npm add @nomiclabs/hardhat-ethers ethers@^5.0.0
-```
-
-OpenZeppelin
-
-```zsh
-npm add @openzeppelin/contracts
-```
-
-Alchemy Web3
-
-```zsh
-npm add @alch/alchemy-web3
-```
-
-Hardhat-etherscan (to verify your contract)
-
-```
-npm add @nomiclabs/hardhat-etherscan
 ```
 
 ## Running Locally
@@ -98,8 +60,7 @@ There are some contract interaction scripts and npm commands to make interacting
 
 ### Overview
 
-Scripts for contract interactions are located in [`scripts/contract-interactions`](scripts/contract-interactions).
-Scripts to generate merkle roots are located in [`scripts`](scripts).
+Scripts for contract interactions and generate merkle roots are located in [`scripts`](scripts).
 
 Try running some of the following tasks:
 
