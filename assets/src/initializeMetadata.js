@@ -51,6 +51,10 @@ const saveImage = (tokenId) => {
  * Remove existing build folder, create new
  */
 const setup = () => {
+  if (!fs.existsSync(`${buildDir}/images`)) {
+    fs.mkdirSync(`${buildDir}`);
+    fs.mkdirSync(`${buildDir}/images`);
+  }
   if (fs.existsSync(`${buildDir}/images`)) {
     fs.rmdirSync(`${buildDir}/images`, { recursive: true });
   }
