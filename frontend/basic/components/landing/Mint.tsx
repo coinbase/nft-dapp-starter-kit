@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, HStack, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useNetwork } from "wagmi";
-import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
+import myNFT from "@data/myNFT.json";
 import { useState } from "react";
 import {
   NumberInput,
@@ -38,7 +38,7 @@ const Mint: NextPage = () => {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
-      contractInterface: NonFungibleCoinbae.abi,
+      contractInterface: myNFT.abi,
     },
     "mintPublicSale",
     {
