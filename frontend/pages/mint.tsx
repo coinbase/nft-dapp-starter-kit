@@ -27,6 +27,8 @@ const Mint: NextPage = () => {
   const handleChange = (value: number | string) =>
     setNumPublicMint(Number(value));
 
+  console.log("active chain: ", activeChain);
+
   const {
     data: publicSaleData,
     error: publicSaleError,
@@ -116,8 +118,9 @@ const Mint: NextPage = () => {
               <NumberInput
                 step={1}
                 defaultValue={3}
-                min={0}
+                min={1}
                 max={5}
+                precision={0}
                 onChange={handleChange}
                 inputMode="numeric"
                 variant="filled"

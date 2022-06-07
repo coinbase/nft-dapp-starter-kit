@@ -1,6 +1,13 @@
 import {
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
   IconButton,
+  Spacer,
+  Stack,
   useDisclosure,
   Image,
   Box,
@@ -93,6 +100,81 @@ const NavBar = () => {
             onClick={onOpen}
           />
         </div>
+        <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+          <DrawerOverlay />
+          <DrawerContent background="black">
+            <DrawerCloseButton />
+            <DrawerBody>
+              <Stack marginTop="20" spacing="24px">
+                <Link href="/" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    Home
+                  </button>
+                </Link>
+                <Link href="/#about" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    About
+                  </button>
+                </Link>
+                <Link href="/#team" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    Team
+                  </button>
+                </Link>
+                <Link href="/#roadmap" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    Roadmap
+                  </button>
+                </Link>
+                <Link href="/#faq" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    FAQ
+                  </button>
+                </Link>
+                <Link href="/viewer" passHref>
+                  <button className={styles.button} onClick={onClose}>
+                    Explorer
+                  </button>
+                </Link>
+                <ConnectWallet isMobile size="xs" />
+                <Spacer />
+                <a
+                  href="https://github.com/CoinbaseWallet/nft-minting-starter-kit"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button
+                    style={{
+                      fontFamily: "'Press Start 2P', cursive",
+                      color: "#FFFFFF",
+                      borderRadius: "0",
+                    }}
+                    colorScheme="whiteAlpha"
+                    variant="ghost"
+                    size="xs"
+                  >
+                    Source code
+                  </Button>
+                </a>
+
+                <IconButton
+                  aria-label="twitter icon"
+                  size="md"
+                  colorScheme="whiteAlpha"
+                  variant="ghost"
+                  icon={<FaTwitter />}
+                />
+                <IconButton
+                  aria-label="discord icon"
+                  size="md"
+                  colorScheme="whiteAlpha"
+                  variant="ghost"
+                  icon={<FaDiscord />}
+                />
+              </Stack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   );
