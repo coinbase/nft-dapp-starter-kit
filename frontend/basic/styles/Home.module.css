@@ -1,0 +1,93 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  position: relative;
+
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainPadding {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.blueTitle,
+.splashTitle,
+.title {
+  font-family: "Inter";
+  max-width: 1200px;
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.splashTitle {
+  color: white;
+}
+
+.blueTitle {
+  color: #2f9ee4;
+}
+
+.title,
+.splashTitle,
+.description {
+  text-align: center;
+}
+
+.description {
+  font-family: "Inter";
+  margin: 2rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.content {
+  min-width: 50vw;
+  max-width: 50rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.background {
+  background-color: black;
+  background-size: cover;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .blueTitle,
+  .splashTitle,
+  .title {
+    font-size: 2.5rem;
+  }
+}
