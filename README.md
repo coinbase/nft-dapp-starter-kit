@@ -21,9 +21,11 @@ Ready to bootstrap your own NFT minting site? Get started here. This boilerplate
 
 To set up your smart contracts and interact with them via Hardhat go to [`/smart-contracts`](smart-contracts).
 
-## Step 2: Metadata
+## Step 2: Metadata / Assets
 
 To learn more about token metadata and generate your own metadata, go to [`/metadata`](metadata).
+
+To learn more about creating generative artwork with layers, go to [`/assets`](assets).
 
 ## Step 3: Frontend
 
