@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, HStack, Link, VStack } from "@chakra-ui/react";
 import { useAccount, useContractWrite, useNetwork } from "wagmi";
-import myNFT from "@data/myNFT.json";
+import myNFT from "@data/MyNFT.json";
 import { useState } from "react";
 import {
   NumberInput,
