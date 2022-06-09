@@ -16,12 +16,12 @@ import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
-const PRICE = 0.06;
+const PRICE = 0.02;
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
   const { activeChain, switchNetwork } = useNetwork();
 
-  const [payable, setPayable] = useState(BigInt(60000000000000000).toString());
+  const [payable, setPayable] = useState(BigInt(20000000000000000).toString());
   const [numPublicMint, setNumPublicMint] = useState(3);
   const [hasMinted, setHasMinted] = useState(false);
   const handleChange = (value: number | string) =>

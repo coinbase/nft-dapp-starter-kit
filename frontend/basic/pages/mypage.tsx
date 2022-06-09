@@ -59,8 +59,8 @@ const NFTViewer: NextPage = () => {
             <>
               {tokens?.length > 0 && (
                 <SimpleGrid columns={[1, 3, 5]} spacing={10}>
-                  {tokens.map(({ name, image_url, external_link }) => (
-                    <VStack spacing={2} key={name}>
+                  {tokens.map(({ name, image_url, external_link }, idx) => (
+                    <VStack spacing={2} key={idx}>
                       <Image
                         rounded={"lg"}
                         height={230}
