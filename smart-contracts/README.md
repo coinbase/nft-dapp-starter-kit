@@ -12,7 +12,7 @@ Before you start, make sure you have the following information handy
 2. Set up an Alchemy (Recommended) or Infura account (the free one works!) to retrieve an API endpoint
 3. Set up an etherscan account and obtain the API key (optional)
 
-## Deploying the NFT Contract
+## Deploy the NFT Contract
 
 1. Install dependencies
 
@@ -20,7 +20,7 @@ Before you start, make sure you have the following information handy
    yarn install
    ```
 
-1. Make a copy of `.env.sample` and fill it out
+1. Make a copy of `.env.sample` as `.env` and fill in details
 
    ```
    cp .env.sample .env
