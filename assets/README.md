@@ -16,6 +16,12 @@ Before you start, make sure you have the following information handy
 
 ## Uploading Assets and Retrieving IPFS Hash
 
+1. Install Dependencies
+
+   ```
+   yarn install
+   ```
+
 1. Initialize Images and Metadata
 
    ```

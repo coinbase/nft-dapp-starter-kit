@@ -13,8 +13,8 @@ Ready to bootstrap your own NFT minting site? Get started here. This boilerplate
 
 ## Prerequisites for Development
 
-1. API URL for testnet and mainnet ([Alchemy](https://dashboard.alchemyapi.io/) Recommended)
-2. Wallet to create a new wallet and retrieve private and public key ([Coinbase Wallet](https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en) Recommended)
+1. Wallet to create a new wallet and retrieve private and public key ([Coinbase Wallet](https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en) Recommended)
+2. API URL for testnet and mainnet ([Alchemy](https://dashboard.alchemyapi.io/) Recommended)
 3. Etherscan API Key for contract verification ([link to Etherscan](https://etherscan.io/))
 
 ## Step 1: Smart Contracts
