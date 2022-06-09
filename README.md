@@ -13,23 +13,23 @@ Ready to bootstrap your own NFT minting site? Get started here. This boilerplate
 
 ## Prerequisites for Development
 
-1. Rinkeby API URL (Alchemy or Infura Recommended)
-2. Mainnet API URL (Alchemy or Infura Recommended)
-3. Wallet (both Private Key and Public Key)
+1. API URL for testnet and mainnet ([Alchemy](https://dashboard.alchemyapi.io/) Recommended)
+2. Wallet to create a new wallet and retrieve private and public key ([Coinbase Wallet](https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en) Recommended)
+3. Etherscan API Key for contract verification ([link to Etherscan](https://etherscan.io/))
 
 ## Step 1: Smart Contracts
 
-To set up your smart contracts and interact with them via Hardhat go to [`/smart-contracts`](smart-contracts).
+To set up and deploy your NFT smart contract and interact with them via Hardhat go to [`/smart-contracts`](smart-contracts).
 
-## Step 2: Metadata / Assets
+## Step 2: Frontend
+
+To set up and deploy your own minting dapp UI go to [`/frontend`](frontend)
+
+## Step 3: Metadata / Assets
 
 To learn more about token metadata and generate your own metadata, go to [`/metadata`](metadata).
 
 To learn more about creating generative artwork with layers, go to [`/assets`](assets).
-
-## Step 3: Frontend
-
-To set up your own minting Dapp UI go to [`/frontend`](frontend)
 
 ## Questions?
 
