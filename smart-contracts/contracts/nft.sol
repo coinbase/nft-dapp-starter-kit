@@ -21,22 +21,20 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     string private baseURI;
 
-    // project constraints
-    uint256 public constant MAX_TOKENS_PER_WALLET = 5;
-    uint256 public constant MAX_RESERVE_TOKENS = 200;
-    uint256 public constant MAX_TOTAL_SUPPLY = 8000;
+    uint256 public numReservedTokens;
 
-    uint256 public numGiftedTokens; // dynamic based on number of gifted tokens
-
-    // used to validate list
-    mapping(address => bool) public reservedMintCounts; // used to reserved list
-    mapping(address => uint256) public preSaleMintCounts; // used for presale list
+    mapping(address => uint256) public preSaleMintCounts; 
     bytes32 public presaleListMerkleRoot;
 
-    // Sale info
-    bool public isReservedMintActive;
     bool public isPreSaleActive;
     bool public isPublicSaleActive;
+
+    address public royaltyReceiverAddress;
+
+    // CUSTOMIZE VALUES BELOW
+    uint256 public constant MAX_TOKENS_PER_WALLET = 5; 
+    uint256 public constant MAX_RESERVE_TOKENS = 200;
+    uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
     uint256 public constant MAX_PRE_SALE_MINTS = 3;
     uint256 public constant PRE_SALE_PRICE = 0.01 ether;
@@ -44,8 +42,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
     uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
 
-    // Rotalty
-    address public royaltyReceiverAddress;
+    uint256 public constant ROYALTY_PERCENTAGE = 5;
 
     constructor(address _royaltyReceiverAddress)
         ERC721("My NFT Collection", "MYNFT")
@@ -67,7 +64,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier maxTokensPerWallet(uint256 numberOfTokens) {
         require(
             balanceOf(msg.sender) + numberOfTokens <= MAX_TOKENS_PER_WALLET,
-            "Max tokens to mint is 5"
+            "Exceeds max tokens per wallet"
         );
         _;
     }
@@ -75,16 +72,16 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier canMint(uint256 numberOfTokens) {
         require(
             tokenCounter.current() + numberOfTokens <=
-                MAX_TOTAL_SUPPLY - MAX_RESERVE_TOKENS + numGiftedTokens,
+                MAX_TOTAL_SUPPLY - MAX_RESERVE_TOKENS + numReservedTokens,
             "Insufficient tokens remaining"
         );
 
         _;
     }
 
-    modifier canGiftTokens(uint256 numberOfTokens) {
+    modifier canReserveTokens(uint256 numberOfTokens) {
         require(
-            numGiftedTokens + numberOfTokens <= MAX_RESERVE_TOKENS,
+            numReservedTokens + numberOfTokens <= MAX_RESERVE_TOKENS,
             "Insufficient token reserve"
         );
         require(
@@ -102,11 +99,11 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         _;
     }
 
-    modifier isValidMerkleProof(bytes32[] calldata merkleProof, bytes32 root) {
+    modifier isValidPreSaleAddress(bytes32[] calldata merkleProof) {
         require(
             MerkleProof.verify(
                 merkleProof,
-                root,
+                presaleListMerkleRoot,
                 keccak256(abi.encodePacked(msg.sender))
             ),
             "Address does not exist in list"
@@ -126,32 +123,27 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     {
         require(
             numberOfTokens <= MAX_PUBLIC_SALE_MINTS,
-            "max public mint is 5"
+            "Exceeds max number for public mint"
         );
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
     }
 
-    /**
-     * @dev can mint up to 3 tokens per allowlisted address
-     * This is our regular presale list which operates like any other presale.
-     * Only active during a presale
-     */
     function mintPreSale(uint8 numberOfTokens, bytes32[] calldata merkleProof)
         external
         payable
-        preSaleActive
         nonReentrant
-        isValidMerkleProof(merkleProof, presaleListMerkleRoot)
-        canMint(MAX_PRE_SALE_MINTS)
+        preSaleActive
         isCorrectPayment(PRE_SALE_PRICE, numberOfTokens)
+        canMint(MAX_PRE_SALE_MINTS)
+        isValidPreSaleAddress(merkleProof)
     {
         uint256 numAlreadyMinted = preSaleMintCounts[msg.sender];
 
         require(
             numAlreadyMinted + numberOfTokens <= MAX_PRE_SALE_MINTS,
-            "Claimed/invalid tokens requested"
+            "Exceeds max number for presale mint"
         );
 
         preSaleMintCounts[msg.sender] = numAlreadyMinted + numberOfTokens;
@@ -162,15 +154,15 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     /**
-     * @dev reserve tokens for team
+     * @dev reserve tokens for self
      */
-    function reserveForTeam(uint256 numToReserve)
+    function reserveTokens(uint256 numToReserve)
         external
         nonReentrant
         onlyOwner
-        canGiftTokens(numToReserve)
+        canReserveTokens(numToReserve)
     {
-        numGiftedTokens += numToReserve;
+        numReservedTokens += numToReserve;
 
         for (uint256 i = 0; i < numToReserve; i++) {
             _safeMint(msg.sender, nextTokenId());
@@ -178,16 +170,16 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     /**
-     * @dev airdrop token directly to list of recipients
+     * @dev gift token directly to list of recipients
      */
-    function airdropTokens(address[] calldata addresses)
+    function giftTokens(address[] calldata addresses)
         external
         nonReentrant
         onlyOwner
-        canGiftTokens(addresses.length)
+        canReserveTokens(addresses.length)
     {
         uint256 numRecipients = addresses.length;
-        numGiftedTokens += numRecipients;
+        numReservedTokens += numRecipients;
 
         for (uint256 i = 0; i < numRecipients; i++) {
             _safeMint(addresses[i], nextTokenId());
@@ -217,7 +209,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         override
         returns (string memory)
     {
-        require(_exists(tokenId), "Nonexistent token");
+        require(_exists(tokenId), "Non-existent token");
 
         return
             string(abi.encodePacked(baseURI, "/", tokenId.toString(), ".json"));
@@ -236,7 +228,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
         return (
             royaltyReceiverAddress,
-            SafeMath.div(SafeMath.mul(salePrice, 8), 100)
+            SafeMath.div(SafeMath.mul(salePrice, ROYALTY_PERCENTAGE), 100)
         );
     }
 
@@ -267,6 +259,9 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         isPreSaleActive = _isPreSaleActive;
     }
 
+    /**
+     * @dev used for allowlisting presale addresses
+     */
     function setPreSaleListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
         presaleListMerkleRoot = merkleRoot;
     }
@@ -278,9 +273,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         baseURI = _baseURI;
     }
 
-    /**
-     * @dev receive royalties to specified address
-     */
     function setRoyaltyReceiverAddress(address _royaltyReceiverAddress)
         external
         onlyOwner
@@ -288,9 +280,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
 
-    /**
-     * @dev withdraw from contract to owner account
-     */
     function withdraw() public onlyOwner {
         uint256 balance = address(this).balance;
         payable(msg.sender).transfer(balance);
