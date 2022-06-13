@@ -43,7 +43,7 @@ This starter kit was largely inspired by the following projects:
 
 ## Resources
 
-- [Coinbase Wallet Developer Docs](https://docs.cloud.coinbase.com/wallet-sdk/docs) - official Coinbase Wallet Developer docs to learn more about Wallet Integration
+- [Coinbase Wallet Developer Docs](https://docs.cloud.coinbase.com/wallet-sdk/docs) - official Coinbase Wallet Developer docs
 - [wagmi](https://github.com/tmm/wagmi) react hooks - we used this package for the frontend integrations
 - [Scaffold-eth buyer-mints](https://github.com/scaffold-eth/scaffold-eth/tree/buyer-mints-nft) - a more complex scaffold for ETH NFT projects
 - [Opensea NFT Developer Docs](https://docs.opensea.io/) - Opensea NFT documentation
