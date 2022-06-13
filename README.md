@@ -33,14 +33,20 @@ To learn more about creating generative artwork with layers, go to [`/assets`](a
 
 If you have any questions or notice issues, please file a ticket and we will respond as soon as possible! We welcome all contributors to open pull requests and will try to review them in a timely manner.
 
-## Other Resources
+## Inspirations
+
+This starter kit was heavily inspired by the following projects:
+
+- [Crypto Coven](https://www.cryptocoven.xyz/) - NFT collection that inspired the smart contract
+- [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold) - another NFT minting scaffold that inspired this project
+
+## Resources
 
 - [Coinbase Wallet Developer Docs](https://docs.cloud.coinbase.com/wallet-sdk/docs) - official Coinbase Wallet Developer docs to learn more about Wallet Integration
-- [Paradigm's Guide to Designing Effective NFT Launches](https://www.paradigm.xyz/2021/10/a-guide-to-designing-effective-nft-launches) - tips on how to launch an NFT project
-- [Scaffold-eth buyer-mints](https://github.com/scaffold-eth/scaffold-eth/tree/buyer-mints-nft) - a more complex scaffold for ETH NFT projects
-- [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold) - another NFT minting scaffold that inspired this project
-- [Opensea NFT Developer Docs](https://docs.opensea.io/)
 - [wagmi](https://github.com/tmm/wagmi) react hooks - we used this package for the frontend integrations
+- [Scaffold-eth buyer-mints](https://github.com/scaffold-eth/scaffold-eth/tree/buyer-mints-nft) - a more complex scaffold for ETH NFT projects
+- [Opensea NFT Developer Docs](https://docs.opensea.io/) - Opensea NFT documentation
+- [Manifold Royalty Standard](https://manifoldxyz.substack.com/p/royaltyregistryxyz?s=r) - Royalty Standard created by the Manifold team
 
 ### License
 
