@@ -38,7 +38,7 @@ If you have any questions or notice issues, please file a ticket and we will res
 This starter kit was largely inspired by the following projects:
 
 - [Crypto Coven](https://www.cryptocoven.xyz/) - NFT collection that inspired the smart contract
-- [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold) - another NFT minting scaffold that inspired gas-efficient presale logic
+- [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold) - another NFT scaffold that inspired gas-efficient presale logic
 - [Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth) - the OG scaffold that inspired this project's direction
 
 ## Resources
