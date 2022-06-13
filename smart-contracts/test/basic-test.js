@@ -32,11 +32,11 @@ describe("Basic Sale States", function () {
         "0xa92b1393c04a88c19fc7dbecb2c3edf4efee8db903cf52adb76ad7816f53378b",
         "0x42b166ce7eeefe6dabae5595bed0850ce0caeb80e8e827a164e112a2498bd465",
       ])
-    ).to.be.revertedWith("Presale is not open");
+    ).to.be.revertedWith("Pre sale is not open");
   });
 
   it("should mint public when public sale open", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     const mint = await nft.mintPublicSale(1, {
@@ -47,7 +47,7 @@ describe("Basic Sale States", function () {
   });
 
   it("should be able to mint 5 tokens when public sale open", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     const mint = await nft.mintPublicSale(5, {
@@ -58,20 +58,20 @@ describe("Basic Sale States", function () {
   });
 
   it("should revert when attempt to mint more than permitted amount", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     await expect(
       nft.mintPublicSale(6, {
         value: web3.utils.toWei("0.12", "ether"),
       })
-    ).to.be.revertedWith("Max tokens to mint is 5");
+    ).to.be.revertedWith("Exceeds max tokens per wallet");
 
     expect(await nft.balanceOf(owner.address)).to.equal(0);
   });
 
   it("should revert when attempt to mint with wrong ETH amount", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     await expect(
@@ -84,7 +84,7 @@ describe("Basic Sale States", function () {
   });
 
   it("should revert when attempting to mint more than max per wallet", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     // mint 5 tokens
@@ -98,13 +98,13 @@ describe("Basic Sale States", function () {
       nft.mintPublicSale(1, {
         value: web3.utils.toWei("0.02", "ether"),
       })
-    ).to.be.revertedWith("Max tokens to mint is 5");
+    ).to.be.revertedWith("Exceeds max tokens per wallet");
 
     expect(await nft.balanceOf(owner.address)).to.equal(5);
   });
 
   it("should not be able mint public when public sale is closed", async function () {
-    const setPublicSaleActiveTx = await nft.setIsPublicSaleActive(true);
+    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
 
     const mint = await nft.mintPublicSale(1, {
@@ -113,8 +113,8 @@ describe("Basic Sale States", function () {
     expect(mint.hash).to.not.be.NaN;
     expect(await nft.balanceOf(owner.address)).to.equal(1);
 
-    const setPublicSaleActiveToFalseTx = await nft.setIsPublicSaleActive(false);
-    await setPublicSaleActiveToFalseTx.wait(); // wait until the transaction is mined
+    const setSaleInactiveTx = await nft.setSaleInactive();
+    await setSaleInactiveTx.wait(); // wait until the transaction is mined
 
     await expect(
       nft.mintPublicSale(1, {

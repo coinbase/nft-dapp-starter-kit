@@ -36,9 +36,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     address public royaltyReceiverAddress;
 
-    address private openSeaProxyRegistryAddress;
-    bool private isOpenSeaProxyActive = true;
-
     // CUSTOMIZE VALUES BELOW
     uint256 public constant MAX_TOKENS_PER_WALLET = 5; 
     uint256 public constant MAX_RESERVE_TOKENS = 200;
@@ -52,10 +49,9 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     uint256 public constant ROYALTY_PERCENTAGE = 5;
 
-    constructor(address _openSeaProxyRegistryAddress, address _royaltyReceiverAddress)
+    constructor(address _royaltyReceiverAddress)
         ERC721("My NFT Collection", "MYNFT")
     {
-        openSeaProxyRegistryAddress = _openSeaProxyRegistryAddress;
         royaltyReceiverAddress = _royaltyReceiverAddress;
         assert(MAX_TOKENS_PER_WALLET >= MAX_PRE_SALE_MINTS);
         assert(MAX_TOKENS_PER_WALLET >= MAX_PUBLIC_SALE_MINTS);
@@ -63,7 +59,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     // ============ ACCESS CONTROL MODIFIERS ============
     modifier preSaleActive() {
-        require(saleState == SaleState.PreSale, "Pre Sale is not open");
+        require(saleState == SaleState.PreSale, "Pre sale is not open");
         _;
     }
 
@@ -257,24 +253,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
             super.supportsInterface(interfaceId);
     }
 
-    /**
-     * @dev support enable gas-less listings on Opensea
-     */
-    function isApprovedForAll(address owner, address operator)
-        public
-        view
-        override
-        returns (bool)
-    {
-        ProxyRegistry proxyRegistry = ProxyRegistry(openSeaProxyRegistryAddress);
-
-        if (isOpenSeaProxyActive && address(proxyRegistry.proxies(owner)) == operator) {
-            return true;
-        }
-
-        return super.isApprovedForAll(owner, operator);
-    }
-
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
     function setPublicSaleActive() external onlyOwner {
         saleState = SaleState.PublicSale;
@@ -286,13 +264,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     function setSaleInactive() external onlyOwner {
         saleState = SaleState.Inactive;
-    }
-
-    function setIsOpenSeaProxyActive(bool _isOpenSeaProxyActive)
-        external
-        onlyOwner
-    {
-        isOpenSeaProxyActive = _isOpenSeaProxyActive;
     }
 
     /**
@@ -330,14 +301,4 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
      * @dev enable contract to receive ethers in royalty
      */
     receive() external payable {}
-}
-
-/**
-* @dev create a reference to the OpenSea ProxyRegistry contract using registry's address
-*/
-contract OwnableDelegateProxy {
-}
-
-contract ProxyRegistry {
-    mapping(address => OwnableDelegateProxy) public proxies;
 }

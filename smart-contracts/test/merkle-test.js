@@ -144,7 +144,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Claimed/invalid tokens requested");
+    ).to.be.revertedWith("Exceeds max number for pre sale mint");
   });
 
   it("should revert mint when eth price is incorrect", async function () {
@@ -201,7 +201,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Claimed/invalid tokens requested");
+    ).to.be.revertedWith("Exceeds max number for pre sale mint");
 
     await expect(
       nft
@@ -215,7 +215,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Claimed/invalid tokens requested");
+    ).to.be.revertedWith("Exceeds max number for pre sale mint");
   });
 });
 

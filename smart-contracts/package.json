@@ -20,17 +20,9 @@
     "rinkeby:verify": "npx hardhat etherscan-verify --network rinkeby",
     "rinkeby:deploy": "npx hardhat run scripts/deploy.js --network rinkeby",
     "rinkeby:setBaseURI": "npx hardhat run scripts/setBaseURI.js --network rinkeby",
-    "rinkeby:setIsPublicSaleActive": "npx hardhat run scripts/setIsPublicSaleActive.js  --network rinkeby",
-    "rinkeby:setIsPresaleActive": "npx hardhat run scripts/setIsPreSaleActive.js  --network rinkeby",
-    "rinkeby:setReserveListMerkle": "npx hardhat run scripts/setReserveListMerkleRoot.js --network rinkeby",
-    "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network rinkeby",
-    "ropsten:verify": "npx hardhat etherscan-verify --network ropsten",
-    "ropsten:deploy": "npx hardhat run scripts/deploy.js --network ropsten",
-    "ropsten:setBaseURI": "npx hardhat run scripts/setBaseURI.js --network ropsten",
-    "ropsten:setIsPublicSaleActive": "npx hardhat run scripts/setIsPresaleActive.js  --network ropsten",
-    "ropsten:setIsPresaleActive": "npx hardhat run scripts/setIsPublicSaleActive.js  --network ropsten",
-    "ropsten:setReserveListMerkle": "npx hardhat run scripts/setReserveListMerkleRoot.js --network ropsten",
-    "ropsten:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network ropsten"
+    "rinkeby:setPublicSaleActive": "npx hardhat run scripts/setPublicSaleActive.js  --network rinkeby",
+    "rinkeby:setPresaleActive": "npx hardhat run scripts/setPreSaleActive.js  --network rinkeby",
+    "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network rinkeby"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",

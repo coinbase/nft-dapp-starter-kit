@@ -23,7 +23,7 @@ describe("Gifting", function () {
     await expect(
       nft
         .connect(addr1)
-        .airdropTokens([
+        .giftTokens([
           "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
           "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
           "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -32,13 +32,13 @@ describe("Gifting", function () {
   });
 
   it("should revert non owner attempt to reserve", async function () {
-    await expect(nft.connect(addr1).reserveForTeam(18)).to.be.revertedWith(
+    await expect(nft.connect(addr1).reserveTokens(18)).to.be.revertedWith(
       "Ownable: caller is not the owner"
     );
   });
 
   it("should allow owner attempt to gift directly to recipients", async function () {
-    await nft.airdropTokens([
+    await nft.giftTokens([
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
       "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
@@ -49,19 +49,19 @@ describe("Gifting", function () {
   });
 
   it("should allow owner to reserve", async function () {
-    await nft.reserveForTeam(18);
+    await nft.reserveTokens(18);
     expect(await nft.balanceOf(owner.address)).to.equal(18);
   });
 
   it("should not allow owner to reserve more than max reserve supply", async function () {
-    await expect(nft.reserveForTeam(201)).to.be.revertedWith(
+    await expect(nft.reserveTokens(201)).to.be.revertedWith(
       "Insufficient token reserve"
     );
     expect(await nft.balanceOf(owner.address)).to.equal(0);
   });
 
   it("should allow owner to gift directly to same recipients multiple times", async function () {
-    await nft.airdropTokens([
+    await nft.giftTokens([
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
