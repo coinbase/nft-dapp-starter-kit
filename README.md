@@ -27,7 +27,7 @@ To set up and deploy your own minting dapp UI go to [`/frontend`](frontend)
 
 To learn more about token metadata and generate your own metadata, go to [`/metadata`](metadata).
 
-To learn more about creating generative artwork with layers, go to [`/assets`](assets).
+To learn more about creating generative artwork with layers and the associated metadata files, go to [`/assets`](assets).
 
 ## Questions?
 
