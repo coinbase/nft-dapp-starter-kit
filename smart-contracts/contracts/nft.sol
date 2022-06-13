@@ -24,10 +24,15 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public numReservedTokens;
 
     mapping(address => uint256) public preSaleMintCounts; 
-    bytes32 public presaleListMerkleRoot;
+    bytes32 public preSaleListMerkleRoot;
 
-    bool public isPreSaleActive;
-    bool public isPublicSaleActive;
+    enum SaleState {
+        Inactive,
+        PreSale,
+        PublicSale
+    }
+
+    SaleState public saleState = SaleState.Inactive;
 
     address public royaltyReceiverAddress;
 
@@ -48,16 +53,18 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         ERC721("My NFT Collection", "MYNFT")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
+        assert(MAX_TOKENS_PER_WALLET >= MAX_PRE_SALE_MINTS);
+        assert(MAX_TOKENS_PER_WALLET >= MAX_PUBLIC_SALE_MINTS);
     }
 
     // ============ ACCESS CONTROL MODIFIERS ============
     modifier preSaleActive() {
-        require(isPreSaleActive, "Presale is not open");
+        require(saleState == SaleState.PreSale, "Pre Sale is not open");
         _;
     }
 
     modifier publicSaleActive() {
-        require(isPublicSaleActive, "Public sale is not open");
+        require(saleState == SaleState.PublicSale, "Public sale is not open");
         _;
     }
 
@@ -75,7 +82,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
                 MAX_TOTAL_SUPPLY - MAX_RESERVE_TOKENS + numReservedTokens,
             "Insufficient tokens remaining"
         );
-
         _;
     }
 
@@ -103,7 +109,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         require(
             MerkleProof.verify(
                 merkleProof,
-                presaleListMerkleRoot,
+                preSaleListMerkleRoot,
                 keccak256(abi.encodePacked(msg.sender))
             ),
             "Address does not exist in list"
@@ -136,14 +142,14 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         nonReentrant
         preSaleActive
         isCorrectPayment(PRE_SALE_PRICE, numberOfTokens)
-        canMint(MAX_PRE_SALE_MINTS)
+        canMint(numberOfTokens)
         isValidPreSaleAddress(merkleProof)
     {
         uint256 numAlreadyMinted = preSaleMintCounts[msg.sender];
 
         require(
             numAlreadyMinted + numberOfTokens <= MAX_PRE_SALE_MINTS,
-            "Exceeds max number for presale mint"
+            "Exceeds max number for pre sale mint"
         );
 
         preSaleMintCounts[msg.sender] = numAlreadyMinted + numberOfTokens;
@@ -248,22 +254,23 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
-    function setIsPublicSaleActive(bool _isPublicSaleActive)
-        external
-        onlyOwner
-    {
-        isPublicSaleActive = _isPublicSaleActive;
+    function setPublicSaleActive() external onlyOwner {
+        saleState = SaleState.PublicSale;
     }
 
-    function setIsPreSaleActive(bool _isPreSaleActive) external onlyOwner {
-        isPreSaleActive = _isPreSaleActive;
+    function setPreSaleActive() external onlyOwner {
+        saleState = SaleState.PreSale;
+    }
+
+    function setSaleInactive() external onlyOwner {
+        saleState = SaleState.Inactive;
     }
 
     /**
-     * @dev used for allowlisting presale addresses
+     * @dev used for allowlisting pre sale addresses
      */
     function setPreSaleListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
-        presaleListMerkleRoot = merkleRoot;
+        preSaleListMerkleRoot = merkleRoot;
     }
 
     /**
