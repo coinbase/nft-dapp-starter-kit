@@ -18,8 +18,8 @@ describe("Presale States", function () {
 
     [owner, addr1, addr2] = await ethers.getSigners();
 
-    const setIsPresaleActiveTx = await nft.setIsPreSaleActive(true);
-    await setIsPresaleActiveTx.wait(); // wait until the transaction is mined
+    const setPresaleActiveTx = await nft.setPreSaleActive();
+    await setPresaleActiveTx.wait(); // wait until the transaction is mined
   });
 
   it("should revert claimlist when merkle root not set", async function () {
@@ -48,8 +48,8 @@ describe("Claimlist merkle tests", function () {
 
     [owner, addr1, addr2] = await ethers.getSigners();
 
-    const setIsPresaleActiveTx = await nft.setIsPreSaleActive(true);
-    await setIsPresaleActiveTx.wait(); // wait until the transaction is mined
+    const setPresaleActiveTx = await nft.setPreSaleActive();
+    await setPresaleActiveTx.wait(); // wait until the transaction is mined
 
     const setPreSaleListMerkleRootTx = await nft.setPreSaleListMerkleRoot(
       "0x55e8063f883b9381398d8fef6fbae371817e8e4808a33a4145b8e3cdd65e3926"
@@ -230,8 +230,8 @@ describe("Presale integration tests", function () {
 
     [owner, addr1, addr2, addr3, addr4] = await ethers.getSigners();
 
-    const setIsPresaleActiveTx = await nft.setIsPreSaleActive(true);
-    await setIsPresaleActiveTx.wait(); // wait until the transaction is mined
+    const setPresaleActiveTx = await nft.setPreSaleActive();
+    await setPresaleActiveTx.wait(); // wait until the transaction is mined
 
     const setPreSaleListMerkleRootTx = await nft.setPreSaleListMerkleRoot(
       "0x55e8063f883b9381398d8fef6fbae371817e8e4808a33a4145b8e3cdd65e3926"

@@ -254,12 +254,16 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
-    function setIsPublicSaleActive() external onlyOwner {
+    function setPublicSaleActive() external onlyOwner {
         saleState = SaleState.PublicSale;
     }
 
-    function setIsPreSaleActive() external onlyOwner {
+    function setPreSaleActive() external onlyOwner {
         saleState = SaleState.PreSale;
+    }
+
+    function setSaleInactive() external onlyOwner {
+        saleState = SaleState.Inactive;
     }
 
     /**
