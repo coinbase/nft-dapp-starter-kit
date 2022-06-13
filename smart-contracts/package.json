@@ -14,15 +14,14 @@
   "license": "ISC",
   "homepage": "https://github.com/CoinbaseWallet/nft-dapp-starter-kit#readme",
   "scripts": {
-    "verify": "npx hardhat etherscan-verify --network rinkeby",
     "deploy": "npx hardhat run scripts/deploy.js --network rinkeby",
+    "verify": "npx hardhat etherscan-verify",
     "test": "npx hardhat test --network hardhat",
-    "rinkeby:verify": "npx hardhat etherscan-verify --network rinkeby",
-    "rinkeby:deploy": "npx hardhat run scripts/deploy.js --network rinkeby",
-    "rinkeby:setBaseURI": "npx hardhat run scripts/setBaseURI.js --network rinkeby",
-    "rinkeby:setPublicSaleActive": "npx hardhat run scripts/setPublicSaleActive.js  --network rinkeby",
-    "rinkeby:setPresaleActive": "npx hardhat run scripts/setPreSaleActive.js  --network rinkeby",
-    "rinkeby:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js --network rinkeby"
+    "task:deploy": "npx hardhat run scripts/deploy.js",
+    "task:setBaseURI": "npx hardhat run scripts/setBaseURI.js",
+    "task:setPublicSaleActive": "npx hardhat run scripts/setPublicSaleActive.js",
+    "task:setPresaleActive": "npx hardhat run scripts/setPreSaleActive.js",
+    "task:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
