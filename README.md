@@ -40,6 +40,7 @@ This starter kit was largely inspired by the following projects:
 - [Crypto Coven](https://www.cryptocoven.xyz/) - NFT collection that inspired the smart contract
 - [NFT Minting Scaffold with Merkle Allowlists](https://github.com/straightupjac/nft-merkle-allowlist-scaffold) - another NFT scaffold that inspired gas-efficient presale logic
 - [Scaffold ETH](https://github.com/scaffold-eth/scaffold-eth) - the OG scaffold that inspired this project's direction
+- [Hashlips Art Engine](https://github.com/HashLips/hashlips_art_engine) - generative art tool that inspired the asset generation
 
 ## Resources
 

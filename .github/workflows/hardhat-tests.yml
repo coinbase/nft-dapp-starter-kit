@@ -15,7 +15,6 @@ on:
 
 env:
   PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-  ROPSTEN_API_URL: https://eth-ropsten.alchemyapi.io/v2/
   RINKEBY_API_URL: https://eth-rinkeby.alchemyapi.io/v2/
   MAINNET_API_URL: https://eth-mainnet.alchemyapi.io/v2/
   ETHERSCAN_API_KEY: 9B8CYSW8SA1A2XP4HD6Q6TVPCNA8HYJVZA
