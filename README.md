@@ -1,7 +1,5 @@
 # NFT Dapp Starter Kit 🏗️
 
-❗ **WARNING: This repo is currently a work-in-progress. Please do not use for any other purpose than educational. It is slated to officially release by the third week of June 2022. The smart contract has NOT been audited. You will lose ALL your money.** 🔴
-
 Ready to bootstrap your own NFT minting site? Get started here. This boilerplate repo contains an NFT minting contract, a sample frontend dapp, and metadata generation scripts for you to get started.
 
 ## Get Started
