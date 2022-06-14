@@ -71,9 +71,9 @@ Before you start, make sure you have the following information handy
    npx hardhat etherscan-verify --network [network of choice]
    ```
 
-## Steps to Test
+## Testing
 
-Run `npx hardhat test --network hardhat`. Additionally, this repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
+Run `yarn test`. Additionally, this repository has been configured with a Github workflow (see [`hardhat-tests.yml`](/.github/workflows/hardhat-tests.yml)) to run the smart contract tests on every pull request.
 
 ## Scripts
 
@@ -94,30 +94,22 @@ npx hardhat node
 npx hardhat help
 ```
 
-### Merkle Roots
+### Allowlisting Addresses for Presale
 
-To set merkle roots for allowlists, update the addresses in `allowlists/presaleList.json` and `allowlists/giftlist.json` and run the following scripts.
+To allowlist addresses for a presale, update the list of addresses in `smart-contracts/allowlists/presaleList.json` (do NOT edit the file of the same name on the frontend) and run the following script:
 
 ```
-npm run rinkeby:setPresaleListMerkle
-npm run rinkeby:setReserveListMerkle
+yarn task:setPresaleListMerkle
 ```
 
 ### Activate pre-sale or public sale
 
-To modify the active sale states, modify the following environment variables:
-
-```bash
-IS_PRESALE_ACTIVE=true # modify as needed
-IS_PUBLIC_SALE_ACTIVE=true # modify as needed
-BASE_URI=[include your own base URI]
-```
-
-and run the following scripts
+To modify the active sale states, run the following scripts:
 
 ```
-npm run rinkeby:setIsPublicSaleActive
-npm run rinkeby:setIsPresaleActive
+yarn task:setPublicSaleActive
+yarn task:setPresaleActive
+yarn task:setSaleInactive
 ```
 
 ## Etherscan verification

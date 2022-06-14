@@ -18,10 +18,17 @@
     "verify": "npx hardhat etherscan-verify",
     "test": "npx hardhat test --network hardhat",
     "task:deploy": "npx hardhat run scripts/deploy.js",
+    "task:mintPublicSale": "npx hardhat run scripts/mintPublicSale.js",
+    "task:giftTokens": "npx hardhat run scripts/giftTokens.js",
+    "task:reserveTokens": "npx hardhat run scripts/reserveTokens.js",
     "task:setBaseURI": "npx hardhat run scripts/setBaseURI.js",
     "task:setPublicSaleActive": "npx hardhat run scripts/setPublicSaleActive.js",
     "task:setPresaleActive": "npx hardhat run scripts/setPreSaleActive.js",
-    "task:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js"
+    "task:setSaleInactive": "npx hardhat run scripts/setSaleInactive.js",
+    "task:setPresaleListMerkle": "npx hardhat run scripts/setPreSaleListMerkleRoot.js",
+    "task:setRoyaltyReceiverAddress": "npx hardhat run scripts/setRoyaltyReceiverAddress.js",
+    "task:withdraw": "npx hardhat run scripts/withdraw.js",
+    "task:withdrawTokens": "npx hardhat run scripts/withdrawTokens.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
