@@ -1,4 +1,7 @@
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: MIT
+
+// Contract based on CryptoCoven.sol (https://github.com/crypto-coven/contracts/blob/main/contracts/CryptoCoven.sol)
+
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -12,6 +15,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 
 contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
