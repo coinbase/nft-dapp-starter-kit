@@ -9,11 +9,11 @@ async function main() {
   );
   console.log("MyNFT attached to:", nft.address);
 
-  console.log(`setting contract saleState to presale...`);
+  console.log(`Withdrawing ETH from NFT contract...`);
 
-  const res = await nft.setPreSaleActive();
+  const res = await nft.withdraw();
 
-  console.log("set PresaleActive", res);
+  console.log("ETH withdrawn!", res);
 }
 
 main().catch((error) => {

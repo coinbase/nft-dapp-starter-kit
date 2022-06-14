@@ -1,6 +1,8 @@
 require("dotenv").config();
 const hre = require("hardhat");
 
+const NUM_TOKENS = 5; // modify as needed
+
 async function main() {
   const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
@@ -9,11 +11,11 @@ async function main() {
   );
   console.log("MyNFT attached to:", nft.address);
 
-  console.log(`setting contract saleState to presale...`);
+  console.log("Minting...");
 
-  const res = await nft.setPreSaleActive();
+  const res = await nft.mintPublicSale(NUM_TOKENS);
 
-  console.log("set PresaleActive", res);
+  console.log("Minted!", res);
 }
 
 main().catch((error) => {

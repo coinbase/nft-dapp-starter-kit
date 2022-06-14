@@ -2,16 +2,12 @@ require("dotenv").config();
 const hre = require("hardhat");
 
 async function main() {
-  const NUM_TOKENS = process.env.NUM_TOKENS;
-  if (!NUM_TOKENS) {
-    console.log("BASE_URI is required. Please add it to your environment.");
-    return;
-  }
+  const NUM_TOKENS = 5; // modifty as needed
 
   const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
   const nft = await MyNFT.attach(
-    process.env.CONTRACT_ADDRESS // The deployed contract address
+    process.env.CONTRACT_ADDRESS // deployed contract address
   );
   console.log("MyNFT attached to:", nft.address);
 

@@ -5,7 +5,7 @@ async function main() {
   const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
   const nft = await MyNFT.attach(
-    process.env.CONTRACT_ADDRESS // The deployed contract address
+    process.env.CONTRACT_ADDRESS // deployed contract address
   );
   console.log("MyNFT attached to:", nft.address);
 
