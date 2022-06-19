@@ -6,13 +6,11 @@ Play around with the deployed test app [here](https://nft-dapp-starter-kit-v2.ve
 
 ## Getting Started
 
-What you'll need handy:
+Have the following items handy, then fork this repository and move onto Step 1:
 
 1. Private and public key of your development wallet ([Coinbase Wallet](https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en) Recommended)
 2. API URL for testnet and mainnet ([Alchemy](https://dashboard.alchemyapi.io/) Recommended)
 3. Etherscan API Key for contract verification ([Etherscan](https://etherscan.io/))
-
-Once ready, fork this repository and go onto Step 1.
 
 ## Step 1: Smart Contracts
 
