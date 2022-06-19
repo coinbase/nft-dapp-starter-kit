@@ -1,21 +1,16 @@
 // SPDX-License-Identifier: MIT
 
-// Contract based on CryptoCoven.sol (https://github.com/crypto-coven/contracts/blob/main/contracts/CryptoCoven.sol)
-
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-
 
 contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
@@ -40,9 +35,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     address public royaltyReceiverAddress;
 
-    // CUSTOMIZE VALUES BELOW
-    uint256 public constant MAX_TOKENS_PER_WALLET = 5; 
-    uint256 public constant MAX_RESERVE_TOKENS = 200;
+    // ============ CUSTOMIZE VALUES BELOW ============
     uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
     uint256 public constant MAX_PRE_SALE_MINTS = 3;
@@ -51,7 +44,11 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
     uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
 
+    uint256 public constant MAX_RESERVE_TOKENS = 200;
+    uint256 public constant MAX_TOKENS_PER_WALLET = 5; 
+    
     uint256 public constant ROYALTY_PERCENTAGE = 5;
+    // ================================================
 
     constructor(address _royaltyReceiverAddress)
         ERC721("My NFT Collection", "MYNFT")
