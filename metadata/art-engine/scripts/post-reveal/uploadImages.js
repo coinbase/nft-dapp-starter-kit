@@ -2,8 +2,11 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-async function main() {
-  console.log("Uploading pre-reveal JSON...");
+/*
+ * Upload images to IPFS via Pinata
+ */
+const uploadImages = async () => {
+  console.log("Uploading images...");
 
   const pinataSDK = require("@pinata/sdk");
   const PINATA_API_KEY = process.env.PINATA_API_KEY;
@@ -16,9 +19,9 @@ async function main() {
     return;
   }
 
-  const PRE_REVEAL_DIR = "build/preRevealJson";
+  const IMAGE_DIR = "build/images";
 
-  fs.access(PRE_REVEAL_DIR, async (error) => {
+  fs.access(IMAGE_DIR, async (error) => {
     if (error) {
       console.log("Provided path is not a valid path", error);
       exit(1);
@@ -27,7 +30,7 @@ async function main() {
 
   const options = {
     pinataMetadata: {
-      name: "NFT Project Pre-Reveal Metadata",
+      name: "NFT Project Images",
     },
     pinataOptions: {
       cidVersion: 0,
@@ -37,16 +40,20 @@ async function main() {
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_SECRET_KEY);
 
   await pinata
-    .pinFromFS(PRE_REVEAL_DIR, options)
+    .pinFromFS(IMAGE_DIR, options)
     .then(async (result) => {
-      console.log("Metadata successfully uploaded", result);
+      console.log("Images successfully uploaded", result);
 
       const pinataURL = `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
-      const filepath = "build/URI/preRevealMetadataURL.txt";
+      const filepath = "build/URI/postRevealImgURI.txt";
+
+      if (!fs.existsSync("build/URI/postRevealImgURI.txt")) {
+        fs.mkdirSync(`build/URI`);
+      }
 
       try {
         await fs.writeFileSync(filepath, pinataURL);
-        console.log("File written successfully to ", filepath);
+        console.log("File written successfully to", filepath);
       } catch (err) {
         console.error(err);
       }
@@ -54,12 +61,17 @@ async function main() {
     .catch((err) => {
       console.log(err);
     });
-  console.log("Finished uploading pre-reveal metadata");
-}
+  console.log("Finished uploading images");
+};
 
-main()
-  .then(() => process.exit(0))
+/* Comment out these lines to run this script on its own */
+uploadImages()
+  .then(() => {
+    process.exit(0);
+  })
   .catch((error) => {
     console.error(error);
     process.exit(1);
   });
+
+module.exports = { uploadImages };

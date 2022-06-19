@@ -2,8 +2,11 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-async function main() {
-  console.log("Uploading post-reveal JSON...");
+/*
+ * Upload pre-reveal metadata to IPFS via Pinata
+ */
+const uploadPrerevealMetadata = async () => {
+  console.log("Uploading pre-reveal JSON...");
 
   const pinataSDK = require("@pinata/sdk");
   const PINATA_API_KEY = process.env.PINATA_API_KEY;
@@ -16,9 +19,9 @@ async function main() {
     return;
   }
 
-  const POST_REVEAL_DIR = "build/json";
+  const PRE_REVEAL_DIR = "build/preRevealJson";
 
-  fs.access(POST_REVEAL_DIR, async (error) => {
+  fs.access(PRE_REVEAL_DIR, async (error) => {
     if (error) {
       console.log("Provided path is not a valid path", error);
       exit(1);
@@ -27,7 +30,7 @@ async function main() {
 
   const options = {
     pinataMetadata: {
-      name: "NFT Project Post-Reveal Metadata",
+      name: "NFT Project Pre-Reveal Metadata",
     },
     pinataOptions: {
       cidVersion: 0,
@@ -37,12 +40,12 @@ async function main() {
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_SECRET_KEY);
 
   await pinata
-    .pinFromFS(POST_REVEAL_DIR, options)
+    .pinFromFS(PRE_REVEAL_DIR, options)
     .then(async (result) => {
       console.log("Metadata successfully uploaded", result);
 
       const pinataURL = `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
-      const filepath = "build/URI/postRevealMetadataURL.txt";
+      const filepath = "build/URI/preRevealMetadataURI.txt";
 
       try {
         await fs.writeFileSync(filepath, pinataURL);
@@ -54,12 +57,17 @@ async function main() {
     .catch((err) => {
       console.log(err);
     });
-  console.log("Finished uploading post-reveal metadata");
-}
+  console.log("Finished uploading pre-reveal metadata");
+};
 
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+/* Comment out these lines to run this script on its own */
+// uploadPrerevealMetadata()
+//   .then(() => {
+//     process.exit(0);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//     process.exit(1);
+//   });
+
+module.exports = { uploadPrerevealMetadata };

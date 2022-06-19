@@ -12,7 +12,7 @@ const {
   debugLogs,
   extraMetadata,
   namePrefix,
-} = require(`${basePath}/src/config.js`);
+} = require(`${basePath}/scripts/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = format.smoothing;
@@ -30,7 +30,7 @@ let baseURI = "PLACEHOLDER_URL";
 const readPreRevealURI = async () => {
   try {
     if (!fs.existsSync("assets/URI/preRevealImgURL.txt")) return;
-    const data = await fs.readFileSync("build/URI/preRevealImgURL.txt", "utf8");
+    const data = await fs.readFileSync("build/URI/preRevealImgURI.txt", "utf8");
     baseURI = data;
   } catch (err) {
     throw err;

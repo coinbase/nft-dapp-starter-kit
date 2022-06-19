@@ -12,15 +12,17 @@
     ]
   },
   "scripts": {
-    "build": "node index.js",
-    "generate": "node index.js",
-    "initialize": "node src/initializeMetadata.js",
-    "upload": "node src/uploadImages.js",
-    "upload:metadata": "node src/uploadMetadata.js",
-    "upload:prereveal": "node src/uploadPrereveal.js",
-    "update": "node src/updateMetadata.js"
+    "setup": "node scripts/setupMetadata.js",
+    "generate": "node scripts/generateMetadata.js",
+    "generate:pre": "node scripts/generatePrereveal.js",
+    "uploadImages": "node scripts/post-reveal/uploadImages.js",
+    "updateMetadata": "node scripts/post-reveal/updateMetadata.js",
+    "uploadMetadata": "node scripts/post-reveal/uploadMetadata.js",
+    "uploadImages:pre": "node scripts/pre-reveal/uploadImage.js",
+    "updateMetadata:pre": "node scripts/pre-reveal/updateMetadata.js",
+    "uploadMetadata:pre": "node scripts/pre-reveal/uploadMetadata.js"
   },
-  "author": "JM & Daniel Eugene Botha (HashLips)",
+  "author": "JM Cho & Daniel Eugene Botha (HashLips)",
   "license": "MIT",
   "dependencies": {
     "@pinata/sdk": "^1.1.25",
