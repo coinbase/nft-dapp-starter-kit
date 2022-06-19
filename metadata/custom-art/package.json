@@ -1,0 +1,23 @@
+{
+  "name": "metadata",
+  "version": "1.0.0",
+  "description": "Every ERC-721 token can store some metadata typically through metadataURI (but can be called other things like contractURI etc). This typically points to a link that stores the metadata off-chain - most commonly IPFS. In addition to this, marketplaces and other NFT providers often have their own API that exposes more information about the NFT that is not stored ‘on-chain’.",
+  "scripts": {
+    "generate": "node scripts/generateMetadata.js",
+    "generate:pre": "node scripts/generatePreReveal.js",
+    "uploadImages": "node scripts/post-reveal/uploadImages.js",
+    "updateMetadata": "node scripts/post-reveal/updateMetadata.js",
+    "uploadMetadata": "node scripts/post-reveal/uploadMetadata.js",
+    "uploadImages:pre": "node scripts/pre-reveal/uploadImage.js",
+    "generateMetadata:pre": "node scripts/pre-reveal/generateMetadata.js",
+    "uploadMetadata:pre": "node scripts/pre-reveal/uploadMetadata.js"
+  },
+  "author": "JM Cho & Jaclyn Chan",
+  "license": "ISC",
+  "dependencies": {
+    "@pinata/sdk": "^1.1.25",
+    "d3-fetch": "^3.0.1",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security"
+  }
+}
