@@ -4,7 +4,7 @@ const baseUri = "PLACEHOLDER_URI";
 
 const layerConfig = [
   {
-    totalTokens: 10,
+    totalTokens: 100,
     layersOrder: [
       { name: "Background", options: { bypassDNA: true } },
       { name: "Body" },
