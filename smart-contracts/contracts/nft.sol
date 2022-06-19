@@ -20,7 +20,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     string private baseURI;
 
-    string private contractURI;
+    string private collectionURI;
 
     uint256 public numReservedTokens;
 
@@ -201,7 +201,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     function getContractURI() external view returns (string memory) {
-        return contractURI;
+        return collectionURI;
     }
 
     function getLastTokenId() external view returns (uint256) {
@@ -216,7 +216,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     // ============ FUNCTION OVERRIDES ============
     function contractURI() public view returns (string memory) {
-        return contractURI;
+        return collectionURI;
     }
 
     function tokenURI(uint256 tokenId)
@@ -291,8 +291,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         baseURI = _baseURI;
     }
 
-    function setContractURI(string memory _contractURI) external onlyOwner {
-        contractURI = _contractURI;
+    function setCollectionURI(string memory _collectionURI) external onlyOwner {
+        collectionURI = _collectionURI;
     }
 
     function setRoyaltyReceiverAddress(address _royaltyReceiverAddress)
