@@ -65,13 +65,13 @@ const uploadImages = async () => {
 };
 
 /* Comment out these lines to run this script on its own */
-uploadImages()
-  .then(() => {
-    process.exit(0);
-  })
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+// uploadImages()
+//   .then(() => {
+//     process.exit(0);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//     process.exit(1);
+//   });
 
 module.exports = { uploadImages };
