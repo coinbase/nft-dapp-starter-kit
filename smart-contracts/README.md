@@ -1,14 +1,12 @@
 # Smart Contracts | NFT Minting Toolkit
 
-## Note on the Contract
-
 We've worked with our internal security team to ensure our contract is sound. However, Coinbase is not liable for any outcomes as a result of using this starter kit. Please DYOR before launching your project using this NFT contract.
 
 ## Sample Contract
 
 `NonFungibleCoinbae` (deployed to Rinkeby Testnet): [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 
-## Prerequisites
+## Getting Started
 
 Before you start, make sure you have the following information handy
 
