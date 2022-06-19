@@ -1,6 +1,6 @@
 # NFT Metadata
 
-If you don't have any images or metadata files prepared, check out the [`art-engine`](../art-engine)
+The scripts in this directory will be used to upload your images and metadata files to IPFS to retrieve a single base URI to set on your NFT smart contract (i.e. associate your NFT tokens with the uploaded metadata). If you don't have any images or metadata files prepared, check out the [`art-engine`](../art-engine) directory.
 
 ## Getting Started
 
@@ -76,9 +76,9 @@ function contractURI() public view returns (string memory) {
 `collectionURI` can be set in the contract constructor or a setter can be added as well to modify the contractURI information after deploy.
 
 ```
-  function setCollectionURI(string memory _collectionURI) external onlyOwner {
-        collectionURI = _collectionURI_;
-    }
+function setCollectionURI(string memory _collectionURI) external onlyOwner {
+    collectionURI = _collectionURI_;
+}
 ```
 
 ## Token URI

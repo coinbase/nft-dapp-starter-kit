@@ -2,7 +2,7 @@
 
 ![](https://storage.googleapis.com/jm-nft-testing/coinbae_header.png)
 
-This engine is based of the Hashlips Art Engine. Read more about the amazing Hashlips Art Engine [here](https://github.com/HashLips/hashlips_art_engine).
+This art engine is used to create generative image art and metadata from pre-made artwork layers. It is based off of the Hashlips Art Engine. Read more about the amazing Hashlips Art Engine [here](https://github.com/HashLips/hashlips_art_engine).
 
 ## Sample Base URI
 
