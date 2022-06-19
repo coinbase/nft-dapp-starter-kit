@@ -8,11 +8,11 @@ This engine is based of the Hashlips Art Engine. Read more about the amazing Has
 
 `NonFungibleCoinbae` on IPFS: [`https://gateway.pinata.cloud/ipfs/QmYnznvRMX7NYeGg87D51ruzmuuq2schCMde5ch3Pz3j3S`](https://gateway.pinata.cloud/ipfs/QmYnznvRMX7NYeGg87D51ruzmuuq2schCMde5ch3Pz3j3S)
 
-## Prerequisites
+## Getting Started
 
-Before you start, make sure you have the following information handy
-
-1. Pinata account with a Secret Key and API Key (to upload assets to IPFS and pin them via Pinata)
+1. Have your Pinata account with a Secret Key and API Key (to upload assets to IPFS and pin them via Pinata)
+2. Place your artwork layers in the corresponding directories in the `assets/layers` folder following the guidelines below
+3. Configure the `config.js` file to match the traits and details of your collection
 
 ## Uploading Assets and Retrieving IPFS Hash
 
