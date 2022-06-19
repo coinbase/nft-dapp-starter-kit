@@ -1,4 +1,4 @@
-# Assets | Coinbae Art Engine 🪙
+# Coinbae Art Engine 🪙
 
 ![](https://storage.googleapis.com/jm-nft-testing/coinbae_header.png)
 
@@ -14,7 +14,7 @@ This art engine is used to create generative image art and metadata from pre-mad
 2. Place your artwork layers in the corresponding directories in the `assets/layers` folder following the guidelines below
 3. Configure the `config.js` file to match the traits and details of your collection
 
-## Uploading Assets and Retrieving IPFS Hash
+## Generating and Uploading Metadata and Retrieving NFT Contract Base URI
 
 1. Install Dependencies
 
@@ -25,30 +25,38 @@ This art engine is used to create generative image art and metadata from pre-mad
 1. Initialize Images and Metadata
 
    ```
-   yarn initialize
+   yarn setup
    ```
 
-1. Upload Images to Pinata
+1. Generate and Upload Metadata
 
    ```
-   yarn upload
+   yarn generate
    ```
 
-1. Update Metadata files with Uploaded Images
+1. Copy Pinata Gateway link from `/build/URI/postRevealMetadataURL.txt` and set as base URI in the contract
+
+1. (Optional) To run scripts in `post-reveal` on their own, remove the commented out section within the file.
+
+## Generating and Uploading Pre-Reveal Metadata and Retrieving NFT Contract Base URI
+
+1. Initialize Images and Metadata (no need to run again if already done above)
 
    ```
-   yarn update
+   yarn setup
    ```
 
-1. Upload Metadata files to IPFS
+1. Generate and Upload Pre-Reveal Metadata
 
    ```
-   yarn upload:metadata
+   yarn generate:pre
    ```
 
-1. Copy Pinata Gateway link from `/build/URI/postRevealMetadataURL.txt` and set as base URI in contract
+1. Copy Pinata Gateway link from `/build/URI/preRevealMetadataURL.txt` and set as base URI in the contract
 
-## Usage ℹ️
+1. (Optional) To run scripts in `pre-reveal` on their own, remove the commented out section within the file.
+
+## How to Configure the Engine for Use
 
 Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. You can name the assets anything as long as it has a rarity weight attached in the file name like so: `example element#70.png`. You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
 

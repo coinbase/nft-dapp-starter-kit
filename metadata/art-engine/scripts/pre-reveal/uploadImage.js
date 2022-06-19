@@ -2,8 +2,11 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-async function main() {
-  console.log("Uploading images...");
+/*
+ * Upload pre-reveal image to IPFS via Pinata
+ */
+const uploadPrerevealImage = async () => {
+  console.log("Uploading pre-reveal image...");
 
   const pinataSDK = require("@pinata/sdk");
   const PINATA_API_KEY = process.env.PINATA_API_KEY;
@@ -16,9 +19,9 @@ async function main() {
     return;
   }
 
-  const IMAGE_DIR = "build/images";
+  const PRE_REVEAL_DIR = "assets/preReveal.png";
 
-  fs.access(IMAGE_DIR, async (error) => {
+  fs.access(PRE_REVEAL_DIR, async (error) => {
     if (error) {
       console.log("Provided path is not a valid path", error);
       exit(1);
@@ -27,7 +30,7 @@ async function main() {
 
   const options = {
     pinataMetadata: {
-      name: "NFT Project Images",
+      name: "NFT Project Pre-Reveal Image",
     },
     pinataOptions: {
       cidVersion: 0,
@@ -37,16 +40,12 @@ async function main() {
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_SECRET_KEY);
 
   await pinata
-    .pinFromFS(IMAGE_DIR, options)
+    .pinFromFS(PRE_REVEAL_DIR, options)
     .then(async (result) => {
       console.log("Images successfully uploaded", result);
 
       const pinataURL = `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
-      const filepath = "build/URI/postRevealImgURL.txt";
-
-      if (!fs.existsSync("build/URI/postRevealImgURL.txt")) {
-        fs.mkdirSync(`build/URI`);
-      }
+      const filepath = "build/URI/preRevealImgURI.txt";
 
       try {
         await fs.writeFileSync(filepath, pinataURL);
@@ -59,11 +58,16 @@ async function main() {
       console.log(err);
     });
   console.log("Finished uploading images");
-}
+};
 
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+/* Comment out these lines to run this script on its own */
+// uploadPrerevealImage()
+//   .then(() => {
+//     process.exit(0);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//     process.exit(1);
+//   });
+
+module.exports = { uploadPrerevealImage };

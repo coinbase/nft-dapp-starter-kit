@@ -1,18 +1,11 @@
 const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
-const basePath = process.cwd();
-const buildDir = `${basePath}/build`;
 
-async function main() {
-  /*
-   * Remove existing build folder, create new
-   */
-  if (fs.existsSync(`${buildDir}/URI`)) {
-    fs.rmdirSync(`${buildDir}/URI`, { recursive: true });
-  }
-  fs.mkdirSync(`${buildDir}/URI`);
-
+/*
+ * Upload pre-reveal image to IPFS via Pinata
+ */
+const uploadPrerevealImage = async () => {
   console.log("Uploading pre-reveal image...");
 
   const pinataSDK = require("@pinata/sdk");
@@ -26,7 +19,7 @@ async function main() {
     return;
   }
 
-  const PRE_REVEAL_DIR = "assets/preReveal.png";
+  const PRE_REVEAL_DIR = "preReveal.png";
 
   fs.access(PRE_REVEAL_DIR, async (error) => {
     if (error) {
@@ -52,7 +45,7 @@ async function main() {
       console.log("Images successfully uploaded", result);
 
       const pinataURL = `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
-      const filepath = "build/URI/preRevealImgURL.txt";
+      const filepath = "generated/preImgURI.txt";
 
       try {
         await fs.writeFileSync(filepath, pinataURL);
@@ -65,11 +58,16 @@ async function main() {
       console.log(err);
     });
   console.log("Finished uploading images");
-}
+};
 
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+/* Comment out these lines to run this script on its own */
+// uploadPrerevealImage()
+//   .then(() => {
+//     process.exit(0);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//     process.exit(1);
+//   });
+
+module.exports = { uploadPrerevealImage };
