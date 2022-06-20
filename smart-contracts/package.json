@@ -17,7 +17,6 @@
     "verify": "npx hardhat etherscan-verify",
     "test": "npx hardhat test --network hardhat",
     "deploy": "npx hardhat run scripts/deploy.js",
-    "deploy:rinkeby": "npx hardhat run scripts/deploy.js --network rinkeby",
     "mintPublicSale": "npx hardhat run scripts/mintPublicSale.js",
     "giftTokens": "npx hardhat run scripts/giftTokens.js",
     "reserveTokens": "npx hardhat run scripts/reserveTokens.js",

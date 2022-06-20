@@ -8,12 +8,12 @@ We've worked with our internal security team to ensure our contract is sound. Ho
 
 ## Getting Started
 
-Before you start, make sure you have the following information handy
+Before you start, make sure you have the following available:
 
 1. Have access to the public (public wallet address) and private key to your Ethereum account
 2. Set up an Alchemy (Recommended) or Infura account (the free one works!) to retrieve an API endpoint
 3. Set up an etherscan account and obtain the API key (optional)
-4. Fill your test wallet with some test ETH: [Paradigm](https://faucet.paradigm.xyz/), [Alchemy](https://rinkebyfaucet.com/), [Chainlink](https://faucets.chain.link/) faucets (optional)
+4. If deploying on testnet, fill up your test wallet with some test ETH: [Paradigm](https://faucet.paradigm.xyz/), [Alchemy](https://rinkebyfaucet.com/), [Chainlink](https://faucets.chain.link/) faucets (optional)
 
 ## Deploy the NFT Contract
 
