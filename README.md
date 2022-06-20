@@ -2,7 +2,7 @@
 
 Ready to bootstrap your own NFT minting site? You're in the right place. This boilerplate repo contains an NFT minting contract, a sample frontend dapp, and metadata generation scripts for you to get started.
 
-Play around with the deployed test app [here](https://nft-dapp-starter-kit-v2.vercel.app/). Check out the deployed test contract on Rinkeby: `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA).
+Play around with the deployed test app [here](https://nonfungiblecoinbaes.vercel.app/). Check out the deployed test contract on Rinkeby: `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA).
 
 ## Getting Started
 
