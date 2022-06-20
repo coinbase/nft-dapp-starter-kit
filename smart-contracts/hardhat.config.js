@@ -12,8 +12,10 @@ require("solidity-coverage");
 const {
   RINKEBY_API_URL,
   MAINNET_API_URL,
+  POLYGON_API_URL,
   PRIVATE_KEY,
   ETHERSCAN_API_KEY,
+  POLYGONSCAN_API_KEY,
   CONTRACT_ADDRESS,
   ROYALTY_RECEIVER_ADDR,
 } = process.env;
@@ -53,6 +55,10 @@ module.exports = {
       url: MAINNET_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
     },
+    polygon: {
+      url: POLYGON_API_URL ?? "",
+      accounts: [`0x${PRIVATE_KEY}`],
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
@@ -61,6 +67,9 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: ETHERSCAN_API_KEY,
+    apiKey: {
+      mainnet: ETHERSCAN_API_KEY,
+      polygon: POLYGONSCAN_API_KEY,
+    },
   },
 };
