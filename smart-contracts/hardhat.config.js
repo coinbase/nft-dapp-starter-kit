@@ -68,6 +68,7 @@ module.exports = {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
     apiKey: {
+      rinkeby: ETHERSCAN_API_KEY,
       mainnet: ETHERSCAN_API_KEY,
       polygon: POLYGONSCAN_API_KEY,
     },
