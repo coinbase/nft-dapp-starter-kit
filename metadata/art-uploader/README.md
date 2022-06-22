@@ -4,8 +4,10 @@ The scripts in this directory will be used to upload your images and metadata fi
 
 ## Getting Started
 
-1. Put all your assets into the `images` folder by following the name structure of `[tokenId].png`.
-2. Put all your corresponding metadata files into the `json` folder by following the naming of `[tokenId].json`.
+0. Prepare a Pinata API key and secret key.
+1. Put all your artwork into the `images` folder with the naming convention of `[tokenId].png`.
+2. Put all your corresponding metadata files into the `json` folder with the naming of `[tokenId].json`.
+3. Optional: Add a pre-reveal image named `preReveal.png`.
 
 ## Generate Metadata
 

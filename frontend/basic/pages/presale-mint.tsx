@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styles from "@styles/Mint.module.css";
 import { Button, Link, Spinner, VStack } from "@chakra-ui/react";
 import { useAccount, useNetwork, useContractWrite } from "wagmi";
-import NonFungibleCoinbae from "@data/NonFungibleCoinbae.json";
+import myNFT from "@data/MyNFT.json";
 import { useEffect, useState } from "react";
 import presaleList from "@data/allowlists/presaleList.json";
 
@@ -19,13 +19,13 @@ import { abridgeAddress } from "@utils/abridgeAddress";
 import { generateMerkleProof } from "@utils/merkleProofs";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
-const PRICE = 0.02;
+const PRICE = 0.01;
 const Mint: NextPage = () => {
   const { activeChain, switchNetwork } = useNetwork();
-  const [payable, setPayable] = useState(BigInt(20000000000000000).toString());
+  const [payable, setPayable] = useState(BigInt(10000000000000000).toString());
   const [merkleProof, setMerkleProof] = useState([""]);
   const [numPresaleMint, setNumPresaleMint] = useState(1);
-  const [hasMinted, setHasMinted] = useState(true);
+  const [hasMinted, setHasMinted] = useState(false);
   const handleChange = (value: number | string) =>
     setNumPresaleMint(Number(value));
 
@@ -42,7 +42,7 @@ const Mint: NextPage = () => {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
         : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
-      contractInterface: NonFungibleCoinbae.abi,
+      contractInterface: myNFT.abi,
     },
     "mintPreSale",
     {

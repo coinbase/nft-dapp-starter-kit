@@ -1,6 +1,6 @@
 # NFT Minting Dapp Starter Kit Frontend
 
-The source code for the front-end can be found here. Preview a live demo of this [here](basic-sample-dapp.vercel.app). If you are looking for the source code for smart contracts, head over to [/smart-contracts](/smart-contracts/).
+The source code for the front-end can be found here. Preview a live demo of this [here](https://basic-sample-dapp.vercel.app). If you are looking for the source code for smart contracts, head over to [/smart-contracts](/smart-contracts/).
 
 ## Getting Started
 

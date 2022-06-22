@@ -19,7 +19,7 @@ const uploadPrerevealImage = async () => {
     return;
   }
 
-  const PRE_REVEAL_DIR = "preReveal.png";
+  const PRE_REVEAL_DIR = "prereveal.png";
 
   fs.access(PRE_REVEAL_DIR, async (error) => {
     if (error) {
