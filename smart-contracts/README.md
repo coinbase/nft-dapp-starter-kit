@@ -110,6 +110,18 @@ yarn task:setPresaleActive
 yarn task:setSaleInactive
 ```
 
+## Superuser / "OnlyOwner" methods
+
+Please note that the owner of the deployed NFT contract will have the ability to perform the following sensitive operations:
+
+1. Withdraw funds from the contract
+2. Reserve tokens and gift tokens to others
+3. Activate and deactivate the sale states
+4. Set the royalty address
+5. Set the metadata URI
+
+We recommend project team to transfer the ownership of the contract to a multi-sig wallet ([Gnosis Safe](https://gnosis-safe.io/app/) recommended) to reduce the risk of having a superuser account. As the contract is an Ownable, you can use the [transferOwnership](https://docs.openzeppelin.com/contracts/2.x/api/ownership#Ownable-transferOwnership-address-) function to do so.
+
 ## Etherscan verification
 
 To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Rinkeby.
