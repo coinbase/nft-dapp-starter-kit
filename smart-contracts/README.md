@@ -149,15 +149,18 @@ Alternatively, we've created a command to make this process faster on Rinkeby te
 
 ### Superuser / "OnlyOwner" methods
 
-Please note that the owner of the deployed NFT contract will have the ability to perform the following sensitive operations:
+Please note that the owner of the deployed NFT contract will have the ability to perform the following sensitive operations at any time:
 
 1. Withdraw funds from the contract
 2. Reserve tokens and gift tokens to others
 3. Activate and deactivate the sale states
-4. Set the royalty address
-5. Set the metadata URI
+4. Set and update the royalty address
+5. Set and update the metadata URI
+6. Set and update the allowlist
 
-We recommend project team to transfer the ownership of the contract to a multi-sig wallet ([Gnosis Safe](https://gnosis-safe.io/app/) recommended) to reduce the risk of having a superuser account. As the contract is an Ownable, you can use the [transferOwnership](https://docs.openzeppelin.com/contracts/2.x/api/ownership#Ownable-transferOwnership-address-) function to do so.
+We recommend project team to transfer the ownership of the contract to a multi-sig wallet ([Gnosis Safe](https://gnosis-safe.io/app/) recommended) to reduce the risks that come with a single superuser account. As the contract is an Ownable, you can use the [transferOwnership](https://docs.openzeppelin.com/contracts/2.x/api/ownership#Ownable-transferOwnership-address-) function to do so.
+
+We also advise project teams to make users in their community aware of these superuser contract methods.
 
 ### Risk of Frontrunning
 
