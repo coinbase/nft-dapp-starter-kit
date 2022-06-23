@@ -110,18 +110,6 @@ yarn task:setPresaleActive
 yarn task:setSaleInactive
 ```
 
-## Superuser / "OnlyOwner" methods
-
-Please note that the owner of the deployed NFT contract will have the ability to perform the following sensitive operations:
-
-1. Withdraw funds from the contract
-2. Reserve tokens and gift tokens to others
-3. Activate and deactivate the sale states
-4. Set the royalty address
-5. Set the metadata URI
-
-We recommend project team to transfer the ownership of the contract to a multi-sig wallet ([Gnosis Safe](https://gnosis-safe.io/app/) recommended) to reduce the risk of having a superuser account. As the contract is an Ownable, you can use the [transferOwnership](https://docs.openzeppelin.com/contracts/2.x/api/ownership#Ownable-transferOwnership-address-) function to do so.
-
 ## Etherscan verification
 
 To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Rinkeby.
@@ -153,8 +141,24 @@ Alternatively, we've created a command to make this process faster on Rinkeby te
 
 ---
 
-Footnotes
+## Additional notes
 
 1. We recommend you use a burner wallet for all testing. Please be careful with your private keys and make sure you only put them in the `.env` files. Hardcoding them anywere or including them in a file that is not in the `.gitignore` can lead to your private keys being comprimised.
 2. You can use any RPC provider of your choice but we've had the best experience using Alchemy or Infura.
 3. An Etherscan API key is required for contract verification.
+
+### Superuser / "OnlyOwner" methods
+
+Please note that the owner of the deployed NFT contract will have the ability to perform the following sensitive operations:
+
+1. Withdraw funds from the contract
+2. Reserve tokens and gift tokens to others
+3. Activate and deactivate the sale states
+4. Set the royalty address
+5. Set the metadata URI
+
+We recommend project team to transfer the ownership of the contract to a multi-sig wallet ([Gnosis Safe](https://gnosis-safe.io/app/) recommended) to reduce the risk of having a superuser account. As the contract is an Ownable, you can use the [transferOwnership](https://docs.openzeppelin.com/contracts/2.x/api/ownership#Ownable-transferOwnership-address-) function to do so.
+
+### Risk of Frontrunning
+
+Please note that frontrunning protection from individuals with MEV-based solutions are not present in this contract.
