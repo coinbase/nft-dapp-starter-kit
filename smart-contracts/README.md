@@ -1,6 +1,6 @@
 # Smart Contracts | NFT Minting Toolkit
 
-We've worked with our internal security team to ensure our contract is sound. However, Coinbase is not liable for any outcomes as a result of using this starter kit. Please DYOR before launching your project using this NFT contract.
+This contract has been received and approved by the Coinbase Blockchain Security team. However, Coinbase is not liable for any outcomes as a result of using this starter kit. Please DYOR before launching your project using this NFT contract.
 
 ## Sample Contract
 
