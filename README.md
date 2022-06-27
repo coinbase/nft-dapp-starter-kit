@@ -28,6 +28,12 @@ Learn more about token metadata and generate your own metadata by going to [`/me
 
 If you have any questions or notice issues, please file a ticket and we will respond as soon as possible! We welcome all contributors to open pull requests and will try to review them in a timely manner.
 
+## Projects Built with NFT Dapp Starter Kit
+
+Open a PR to add your project to the list:)
+
+- [Burn My Wallet](https://burnmywallet.com/#) (Winner of ETH New York 2022)
+
 ## Inspirations
 
 This starter kit was largely inspired by the following projects:
