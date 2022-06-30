@@ -32,9 +32,14 @@ task("etherscan-verify", "Verifies on etherscan", async (taskArgs, hre) => {
   await hre.run("verify:verify", {
     address: CONTRACT_ADDRESS,
     constructorArguments: [ROYALTY_RECEIVER_ADDR],
+    network: taskArgs["network"],
   });
 });
 
+/*
+ * ensure that the defaultNetwork is set to the network of your choice
+ * before running any scripts to interact with the deploy smart contract
+ */
 module.exports = {
   solidity: "0.8.4",
   defaultNetwork: "rinkeby",
