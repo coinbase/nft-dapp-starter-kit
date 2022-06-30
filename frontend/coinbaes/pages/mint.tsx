@@ -17,6 +17,10 @@ import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const BLOCK_EXPLORER = process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL;
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID);
+
 const PRICE = 0.06;
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
@@ -25,8 +29,13 @@ const Mint: NextPage = () => {
   const [payable, setPayable] = useState(BigInt(60000000000000000).toString());
   const [numPublicMint, setNumPublicMint] = useState(3);
   const [hasMinted, setHasMinted] = useState(false);
-  const handleChange = (value: number | string) =>
+
+  const handleChange = (value: number | string) => {
     setNumPublicMint(Number(value));
+    const payableInEth = PRICE * Number(value);
+    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
+    setPayable(payableinWei);
+  };
 
   const {
     data: publicSaleData,
@@ -36,8 +45,8 @@ const Mint: NextPage = () => {
     write: publicSaleWrite,
   } = useContractWrite(
     {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+      addressOrName: CONTRACT_ADDRESS
+        ? CONTRACT_ADDRESS
         : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
       contractInterface: NonFungibleCoinbae.abi,
     },
@@ -58,10 +67,11 @@ const Mint: NextPage = () => {
   );
 
   const handlePublicMint = async () => {
-    const payableInEth = PRICE * numPublicMint;
-    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
-    setPayable(payableinWei);
-    await publicSaleWrite();
+    try {
+      await publicSaleWrite();
+    } catch (err) {
+      console.log(`Error minting ${err}`);
+    }
   };
 
   return (
@@ -85,10 +95,9 @@ const Mint: NextPage = () => {
                 Your transaction was sent! Click here to view your transaction:
               </p>
               <Link
-                href={`${
-                  process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                  "https://rinkeby.etherscan.io"
-                }/tx/${publicSaleData.hash}`}
+                href={`${BLOCK_EXPLORER || "https://rinkeby.etherscan.io"}/tx/${
+                  publicSaleData.hash
+                }`}
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -122,7 +131,7 @@ const Mint: NextPage = () => {
               <p style={{ color: "white" }}>Connect wallet to mint!</p>
               <ConnectWallet />
             </VStack>
-          ) : activeChain?.id !== 4 ? (
+          ) : activeChain?.id !== CHAIN_ID ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
@@ -138,10 +147,10 @@ const Mint: NextPage = () => {
                   borderRadius: "0",
                 }}
                 onClick={() => {
-                  switchNetwork && switchNetwork(4);
+                  switchNetwork && switchNetwork(CHAIN_ID);
                 }}
               >
-                Switch to Rinkeby
+                Switch Network
               </Button>
             </VStack>
           ) : (

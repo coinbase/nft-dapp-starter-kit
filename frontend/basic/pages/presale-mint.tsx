@@ -19,6 +19,10 @@ import { abridgeAddress } from "@utils/abridgeAddress";
 import { generateMerkleProof } from "@utils/merkleProofs";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const BLOCK_EXPLORER = process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL;
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID);
+
 const PRICE = 0.01;
 const Mint: NextPage = () => {
   const { activeChain, switchNetwork } = useNetwork();
@@ -26,8 +30,13 @@ const Mint: NextPage = () => {
   const [merkleProof, setMerkleProof] = useState([""]);
   const [numPresaleMint, setNumPresaleMint] = useState(1);
   const [hasMinted, setHasMinted] = useState(false);
-  const handleChange = (value: number | string) =>
+
+  const handleChange = (value: number | string) => {
     setNumPresaleMint(Number(value));
+    const payableInEth = PRICE * Number(value);
+    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
+    setPayable(payableinWei);
+  };
 
   const { data: account, isError: accountIsError } = useAccount();
 
@@ -39,8 +48,8 @@ const Mint: NextPage = () => {
     write: presaleMintWrite,
   } = useContractWrite(
     {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+      addressOrName: CONTRACT_ADDRESS
+        ? CONTRACT_ADDRESS
         : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
       contractInterface: myNFT.abi,
     },
@@ -72,10 +81,11 @@ const Mint: NextPage = () => {
   }, [account?.address]);
 
   const handleMint = async () => {
-    const payableInEth = PRICE * numPresaleMint;
-    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
-    setPayable(payableinWei);
-    await presaleMintWrite();
+    try {
+      await presaleMintWrite();
+    } catch (err) {
+      console.log(`Error minting ${err}`);
+    }
   };
 
   return (
@@ -124,7 +134,7 @@ const Mint: NextPage = () => {
               </p>
               <ConnectWallet />
             </VStack>
-          ) : activeChain?.id !== 4 ? (
+          ) : activeChain?.id !== CHAIN_ID ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
@@ -140,10 +150,10 @@ const Mint: NextPage = () => {
                   borderRadius: "0",
                 }}
                 onClick={() => {
-                  switchNetwork && switchNetwork(4);
+                  switchNetwork && switchNetwork(CHAIN_ID);
                 }}
               >
-                Switch to Rinkeby
+                Switch Network
               </Button>
             </VStack>
           ) : (
@@ -190,8 +200,7 @@ const Mint: NextPage = () => {
                   Success:{" "}
                   <a
                     href={`${
-                      process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                      "https://rinkeby.etherscan.io"
+                      BLOCK_EXPLORER || "https://rinkeby.etherscan.io"
                     }/tx/${presaleMintData.hash}`}
                     target="_blank"
                     rel="noreferrer"
