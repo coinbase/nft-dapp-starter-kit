@@ -21,6 +21,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     string private baseURI;
 
     string private collectionURI;
+    
+    string public PROVENANCE_HASH;
 
     uint256 public numReservedTokens;
 
@@ -293,6 +295,10 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     function setCollectionURI(string memory _collectionURI) external onlyOwner {
         collectionURI = _collectionURI;
+    }
+    
+    function setProvenanceHash(string calldata hash) public onlyOwner {
+        PROVENANCE_HASH = hash;
     }
 
     function setRoyaltyReceiverAddress(address _royaltyReceiverAddress)
