@@ -302,12 +302,12 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
 
-    function withdraw() public onlyOwner {
+    function withdraw() external onlyOwner {
         uint256 balance = address(this).balance;
         payable(msg.sender).transfer(balance);
     }
 
-    function withdrawTokens(IERC20 token) public onlyOwner {
+    function withdrawTokens(IERC20 token) external onlyOwner {
         uint256 balance = token.balanceOf(address(this));
         token.transfer(msg.sender, balance);
     }
