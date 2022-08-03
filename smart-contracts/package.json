@@ -21,7 +21,7 @@
     "giftTokens": "npx hardhat run scripts/giftTokens.js",
     "reserveTokens": "npx hardhat run scripts/reserveTokens.js",
     "setBaseURI": "npx hardhat run scripts/setBaseURI.js",
-     "setProvenanceHash": "npx hardhat run scripts/setProvenanceHash.js"
+    "setProvenanceHash": "npx hardhat run scripts/setProvenanceHash.js",
     "setPublicSaleActive": "npx hardhat run scripts/setPublicSaleActive.js",
     "setPresaleActive": "npx hardhat run scripts/setPreSaleActive.js",
     "setSaleInactive": "npx hardhat run scripts/setSaleInactive.js",
