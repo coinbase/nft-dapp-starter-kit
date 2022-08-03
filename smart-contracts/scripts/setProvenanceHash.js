@@ -8,11 +8,11 @@ async function main() {
     return;
   }
 
-  const TechnoFeudal = await hre.ethers.getContractFactory("TechnoFeudal");
-  const nft = await TechnoFeudal.attach(
+  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
+  const nft = await MyNFT.attach(
     process.env.CONTRACT_ADDRESS // The deployed contract address
   );
-  console.log("TechnoFeudal attached to:", nft.address);
+  console.log("MyNFT attached to:", nft.address);
 
   console.log("setting Provenance Hash..", PROVENANCE_HASH);
 
