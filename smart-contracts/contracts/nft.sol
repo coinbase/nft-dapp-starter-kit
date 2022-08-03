@@ -124,6 +124,11 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         _;
     }
 
+    modifier isExistingToken(uint256 tokenId) {
+        require(_exists(tokenId), "Non-existent token");
+        _;
+    }
+
     // ============ PUBLIC FUNCTIONS FOR MINTING ============
     function mintPublicSale(uint256 numberOfTokens)
         external
@@ -228,10 +233,9 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         public
         view
         override
+        isExistingToken(tokenId)
         returns (string memory)
     {
-        require(_exists(tokenId), "Non-existent token");
-
         return
             string(abi.encodePacked(baseURI, "/", tokenId.toString(), ".json"));
     }
@@ -243,10 +247,9 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         external
         view
         override
+        isExistingToken(tokenId)
         returns (address receiver, uint256 royaltyAmount)
     {
-        require(_exists(tokenId), "Nonexistent token");
-
         return (royaltyReceiverAddress, salePrice * ROYALTY_PERCENTAGE / 100);
     }
 
