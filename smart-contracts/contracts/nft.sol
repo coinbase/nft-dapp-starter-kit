@@ -174,15 +174,15 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev reserve tokens for self
      */
-    function reserveTokens(uint256 numToReserve)
+    function reserveTokens(uint256 numberOfTokens)
         external
         nonReentrant
         onlyOwner
-        canReserveTokens(numToReserve)
+        canReserveTokens(numberOfTokens)
     {
-        numReservedTokens += numToReserve;
+        numReservedTokens += numberOfTokens;
 
-        for (uint256 i = 0; i < numToReserve; i++) {
+        for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
     }
