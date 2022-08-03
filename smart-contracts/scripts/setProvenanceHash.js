@@ -4,7 +4,7 @@ const hre = require("hardhat");
 async function main() {
   const PROVENANCE_HASH = process.env.PROVENANCE_HASH;
   if (!PROVENANCE_HASH) {
-    console.log("BASE_URI is required. Please add it to your environment.");
+    console.log("PROVENANCE_HASH is required. Please add it to your environment.");
     return;
   }
 
