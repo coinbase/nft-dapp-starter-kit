@@ -228,7 +228,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     function tokenURI(uint256 tokenId)
         public
         view
-        virtual
         override
         returns (string memory)
     {
@@ -261,7 +260,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        virtual
         override(ERC721, IERC165)
         returns (bool)
     {
