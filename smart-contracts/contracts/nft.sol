@@ -22,7 +22,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     string private collectionURI;
     
-    string public PROVENANCE_HASH;
+    string public provenanceHash;
 
     uint256 public numReservedTokens;
 
