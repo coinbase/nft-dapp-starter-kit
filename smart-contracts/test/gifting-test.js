@@ -19,6 +19,12 @@ describe("Gifting", function () {
     [owner, addr1, addr2, addr3] = await ethers.getSigners();
   });
 
+  it("should revert if given an empty array of addresses", async function () {
+    await expect(nft.connect(owner).giftTokens([])).to.be.revertedWith(
+      "Addresses array empty"
+    );
+  });
+
   it("should revert non owner attempt to gift", async function () {
     await expect(
       nft

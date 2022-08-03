@@ -108,6 +108,11 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         _;
     }
 
+    modifier hasAddresses(address[] calldata addresses) {
+        require(addresses.length > 0, "Addresses array empty");
+        _;
+    }
+
     modifier isValidPreSaleAddress(bytes32[] calldata merkleProof) {
         require(
             MerkleProof.verify(
@@ -186,6 +191,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         nonReentrant
         onlyOwner
         canReserveTokens(addresses.length)
+        hasAddresses(addresses)
     {
         uint256 numRecipients = addresses.length;
         numReservedTokens += numRecipients;
