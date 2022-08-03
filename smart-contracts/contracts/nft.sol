@@ -287,8 +287,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev used for art reveals
      */
-    function setBaseURI(string memory _baseURI) external onlyOwner {
-        baseURI = _baseURI;
+    function setBaseURI(string memory newbaseURI) external onlyOwner {
+        baseURI = newbaseURI;
     }
 
     function setCollectionURI(string memory _collectionURI) external onlyOwner {
