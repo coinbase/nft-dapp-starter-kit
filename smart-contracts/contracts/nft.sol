@@ -297,8 +297,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         collectionURI = _collectionURI;
     }
     
-    function setProvenanceHash(string calldata hash) public onlyOwner {
-        PROVENANCE_HASH = hash;
+    function setProvenanceHash(string calldata _hash) public onlyOwner {
+        provenanceHash = _hash;
     }
 
     function setRoyaltyReceiverAddress(address _royaltyReceiverAddress)
