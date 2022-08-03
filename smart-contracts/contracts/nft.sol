@@ -9,7 +9,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
@@ -248,10 +247,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     {
         require(_exists(tokenId), "Nonexistent token");
 
-        return (
-            royaltyReceiverAddress,
-            SafeMath.div(SafeMath.mul(salePrice, ROYALTY_PERCENTAGE), 100)
-        );
+        return (royaltyReceiverAddress, salePrice * ROYALTY_PERCENTAGE / 100);
     }
 
     /**
