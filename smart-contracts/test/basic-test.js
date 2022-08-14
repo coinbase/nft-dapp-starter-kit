@@ -57,19 +57,6 @@ describe("Basic Sale States", function () {
     expect(await nft.balanceOf(owner.address)).to.equal(5);
   });
 
-  it("should revert when attempt to mint more than permitted amount", async function () {
-    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
-    await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
-
-    await expect(
-      nft.mintPublicSale(6, {
-        value: web3.utils.toWei("0.12", "ether"),
-      })
-    ).to.be.revertedWith("Exceeds max tokens per wallet");
-
-    expect(await nft.balanceOf(owner.address)).to.equal(0);
-  });
-
   it("should revert when attempt to mint with wrong ETH amount", async function () {
     const setPublicSaleActiveTx = await nft.setPublicSaleActive();
     await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
@@ -81,26 +68,6 @@ describe("Basic Sale States", function () {
     ).to.be.revertedWith("Incorrect ETH value sent");
 
     expect(await nft.balanceOf(owner.address)).to.equal(0);
-  });
-
-  it("should revert when attempting to mint more than max per wallet", async function () {
-    const setPublicSaleActiveTx = await nft.setPublicSaleActive();
-    await setPublicSaleActiveTx.wait(); // wait until the transaction is mined
-
-    // mint 5 tokens
-    const mint5 = await nft.mintPublicSale(5, {
-      value: web3.utils.toWei("0.10", "ether"),
-    });
-    expect(mint5.hash).to.not.be.NaN;
-    expect(await nft.balanceOf(owner.address)).to.equal(5);
-
-    await expect(
-      nft.mintPublicSale(1, {
-        value: web3.utils.toWei("0.02", "ether"),
-      })
-    ).to.be.revertedWith("Exceeds max tokens per wallet");
-
-    expect(await nft.balanceOf(owner.address)).to.equal(5);
   });
 
   it("should not be able mint public when public sale is closed", async function () {

@@ -24,6 +24,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public numReservedTokens;
 
     mapping(address => uint256) public preSaleMintCounts; 
+    
     bytes32 public preSaleListMerkleRoot;
 
     enum SaleState {
@@ -46,7 +47,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
 
     uint256 public constant MAX_RESERVE_TOKENS = 200;
-    uint256 public constant MAX_TOKENS_PER_WALLET = 5; 
     
     uint256 public constant ROYALTY_PERCENTAGE = 5;
     // ================================================
@@ -55,8 +55,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         ERC721("My NFT Collection", "MYNFT")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
-        assert(MAX_TOKENS_PER_WALLET >= MAX_PRE_SALE_MINTS);
-        assert(MAX_TOKENS_PER_WALLET >= MAX_PUBLIC_SALE_MINTS);
     }
 
     // ============ ACCESS CONTROL MODIFIERS ============
@@ -70,10 +68,18 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         _;
     }
 
-    modifier maxTokensPerWallet(uint256 numberOfTokens) {
+    modifier maxTokensPerPublicSaleMint(uint256 numberOfTokens) {
         require(
-            balanceOf(msg.sender) + numberOfTokens <= MAX_TOKENS_PER_WALLET,
-            "Exceeds max tokens per wallet"
+            numberOfTokens <= MAX_PUBLIC_SALE_MINTS,
+            "Exceeds max number for public mint"
+        );
+        _;
+    }
+
+    modifier maxTokensPerPreSaleMint(uint256 numberOfTokens) {
+        require(
+            preSaleMintCounts[msg.sender] + numberOfTokens <= MAX_PRE_SALE_MINTS,
+            "Exceeds max number for pre sale mint"
         );
         _;
     }
@@ -137,12 +143,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         publicSaleActive
         isCorrectPayment(PUBLIC_SALE_PRICE, numberOfTokens)
         canMint(numberOfTokens)
-        maxTokensPerWallet(numberOfTokens)
+        maxTokensPerPublicSaleMint(numberOfTokens)
     {
-        require(
-            numberOfTokens <= MAX_PUBLIC_SALE_MINTS,
-            "Exceeds max number for public mint"
-        );
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
@@ -156,15 +158,9 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         isCorrectPayment(PRE_SALE_PRICE, numberOfTokens)
         canMint(numberOfTokens)
         isValidPreSaleAddress(merkleProof)
+        maxTokensPerPreSaleMint(numberOfTokens)
     {
-        uint256 numAlreadyMinted = preSaleMintCounts[msg.sender];
-
-        require(
-            numAlreadyMinted + numberOfTokens <= MAX_PRE_SALE_MINTS,
-            "Exceeds max number for pre sale mint"
-        );
-
-        preSaleMintCounts[msg.sender] = numAlreadyMinted + numberOfTokens;
+        preSaleMintCounts[msg.sender] = preSaleMintCounts[msg.sender] + numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
@@ -208,10 +204,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     // ============ PUBLIC READ-ONLY FUNCTIONS ============
     function getBaseURI() external view returns (string memory) {
         return baseURI;
-    }
-
-    function getContractURI() external view returns (string memory) {
-        return collectionURI;
     }
 
     function getLastTokenId() external view returns (uint256) {
