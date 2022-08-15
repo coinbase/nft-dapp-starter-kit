@@ -3,16 +3,19 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
+    using Address for address payable;
     using Strings for uint256;
 
     Counters.Counter private tokenCounter;
@@ -27,7 +30,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
 
     mapping(address => uint256) public preSaleMintCounts; 
     
-    bytes32 public preSaleListMerkleRoot;
+    bytes32 private preSaleListMerkleRoot;
 
     enum SaleState {
         Inactive,
@@ -43,14 +46,40 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     uint256 public constant MAX_TOTAL_SUPPLY = 8000;
 
     uint256 public constant MAX_PRE_SALE_MINTS = 3;
+
     uint256 public constant PRE_SALE_PRICE = 0.01 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
+
     uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
 
     uint256 public constant MAX_RESERVE_TOKENS = 200;
-    
+
     uint256 public constant ROYALTY_PERCENTAGE = 5;
+
+    // ==================== EVENTS ====================
+    event MintPublicSale(address indexed minter, uint256 indexed tokens);
+
+    event MintPreSale(address indexed minter, uint8 indexed tokens);
+
+    event ReserveTokens(uint256 indexed tokens);
+
+    event GiftTokens(address[] indexed addresses);
+
+    event SetSaleState(SaleState indexed state);
+
+    event SetPreSaleMerkleRoot(bytes32 indexed root);
+
+    event SetBaseURI(string indexed uri);
+
+    event SetCollectionURI(string indexed uri);
+
+    event SetRoyaltyReceiver(address indexed _address);
+
+    event Withdraw(address indexed dest);
+
+    event WithdrawToken(address indexed tokenAddress, address indexed dest);
+
     // ================================================
 
     constructor(address _royaltyReceiverAddress)
@@ -73,7 +102,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier maxTokensPerPublicSaleMint(uint256 numberOfTokens) {
         require(
             numberOfTokens <= MAX_PUBLIC_SALE_MINTS,
-            "Exceeds max number for public mint"
+            "Exceeds public mint max number"
         );
         _;
     }
@@ -81,7 +110,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     modifier maxTokensPerPreSaleMint(uint256 numberOfTokens) {
         require(
             preSaleMintCounts[msg.sender] + numberOfTokens <= MAX_PRE_SALE_MINTS,
-            "Exceeds max number for pre sale mint"
+            "Exceeds pre sale mint max number"
         );
         _;
     }
@@ -127,7 +156,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
                 preSaleListMerkleRoot,
                 keccak256(abi.encodePacked(msg.sender))
             ),
-            "Address does not exist in list"
+            "Address not in list"
         );
         _;
     }
@@ -150,6 +179,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
+
+        emit MintPublicSale(msg.sender, numberOfTokens);
     }
 
     function mintPreSale(uint8 numberOfTokens, bytes32[] calldata merkleProof)
@@ -167,6 +198,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
+
+        emit MintPreSale(msg.sender, numberOfTokens);
     }
 
     /**
@@ -183,6 +216,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         for (uint256 i = 0; i < numberOfTokens; i++) {
             _safeMint(msg.sender, nextTokenId());
         }
+
+        emit ReserveTokens(numberOfTokens);
     }
 
     /**
@@ -195,12 +230,13 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         canReserveTokens(addresses.length)
         hasAddresses(addresses)
     {
-        uint256 numRecipients = addresses.length;
-        numReservedTokens += numRecipients;
+        numReservedTokens += addresses.length;
 
-        for (uint256 i = 0; i < numRecipients; i++) {
+        for (uint256 i = 0; i < addresses.length; i++) {
             _safeMint(addresses[i], nextTokenId());
         }
+
+        emit GiftTokens(addresses);
     }
 
     // ============ PUBLIC READ-ONLY FUNCTIONS ============
@@ -260,18 +296,23 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
             interfaceId == type(IERC2981).interfaceId ||
             super.supportsInterface(interfaceId);
     }
-
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
     function setPublicSaleActive() external onlyOwner {
         saleState = SaleState.PublicSale;
+
+        emit SetSaleState(SaleState.PublicSale);
     }
 
     function setPreSaleActive() external onlyOwner {
         saleState = SaleState.PreSale;
+
+        emit SetSaleState(SaleState.PreSale);
     }
 
     function setSaleInactive() external onlyOwner {
         saleState = SaleState.Inactive;
+
+        emit SetSaleState(SaleState.Inactive);
     }
 
     /**
@@ -279,6 +320,8 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
      */
     function setPreSaleListMerkleRoot(bytes32 merkleRoot) external onlyOwner {
         preSaleListMerkleRoot = merkleRoot;
+
+        emit SetPreSaleMerkleRoot(merkleRoot);
     }
 
     /**
@@ -286,10 +329,14 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
      */
     function setBaseURI(string memory newbaseURI) external onlyOwner {
         baseURI = newbaseURI;
+
+        emit SetBaseURI(newbaseURI);
     }
 
     function setCollectionURI(string memory _collectionURI) external onlyOwner {
         collectionURI = _collectionURI;
+
+        emit SetCollectionURI(_collectionURI);
     }
     
     function setProvenanceHash(string calldata _hash) public onlyOwner {
@@ -301,16 +348,22 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         onlyOwner
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
+
+        emit SetRoyaltyReceiver(_royaltyReceiverAddress);
     }
 
-    function withdraw() external onlyOwner {
-        uint256 balance = address(this).balance;
-        payable(msg.sender).transfer(balance);
+    function withdraw(address payable _dest) external onlyOwner {
+        uint256 _balance = address(this).balance;
+        _dest.sendValue(_balance);
+
+        emit Withdraw(_dest);    
     }
 
-    function withdrawTokens(IERC20 token) external onlyOwner {
-        uint256 balance = token.balanceOf(address(this));
-        token.transfer(msg.sender, balance);
+    function withdrawToken(address _tokenAddress, address _dest) external onlyOwner {
+        uint256 _balance = IERC20(_tokenAddress).balanceOf(address(this));
+        SafeERC20.safeTransfer(IERC20(_tokenAddress), _dest, _balance);
+
+        emit WithdrawToken(_tokenAddress, _dest);
     }
 
     /**

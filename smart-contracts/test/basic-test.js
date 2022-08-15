@@ -1,5 +1,6 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { ethers, waffle } = require("hardhat");
+const { deployMockContract, provider } = waffle;
 var Web3 = require("web3");
 
 // "Web3.providers.givenProvider" will be set if in an Ethereum supported browser.
@@ -10,11 +11,14 @@ var web3 = new Web3(
 describe("Basic Sale States", function () {
   var nft;
   var owner, addr1, addr2;
+  var provider;
 
   beforeEach(async function () {
     const NFT = await ethers.getContractFactory("MyNFT");
     nft = await NFT.deploy("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
     await nft.deployed();
+
+    provider = ethers.getDefaultProvider();
 
     [owner, addr1, addr2] = await ethers.getSigners();
   });

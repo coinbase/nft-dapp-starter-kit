@@ -31,7 +31,7 @@ describe("Presale States", function () {
           value: web3.utils.toWei("0.01", "ether"),
         }
       )
-    ).to.be.revertedWith("Address does not exist in list");
+    ).to.be.revertedWith("Address not in list");
 
     expect(await nft.balanceOf(owner.address)).to.equal(0);
   });
@@ -79,7 +79,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Address does not exist in list");
+    ).to.be.revertedWith("Address not in list");
     expect(await nft.balanceOf(addr1.address)).to.equal(0);
   });
 
@@ -113,7 +113,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Address does not exist in list");
+    ).to.be.revertedWith("Address not in list");
   });
 
   it("should not allow double claimlist mints when merkle root is valid", async function () {
@@ -144,7 +144,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Exceeds max number for pre sale mint");
+    ).to.be.revertedWith("Exceeds pre sale mint max number");
   });
 
   it("should revert mint when eth price is incorrect", async function () {
@@ -201,7 +201,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Exceeds max number for pre sale mint");
+    ).to.be.revertedWith("Exceeds pre sale mint max number");
 
     await expect(
       nft
@@ -215,7 +215,7 @@ describe("Claimlist merkle tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Exceeds max number for pre sale mint");
+    ).to.be.revertedWith("Exceeds pre sale mint max number");
   });
 });
 
@@ -260,7 +260,7 @@ describe("Presale integration tests", function () {
             value: web3.utils.toWei("0.01", "ether"),
           }
         )
-    ).to.be.revertedWith("Address does not exist in list");
+    ).to.be.revertedWith("Address not in list");
     expect(await nft.balanceOf(addr3.address)).to.equal(0);
   });
 });
