@@ -1,6 +1,5 @@
 const { expect } = require("chai");
 const { ethers, waffle } = require("hardhat");
-const { deployMockContract, provider } = waffle;
 var Web3 = require("web3");
 
 // "Web3.providers.givenProvider" will be set if in an Ethereum supported browser.
