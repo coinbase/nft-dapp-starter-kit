@@ -60,7 +60,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     // ==================== EVENTS ====================
     event MintPublicSale(address indexed minter, uint256 indexed tokens);
 
-    event MintPreSale(address indexed minter, uint8 indexed tokens);
+    event MintPreSale(address indexed minter, uint256 indexed tokens);
 
     event ReserveTokens(uint256 indexed tokens);
 
@@ -183,7 +183,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         emit MintPublicSale(msg.sender, numberOfTokens);
     }
 
-    function mintPreSale(uint8 numberOfTokens, bytes32[] calldata merkleProof)
+    function mintPreSale(uint256 numberOfTokens, bytes32[] calldata merkleProof)
         external
         payable
         nonReentrant
