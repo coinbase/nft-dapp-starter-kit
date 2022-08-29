@@ -1,11 +1,5 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-var Web3 = require("web3");
-
-// "Web3.providers.givenProvider" will be set if in an Ethereum supported browser.
-var web3 = new Web3(
-  Web3.givenProvider || "ws://some.local-or-remote.node:8546"
-);
 
 describe("Gifting", function () {
   var nft;
@@ -17,6 +11,12 @@ describe("Gifting", function () {
     await nft.deployed();
 
     [owner, addr1, addr2, addr3] = await ethers.getSigners();
+  });
+
+  it("should revert if given an empty array of addresses", async function () {
+    await expect(nft.connect(owner).giftTokens([])).to.be.revertedWith(
+      "Addresses array empty"
+    );
   });
 
   it("should revert non owner attempt to gift", async function () {
