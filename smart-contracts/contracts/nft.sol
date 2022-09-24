@@ -177,7 +177,7 @@ contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
         maxTokensPerPublicSaleMint(numberOfTokens)
     {
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, quantity);
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit MintPublicSale(msg.sender, numberOfTokens);
@@ -196,7 +196,7 @@ contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
         preSaleMintCounts[msg.sender] = preSaleMintCounts[msg.sender] + numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, quantity);
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit MintPreSale(msg.sender, numberOfTokens);
@@ -214,7 +214,7 @@ contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
         numReservedTokens += numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, quantity);
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit ReserveTokens(numberOfTokens);
@@ -223,7 +223,7 @@ contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev gift token directly to list of recipients
      */
-    function giftTokens(address[] calldata addresses)
+    function giftTokens(address[] calldata addresses, uint256 numberOfTokens)
         external
         nonReentrant
         onlyOwner
@@ -233,7 +233,7 @@ contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
         numReservedTokens += addresses.length;
 
         for (uint256 i = 0; i < addresses.length; i++) {
-            _safeMint(addresses[i], quantity);
+            _safeMint(addresses[i], numberOfTokens);
         }
 
         emit GiftTokens(addresses);
