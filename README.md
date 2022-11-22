@@ -2,7 +2,7 @@
 
 Ready to bootstrap your own NFT minting site? You're in the right place. This boilerplate repo contains an NFT minting contract, a sample frontend dapp, and metadata generation scripts for you to get started.
 
-Play around with the deployed test app [here](https://nonfungiblecoinbaes.vercel.app/). Check out the deployed test contract on Rinkeby: `NonFungibleCoinbae`: [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA).
+Play around with the deployed test app [here](https://nonfungiblecoinbaes.vercel.app/). Check out the deployed test contract on Goerli: `NonFungibleCoinbae`: [`0xBa9FFf60ead181805369F92e032D898227937b2B`](https://goerli.etherscan.io/address/0xBa9FFf60ead181805369F92e032D898227937b2B).
 
 ## Getting Started
 
@@ -15,6 +15,7 @@ Have the following items handy, then fork this repository and move onto Step 1:
 ## Step 1: Smart Contracts
 
 Set up and deploy your NFT smart contract and interact with them via Hardhat by going to [`/smart-contracts`](smart-contracts).
+
 ## Step 2: Frontend
 
 Set up and deploy your own minting dapp UI by going to [`/frontend`](frontend)
