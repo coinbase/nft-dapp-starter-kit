@@ -55,7 +55,7 @@ module.exports = {
     goerli: {
       url: GOERLI_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 100000000000, // 10 gwei
+      gasPrice: 10000000000, // 10 gwei
     },
     mainnet: {
       url: MAINNET_API_URL ?? "",
