@@ -11,7 +11,7 @@ require("solidity-coverage");
 require("hardhat-contract-sizer");
 
 const {
-  RINKEBY_API_URL,
+  GOERLI_API_URL,
   MAINNET_API_URL,
   POLYGON_API_URL,
   PRIVATE_KEY,
@@ -43,7 +43,7 @@ task("etherscan-verify", "Verifies on etherscan", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.4",
-  defaultNetwork: "rinkeby",
+  defaultNetwork: "goerli",
   settings: {
     optimizer: {
       enabled: true,
@@ -52,10 +52,10 @@ module.exports = {
   },
   networks: {
     hardhat: {},
-    rinkeby: {
-      url: RINKEBY_API_URL ?? "",
+    goerli: {
+      url: GOERLI_API_URL ?? "",
       accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 10000000000, // 10 gwei
+      gasPrice: 100000000000, // 10 gwei
     },
     mainnet: {
       url: MAINNET_API_URL ?? "",
@@ -74,7 +74,7 @@ module.exports = {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
     apiKey: {
-      rinkeby: ETHERSCAN_API_KEY,
+      goerli: ETHERSCAN_API_KEY,
       mainnet: ETHERSCAN_API_KEY,
       polygon: POLYGONSCAN_API_KEY,
     },

@@ -16,7 +16,7 @@ async function main() {
 
   console.log("setting base uri...", BASE_URI);
 
-  const res = await nft.setBaseURI(BASE_URI);
+  const res = await nft.setBaseURI(BASE_URI, { nonce: 197 });
 
   console.log("set base uri", res);
 }

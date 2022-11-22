@@ -20,12 +20,13 @@ const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const BLOCK_EXPLORER = process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL;
 const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID);
 
-const PRICE = 0.02;
+const PRICE = 0.02; // change to match the price on your contract
+
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
   const { activeChain, switchNetwork } = useNetwork();
 
-  const [payable, setPayable] = useState(BigInt(20000000000000000).toString());
+  const [payable, setPayable] = useState(BigInt(60000000000000000).toString());
   const [numPublicMint, setNumPublicMint] = useState(3);
   const [hasMinted, setHasMinted] = useState(false);
 
@@ -84,7 +85,7 @@ const Mint: NextPage = () => {
                 Your transaction was sent! Click here to view your transaction:
               </p>
               <Link
-                href={`${BLOCK_EXPLORER || "https://rinkeby.etherscan.io"}/tx/${
+                href={`${BLOCK_EXPLORER || "https://goerli.etherscan.io"}/tx/${
                   publicSaleData.hash
                 }`}
                 target="_blank"

@@ -4,7 +4,7 @@ This contract has been received and approved by the Coinbase Blockchain Security
 
 ## Sample Contract
 
-`NonFungibleCoinbae` (deployed to Rinkeby Testnet): [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://rinkeby.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
+`NonFungibleCoinbae` (deployed to Goerli Testnet): [`0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA`](https://goerli.etherscan.io/address/0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA)
 
 ## Getting Started
 
@@ -13,7 +13,11 @@ Before you start, make sure you have the following available:
 1. Have access to the public (public wallet address) and private key to your Ethereum account
 2. Set up an Alchemy (Recommended) or Infura account (the free one works!) to retrieve an API endpoint
 3. Set up an etherscan account and obtain the API key (optional)
-4. If deploying on testnet, fill up your test wallet with some test ETH: [Paradigm](https://faucet.paradigm.xyz/), [Alchemy](https://rinkebyfaucet.com/), [Chainlink](https://faucets.chain.link/) faucets (optional)
+4. If deploying on testnet, fill up your test wallet with some test ETH
+
+   a. In-wallet faucet: [Coinbase Wallet](https://www.coinbase.com/blog/coinbase-wallet-for-developers-the-best-wallet-for-building-web3) (Recommended)
+
+   b. External faucets: [Paradigm](https://faucet.paradigm.xyz/), [Alchemy](https://goerlifaucet.com/), [Chainlink](https://faucets.chain.link/) faucets
 
 ## Deploy the NFT Contract
 
@@ -39,7 +43,7 @@ Before you start, make sure you have the following available:
    npx hardhat compile
    ```
 
-1. Deploy the contract (default network is set to Rinkeby)
+1. Deploy the contract (default network is set to Goerli, may take up to ~2 min)
 
    ```
    yarn deploy
@@ -51,11 +55,11 @@ Before you start, make sure you have the following available:
    npx hardhat run scripts/deploy.js --network [network of choice]
    ```
 
-   We recommend you deploy to a local network or testnet such as Rinkeby to start.
+   We recommend you deploy to a local network or testnet such as to start.
 
    If needed, modify `scripts/deploy.js` to include the specific deploy arguments that you want your ERC721 contract to be deployed with. Make sure the parameter passed into `await hre.ethers.getContractFactory` matches the name of the compiled smart contract exactly.
 
-1. Verify the contract on Etherscan (optional, default network is set to Rinkeby)
+1. Verify the contract on Etherscan (optional, default network is set to Goerli)
 
    Update `CONTRACT_ADDRESS` with the deployed contract address and run the following script to verify your contract on Etherscan
 
@@ -112,21 +116,21 @@ yarn task:setSaleInactive
 
 ## Etherscan verification
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Rinkeby.
+To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Goerli.
 
-In this project, copy the .env.sample file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Rinkeby node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
+In this project, copy the .env.sample file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Goerli node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
 
 ```shell
-hardhat run --network rinkeby scripts/deploy.js
+hardhat run --network goerli scripts/deploy.js
 ```
 
 Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
 
 ```shell
-npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS [deploy parameters]
+npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS [deploy parameters]
 ```
 
-Alternatively, we've created a command to make this process faster on Rinkeby testnet. Run `npm run rinkeby:verify DEPLOYED_CONTRACT_ADDRESS [deploy parameters]` to verify your contract deployed on Rinkeby.
+Alternatively, we've created a command to make this process faster on Goerli testnet. Run `npm run goerli:verify DEPLOYED_CONTRACT_ADDRESS [deploy parameters]` to verify your contract deployed on Goerli.
 
 ## Gas Usage
 

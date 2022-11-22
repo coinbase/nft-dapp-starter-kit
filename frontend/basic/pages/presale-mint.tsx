@@ -200,7 +200,7 @@ const Mint: NextPage = () => {
                   Success:{" "}
                   <a
                     href={`${
-                      BLOCK_EXPLORER || "https://rinkeby.etherscan.io"
+                      BLOCK_EXPLORER || "https://goerli.etherscan.io"
                     }/tx/${presaleMintData.hash}`}
                     target="_blank"
                     rel="noreferrer"

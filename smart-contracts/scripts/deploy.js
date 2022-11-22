@@ -3,6 +3,7 @@ const fs = require("fs");
 
 async function main() {
   const MyNFT = await hre.ethers.getContractFactory("MyNFT");
+  console.log("script running...");
 
   const ROYALTY_RECEIVER_ADDR = process.env.ROYALTY_RECEIVER_ADDR;
 
@@ -11,8 +12,17 @@ async function main() {
     return;
   }
 
-  const deployedContract = await MyNFT.deploy(ROYALTY_RECEIVER_ADDR);
+  console.log("right before deploy...");
 
+  const deployedContract = await MyNFT.deploy(ROYALTY_RECEIVER_ADDR, {
+    nonce: 195,
+    gasPrice: 50000000000,
+  });
+
+  console.log(
+    "right after deploy...: ",
+    JSON.stringify(deployedContract, null, 2)
+  );
   await deployedContract.deployed();
 
   console.log("MyNFT deployed to:", deployedContract.address);
