@@ -19,6 +19,15 @@ import { abridgeAddress } from "@utils/abridgeAddress";
 import { generateMerkleProof } from "@utils/merkleProofs";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
+const CONTRACT_ADDRESS =
+  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ??
+  "0xBa9FFf60ead181805369F92e032D898227937b2B";
+
+const BLOCK_EXPLORER =
+  process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ?? "https://goerli.etherscan.io";
+
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID) ?? 5;
+
 const PRICE = 0.02;
 const Mint: NextPage = () => {
   const { activeChain, switchNetwork } = useNetwork();
@@ -39,9 +48,7 @@ const Mint: NextPage = () => {
     write: presaleMintWrite,
   } = useContractWrite(
     {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        ? process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-        : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
+      addressOrName: CONTRACT_ADDRESS,
       contractInterface: NonFungibleCoinbae.abi,
     },
     "mintPreSale",
@@ -124,7 +131,7 @@ const Mint: NextPage = () => {
               </p>
               <ConnectWallet />
             </VStack>
-          ) : activeChain?.id !== process.env.NEXT_PUBLIC_CHAIN_ID ? (
+          ) : activeChain?.id !== CHAIN_ID ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
@@ -140,8 +147,7 @@ const Mint: NextPage = () => {
                   borderRadius: "0",
                 }}
                 onClick={() => {
-                  switchNetwork &&
-                    switchNetwork(process.env.NEXT_PUBLIC_CHAIN_ID);
+                  switchNetwork && switchNetwork(CHAIN_ID);
                 }}
               >
                 Switch to Goerli
@@ -190,10 +196,7 @@ const Mint: NextPage = () => {
                 <p style={{ color: "white" }}>
                   Success:{" "}
                   <a
-                    href={`${
-                      process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                      "https://goerli.etherscan.io"
-                    }/tx/${presaleMintData.hash}`}
+                    href={`${BLOCK_EXPLORER}/tx/${presaleMintData.hash}`}
                     target="_blank"
                     rel="noreferrer"
                   >

@@ -17,9 +17,14 @@ import web3 from "web3";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import ConnectWallet from "@components/web3/ConnectWallet";
 
-const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
-const BLOCK_EXPLORER = process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL;
-const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID);
+const CONTRACT_ADDRESS =
+  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ??
+  "0xBa9FFf60ead181805369F92e032D898227937b2B";
+
+const BLOCK_EXPLORER =
+  process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ?? "https://goerli.etherscan.io";
+
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID) ?? 5;
 
 const PRICE = 0.02; // change to match the price on your contract
 
@@ -46,9 +51,7 @@ const Mint: NextPage = () => {
     write: publicSaleWrite,
   } = useContractWrite(
     {
-      addressOrName: CONTRACT_ADDRESS
-        ? CONTRACT_ADDRESS
-        : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
+      addressOrName: CONTRACT_ADDRESS,
       contractInterface: NonFungibleCoinbae.abi,
     },
     "mintPublicSale",
@@ -96,9 +99,7 @@ const Mint: NextPage = () => {
                 Your transaction was sent! Click here to view your transaction:
               </p>
               <Link
-                href={`${BLOCK_EXPLORER || "https://goerli.etherscan.io"}/tx/${
-                  publicSaleData.hash
-                }`}
+                href={`${BLOCK_EXPLORER}/tx/${publicSaleData.hash}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{
