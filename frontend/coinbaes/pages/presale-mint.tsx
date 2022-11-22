@@ -124,7 +124,7 @@ const Mint: NextPage = () => {
               </p>
               <ConnectWallet />
             </VStack>
-          ) : activeChain?.id !== 4 ? (
+          ) : activeChain?.id !== process.env.NEXT_PUBLIC_CHAIN_ID ? (
             <VStack>
               <Image
                 alt="placeholder image for team members"
@@ -140,10 +140,11 @@ const Mint: NextPage = () => {
                   borderRadius: "0",
                 }}
                 onClick={() => {
-                  switchNetwork && switchNetwork(4);
+                  switchNetwork &&
+                    switchNetwork(process.env.NEXT_PUBLIC_CHAIN_ID);
                 }}
               >
-                Switch to Rinkeby
+                Switch to Goerli
               </Button>
             </VStack>
           ) : (
@@ -191,7 +192,7 @@ const Mint: NextPage = () => {
                   <a
                     href={`${
                       process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ||
-                      "https://rinkeby.etherscan.io"
+                      "https://goerli.etherscan.io"
                     }/tx/${presaleMintData.hash}`}
                     target="_blank"
                     rel="noreferrer"

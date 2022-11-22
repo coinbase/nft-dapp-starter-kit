@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 2. Create and fill out the `.env` file:
    ```bash
    NEXT_PUBLIC_CONTRACT_ADDRESS=0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA # modify with your own deployed contract address
-   NEXT_PUBLIC_BLOCK_EXPLORER_URL=https://rinkeby.etherscan.io
+   NEXT_PUBLIC_BLOCK_EXPLORER_URL=https://goerli.etherscan.io
    OPENSEA_API_KEY=[PUT YOUR OWN KEY HERE] # optional for faster loading
    ```
 3. Run the development server:
