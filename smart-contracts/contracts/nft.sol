@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.7;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
+contract MyNFT is ERC721A, IERC2981, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     using Address for address payable;
     using Strings for uint256;
@@ -83,7 +83,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     // ================================================
 
     constructor(address _royaltyReceiverAddress)
-        ERC721("My NFT Collection", "MYNFT")
+        ERC721A("My NFT Collection", "MYNFT")
     {
         royaltyReceiverAddress = _royaltyReceiverAddress;
     }
@@ -177,7 +177,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         maxTokensPerPublicSaleMint(numberOfTokens)
     {
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, nextTokenId());
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit MintPublicSale(msg.sender, numberOfTokens);
@@ -196,7 +196,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         preSaleMintCounts[msg.sender] = preSaleMintCounts[msg.sender] + numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, nextTokenId());
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit MintPreSale(msg.sender, numberOfTokens);
@@ -214,7 +214,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         numReservedTokens += numberOfTokens;
 
         for (uint256 i = 0; i < numberOfTokens; i++) {
-            _safeMint(msg.sender, nextTokenId());
+            _safeMint(msg.sender, numberOfTokens);
         }
 
         emit ReserveTokens(numberOfTokens);
@@ -223,7 +223,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     /**
      * @dev gift token directly to list of recipients
      */
-    function giftTokens(address[] calldata addresses)
+    function giftTokens(address[] calldata addresses, uint256 numberOfTokens)
         external
         nonReentrant
         onlyOwner
@@ -233,7 +233,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         numReservedTokens += addresses.length;
 
         for (uint256 i = 0; i < addresses.length; i++) {
-            _safeMint(addresses[i], nextTokenId());
+            _safeMint(addresses[i], numberOfTokens);
         }
 
         emit GiftTokens(addresses);
@@ -245,12 +245,6 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     }
 
     function getLastTokenId() external view returns (uint256) {
-        return tokenCounter.current();
-    }
-
-    // ============ SUPPORTING FUNCTIONS ============
-    function nextTokenId() private returns (uint256) {
-        tokenCounter.increment();
         return tokenCounter.current();
     }
 
@@ -289,7 +283,7 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, IERC165)
+        virtual override(ERC721A, IERC165)
         returns (bool)
     {
         return
