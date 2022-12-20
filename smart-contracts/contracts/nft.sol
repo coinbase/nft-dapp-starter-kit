@@ -38,22 +38,22 @@ contract MyNFT is ERC721, IERC2981, Ownable, ReentrancyGuard {
         PublicSale
     }
 
-    SaleState public saleState = SaleState.Inactive;
+    SaleState public saleState = SaleState.PublicSale;
 
     address public royaltyReceiverAddress;
 
     // ============ CUSTOMIZE VALUES BELOW ============
-    uint256 public constant MAX_TOTAL_SUPPLY = 8000;
+    uint256 public constant MAX_TOTAL_SUPPLY = 100;
 
     uint256 public constant MAX_PRE_SALE_MINTS = 3;
 
-    uint256 public constant PRE_SALE_PRICE = 0.01 ether;
+    uint256 public constant PRE_SALE_PRICE = 0.005 ether;
 
     uint256 public constant MAX_PUBLIC_SALE_MINTS = 5;
 
-    uint256 public constant PUBLIC_SALE_PRICE = 0.02 ether;
+    uint256 public constant PUBLIC_SALE_PRICE = 0.01 ether;
 
-    uint256 public constant MAX_RESERVE_TOKENS = 200;
+    uint256 public constant MAX_RESERVE_TOKENS = 10;
 
     uint256 public constant ROYALTY_PERCENTAGE = 5;
 
