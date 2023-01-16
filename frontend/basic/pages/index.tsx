@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import SplashBanner from "@components/landing/Splash";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import SplashBanner from '@components/landing/Splash';
 
 const Home: NextPage = () => {
   return (
