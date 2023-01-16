@@ -1,4 +1,4 @@
-import { Profile } from '@components/web3/SignIn';
+import { Profile } from '@components/landing/Profile';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
