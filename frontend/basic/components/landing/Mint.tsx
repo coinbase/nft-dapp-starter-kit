@@ -1,9 +1,9 @@
-import { NextPage } from "next";
-import styles from "@styles/Mint.module.css";
-import { Button, HStack, Link, VStack } from "@chakra-ui/react";
-import { useAccount, useContractWrite, useNetwork } from "wagmi";
-import myNFT from "@data/MyNFT.json";
-import { useState } from "react";
+import { NextPage } from 'next';
+import styles from '@styles/Mint.module.css';
+import { Button, HStack, Link, VStack } from '@chakra-ui/react';
+import { useAccount, useContractWrite, useNetwork } from 'wagmi';
+import myNFT from '@data/MyNFT.json';
+import { useState } from 'react';
 import {
   NumberInput,
   NumberInputField,
@@ -11,16 +11,16 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Spinner,
-} from "@chakra-ui/react";
-import web3 from "web3";
-import { abridgeAddress } from "@utils/abridgeAddress";
-import ConnectWallet from "@components/web3/ConnectWallet";
+} from '@chakra-ui/react';
+import web3 from 'web3';
+import { abridgeAddress } from '@utils/abridgeAddress';
+import ConnectWallet from '@components/web3/ConnectWallet';
 
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const BLOCK_EXPLORER = process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL;
 const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID);
 
-const PRICE = 0.02; // change to match the price on your contract
+const PRICE = 0.01; // change to match the price on your contract
 
 const Mint: NextPage = () => {
   const { data: account } = useAccount();
@@ -33,7 +33,7 @@ const Mint: NextPage = () => {
   const handleChange = (value: number | string) => {
     setNumPublicMint(Number(value));
     const payableInEth = PRICE * Number(value);
-    const payableinWei = web3.utils.toWei(payableInEth.toString(10), "ether");
+    const payableinWei = web3.utils.toWei(payableInEth.toString(10), 'ether');
     setPayable(payableinWei);
   };
 
@@ -47,13 +47,14 @@ const Mint: NextPage = () => {
     {
       addressOrName: CONTRACT_ADDRESS
         ? CONTRACT_ADDRESS
-        : "0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA",
+        : '0xCa4E3b3f98cCA9e801f88F13d1BfE68176a03dFA',
       contractInterface: myNFT.abi,
     },
-    "mintPublicSale",
+    'mintPublicSale',
     {
       overrides: {
         value: payable,
+        gasLimit: '100000',
       },
       args: [numPublicMint],
       onError(error) {
@@ -81,18 +82,18 @@ const Mint: NextPage = () => {
           <h1 className={styles.title}>🎉 Mint Your NFT 🎉</h1>
           {hasMinted && publicSaleData ? (
             <VStack>
-              <p style={{ color: "white" }}>
+              <p style={{ color: 'white' }}>
                 Your transaction was sent! Click here to view your transaction:
               </p>
               <Link
-                href={`${BLOCK_EXPLORER || "https://goerli.etherscan.io"}/tx/${
+                href={`${BLOCK_EXPLORER || 'https://goerli.etherscan.io'}/tx/${
                   publicSaleData.hash
                 }`}
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  color: "white",
-                  borderRadius: "0",
+                  color: 'white',
+                  borderRadius: '0',
                 }}
               >
                 Etherscan: {abridgeAddress(publicSaleData.hash)}
@@ -100,8 +101,8 @@ const Mint: NextPage = () => {
               <Link href="/mypage">
                 <Button
                   style={{
-                    color: "#4b4f56",
-                    borderRadius: "0",
+                    color: '#4b4f56',
+                    borderRadius: '0',
                   }}
                 >
                   View My Collection
@@ -114,11 +115,11 @@ const Mint: NextPage = () => {
             </VStack>
           ) : activeChain?.id !== CHAIN_ID ? (
             <VStack>
-              <p style={{ color: "white" }}>You're on the wrong Network!</p>
+              <p style={{ color: 'white' }}>You're on the wrong Network!</p>
               <Button
                 style={{
-                  color: "#4b4f56",
-                  borderRadius: "0",
+                  color: '#4b4f56',
+                  borderRadius: '0',
                 }}
                 onClick={() => {
                   switchNetwork && switchNetwork(CHAIN_ID);
@@ -142,8 +143,8 @@ const Mint: NextPage = () => {
                   variant="filled"
                 >
                   <NumberInputField
-                    _focus={{ bg: "white.300" }}
-                    _active={{ bg: "white.300" }}
+                    _focus={{ bg: 'white.300' }}
+                    _active={{ bg: 'white.300' }}
                   />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -152,8 +153,8 @@ const Mint: NextPage = () => {
                 </NumberInput>
                 <Button
                   style={{
-                    color: "#4b4f56",
-                    borderRadius: "0",
+                    color: '#4b4f56',
+                    borderRadius: '0',
                   }}
                   onClick={handlePublicMint}
                 >
@@ -163,22 +164,22 @@ const Mint: NextPage = () => {
               </HStack>
 
               {publicSaleIsError && (
-                <p style={{ color: "red" }}>
-                  Error:{" "}
-                  {publicSaleError?.message.includes("Max tokens to mint") &&
-                    "Minted max tokens"}
+                <p style={{ color: 'red' }}>
+                  Error:{' '}
+                  {publicSaleError?.message.includes('Max tokens to mint') &&
+                    'Minted max tokens'}
                   {/* this happens sometimes when there is a race condition on the payable state */}
-                  {publicSaleError?.message.includes("Incorrect ETH") &&
-                    "Please try again."}
-                  {publicSaleError?.message.includes("not open") &&
-                    "Public sale is currently closed"}
-                  {publicSaleError?.message.includes("insufficient funds") &&
-                    "Insufficient funds"}
+                  {publicSaleError?.message.includes('Incorrect ETH') &&
+                    'Please try again.'}
+                  {publicSaleError?.message.includes('not open') &&
+                    'Public sale is currently closed'}
+                  {publicSaleError?.message.includes('insufficient funds') &&
+                    'Insufficient funds'}
                   {publicSaleError?.message.includes(
-                    "Insufficient tokens remaining"
-                  ) && "The collection has fully minted"}
-                  {publicSaleError?.message.includes("User rejected request") &&
-                    "User rejected request"}
+                    'Insufficient tokens remaining'
+                  ) && 'The collection has fully minted'}
+                  {publicSaleError?.message.includes('User rejected request') &&
+                    'User rejected request'}
                 </p>
               )}
             </VStack>
