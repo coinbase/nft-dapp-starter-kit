@@ -24,7 +24,7 @@ const DNA_DELIMITER = "-";
 const PLACEHOLDER_URI = "PLACEHOLDER_URL";
 let baseURI = "PLACEHOLDER_URL";
 
-/*
+/**
  * Read IPFS URI from text file
  */
 const readPreRevealURI = async () => {
@@ -37,7 +37,7 @@ const readPreRevealURI = async () => {
   }
 };
 
-/*
+/**
  * Save image by unique id
  */
 const saveImage = (tokenId) => {
@@ -47,7 +47,7 @@ const saveImage = (tokenId) => {
   );
 };
 
-/*
+/**
  * Remove existing build folder, create new
  */
 const setup = () => {
@@ -71,7 +71,7 @@ const setup = () => {
   fs.mkdirSync(`${buildDir}/preRevealJson`);
 };
 
-/*
+/**
  * Clean DNA string by removing optional query params
  */
 const cleanDNA = (dna) => {
@@ -80,7 +80,7 @@ const cleanDNA = (dna) => {
   return cleanedDNA;
 };
 
-/*
+/**
  * Load layer image
  */
 const loadLayerImg = async (_layer) => {
@@ -121,7 +121,7 @@ const filterDNAOptions = (_dna) => {
   return filteredDNA.join(DNA_DELIMITER);
 };
 
-/*
+/**
  * Create Layer to DNA mapping
  */
 const createLayerToDNA = (_dna = "", _layers = []) => {
@@ -137,7 +137,7 @@ const createLayerToDNA = (_dna = "", _layers = []) => {
   return mappedDnaToLayers;
 };
 
-/*
+/**
  * Return rarity weight from layer filename
  */
 const getRarityWeight = (layerName) => {
@@ -150,7 +150,7 @@ const getRarityWeight = (layerName) => {
   return isNaN(weight) ? 1 : weight;
 };
 
-/*
+/**
  * Check if DNA is unique in given list
  */
 const isDnaUnique = (_DnaList = new Set(), _dna = "") => {
@@ -158,7 +158,7 @@ const isDnaUnique = (_DnaList = new Set(), _dna = "") => {
   return !_DnaList.has(_filteredDNA);
 };
 
-/*
+/**
  * Create new DNA
  */
 const createDna = (_layers) => {
@@ -185,7 +185,7 @@ const createDna = (_layers) => {
   return randNum.join(DNA_DELIMITER);
 };
 
-/*
+/**
  * Add metadata to list
  */
 const addMetadata = async (_dna, tokenId) => {
@@ -216,7 +216,7 @@ const addMetadata = async (_dna, tokenId) => {
   metadataList.push(metadata);
 };
 
-/*
+/**
  * Add attributes to list
  */
 const addAttributes = (_element) => {
@@ -227,7 +227,7 @@ const addAttributes = (_element) => {
   });
 };
 
-/*
+/**
  * Create single metadata file
  */
 const saveMetaDataSingleFile = (tokenId) => {
@@ -260,7 +260,7 @@ const saveMetaDataSingleFile = (tokenId) => {
   );
 };
 
-/*
+/**
  * Given layer filename, only return name of layer
  */
 const cleanName = (filename) => {
@@ -269,7 +269,7 @@ const cleanName = (filename) => {
   return layerName;
 };
 
-/*
+/**
  * Return layer characteristics from asset files as array of objects
  */
 const getElements = (path) => {
@@ -292,7 +292,7 @@ const getElements = (path) => {
     });
 };
 
-/*
+/**
  * Return layers as objects with options
  */
 const layersSetup = (layersOrder) => {
@@ -311,7 +311,7 @@ const layersSetup = (layersOrder) => {
   return layers;
 };
 
-/*
+/**
  * Draw image with canvas
  */
 const drawElement = (_renderObject, _index, _layersLen) => {
@@ -320,7 +320,7 @@ const drawElement = (_renderObject, _index, _layersLen) => {
   ctx.drawImage(_renderObject.loadedImage, 0, 0, format.width, format.height);
 };
 
-/*
+/**
  * Generate images and metadata files without image URL
  */
 const initializeMetadata = async () => {

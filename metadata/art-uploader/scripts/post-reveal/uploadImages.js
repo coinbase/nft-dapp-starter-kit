@@ -2,7 +2,7 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-/*
+/**
  * Upload images to IPFS via Pinata
  */
 const uploadImages = async () => {
