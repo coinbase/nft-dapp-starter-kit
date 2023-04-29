@@ -32,7 +32,7 @@ If you have any questions or notice issues, please file a ticket and we will res
 
 Open a PR to add your project to the list:)
 
-- [Burn My Wallet](https://burnmywallet.com/#) (Winner of ETH New York 2022)
+- [Burn My Wallet](https://burnmywallet.vercel.app/) (Winner of ETH New York 2022)
 
 ## Inspirations
 
