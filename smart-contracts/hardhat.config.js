@@ -37,7 +37,7 @@ task("etherscan-verify", "Verifies on etherscan", async (taskArgs, hre) => {
   });
 });
 
-/*
+/**
  * ensure that the defaultNetwork is set to the network of your choice
  * before running any scripts to interact with the deploy smart contract
  */

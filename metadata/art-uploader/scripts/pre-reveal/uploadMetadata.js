@@ -2,7 +2,7 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-/*
+/**
  * Upload metadata files to IPFS via Pinata
  */
 const uploadPrerevealMetadata = async () => {

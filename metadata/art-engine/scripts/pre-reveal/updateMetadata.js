@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-/*
+/**
  * Update image URL for each token pre-reveal metadata file
  */
 const updatePrerevealMetadata = async () => {

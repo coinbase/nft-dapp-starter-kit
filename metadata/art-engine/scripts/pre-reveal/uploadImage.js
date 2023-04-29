@@ -2,7 +2,7 @@ const fs = require("fs");
 const { exit } = require("process");
 require("dotenv").config();
 
-/*
+/**
  * Upload pre-reveal image to IPFS via Pinata
  */
 const uploadPrerevealImage = async () => {
